@@ -2,7 +2,8 @@
 
 import { Card, Col, Text } from "@nextui-org/react";
 
-export const PlayerCard = () => (
+export const  PlayerCard = () => (
+
   <Card>
     <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
       <Col>
@@ -21,5 +22,6 @@ export const PlayerCard = () => (
       height={340}
       alt="Card image background"
     />
+    <img src="https://www.countryflagicons.com/FLAT/16/DE.png"></img>
   </Card>
 );

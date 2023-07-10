@@ -4,12 +4,15 @@ import { Navbar, Link, Text, Button } from "@nextui-org/react";
 import { Logo } from "./Logo";
 
 
-export const NaviBar=()=> {
+export const  NaviBar=()=> {
   const collapseItems = [
 
     "List",
     "Create New Player",
+    "Stat Request"
   ];
+ 
+
 
   return (
       <Navbar isBordered variant="static">
@@ -25,15 +28,15 @@ export const NaviBar=()=> {
       <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
         <Navbar.Link href="/list">Player LIST</Navbar.Link>
         <Navbar.Link href="createnewplayer">Create New Player</Navbar.Link>
-  
+        <Navbar.Link href="statrequest">Stat Request</Navbar.Link>
         
       </Navbar.Content>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="/register">
+        <Navbar.Link color="inherit" href="#">
           Login
         </Navbar.Link>
         <Navbar.Item>
-          <Button auto flat as={Link} href="#">
+          <Button auto flat as={Link} href="/register">
             Sign Up
           </Button>
         </Navbar.Item>

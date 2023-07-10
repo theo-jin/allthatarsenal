@@ -1,6 +1,6 @@
 
 
-import Example from "../components/chart"
+import Example from "../components/Chart"
 
 
 export default function Register() {
