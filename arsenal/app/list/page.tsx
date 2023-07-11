@@ -1,25 +1,15 @@
-'use client'
-import { Grid } from "@nextui-org/react";
-import { PlayerCard } from "../components/PlayerCard";
+import PlayerCard from "./listItem"
+import { connectDB } from "../../util/database";
 
-export default function list(){
+export default async function list(){
+   const client = await connectDB;
+   const db = client.db('arsenal');
+   let result = await db.collection('PlayerList').find().toArray();
 
     return (
-        
-        <Grid.Container gap={2} justify="center">
-            
-           <Grid xs={12} sm={4}>
-              <PlayerCard />
-            </Grid>
-            <Grid xs={12} sm={4}>
-              <PlayerCard />
-            </Grid>
-            <Grid xs={12} sm={4}>
-              <PlayerCard />
-            </Grid>
-            <Grid xs={12} sm={4}>
-              <PlayerCard />
-            </Grid>
-          </Grid.Container>
+        <div>
+          <PlayerCard result={result} />
+        </div>
+       
         );
 }

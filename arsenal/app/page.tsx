@@ -11,6 +11,9 @@ export default async function App() {
    
     <div>
       {result[0].name}
+      {result[1].name}
+      {result[2].name}
+      
     </div>
   )
 }
