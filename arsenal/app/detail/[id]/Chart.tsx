@@ -13,8 +13,7 @@ import {
 
 
 export default async function App({result}) {
- 
- 
+  console.log(result)
 
   const data = [
     {

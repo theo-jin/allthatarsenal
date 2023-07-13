@@ -4,6 +4,7 @@ import { Navbar, Link, Text, Button } from "@nextui-org/react";
 import { Logo } from "./Logo";
 
 
+
 export const  NaviBar=()=> {
   const collapseItems = [
 
@@ -35,6 +36,7 @@ export const  NaviBar=()=> {
         <Navbar.Link color="inherit" href="#">
           Login
         </Navbar.Link>
+      
         <Navbar.Item>
           <Button auto flat as={Link} href="/register">
             Sign Up
