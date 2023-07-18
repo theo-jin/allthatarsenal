@@ -1,46 +1,47 @@
 'use client'
 
-import { Navbar, Link, Text, Button } from "@nextui-org/react";
+import {Avatar, Navbar, Link, Text, Button } from "@nextui-org/react";
 import { Logo } from "./Logo";
+import SignInBtn from "./SignInBtn"
+import LogOut from "./LogOutBtn"
 
-
-
-export const  NaviBar=()=> {
+export const  NaviBar=({session})=> {
   const collapseItems = [
 
     "List",
     "Create New Player",
-    "Stat Request"
+    "Player Vs Player"
   ];
- 
-
 
   return (
       <Navbar isBordered variant="static">
       <Navbar.Brand>
         <Navbar.Toggle aria-label="toggle navigation" />
+        <Navbar.Content>
+        <Navbar.Link href="/">
         <Logo />
      
-        <Text b color="inherit" hideIn="xs" >
+        <Text  b color="inherit" hideIn="xs" >
           ALLTHATARSENAL
         </Text>
-   
+        </Navbar.Link>
+        </Navbar.Content>
+
       </Navbar.Brand>
       <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
         <Navbar.Link href="/list">Player LIST</Navbar.Link>
-        <Navbar.Link href="createnewplayer">Create New Player</Navbar.Link>
-        <Navbar.Link href="statrequest">Stat Request</Navbar.Link>
+        <Navbar.Link href="/createnewplayer">Create New Player</Navbar.Link>
+        <Navbar.Link href="/playervsplayer">Player Vs Player</Navbar.Link>
         
       </Navbar.Content>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="#">
-          Login
-        </Navbar.Link>
+      {session ? <LogOut/>:<SignInBtn/> }
       
         <Navbar.Item>
-          <Button auto flat as={Link} href="/register">
+        {session ?   <Avatar squared 
+          text={session.user.name} />:<Button auto flat as={Link} href="/register">
             Sign Up
-          </Button>
+          </Button>}
         </Navbar.Item>
       </Navbar.Content>
       <Navbar.Collapse>
@@ -52,7 +53,7 @@ export const  NaviBar=()=> {
             css={{
               minWidth: "100%",
             }}
-            href={item.toLowerCase().split(' ').join('')}
+            href={`/${item.toLowerCase().split(' ').join('')}`}
           >
             {item} 
           </Link>

@@ -1,4 +1,4 @@
-import { connectDB } from "./../../../util/database"
+import { connectDB} from "../../../util/database"
 import bcrypt from 'bcrypt'
 import { NextApiRequest, NextApiResponse } from 'next';
 // export default async function handler(req,res){

@@ -1,6 +1,6 @@
 'use client'
 
-import { Link,Grid, Card, Col, Text } from "@nextui-org/react";
+import { Link,Grid, Card, Col, Text,Row,Button } from "@nextui-org/react";
 
 export default  function App({result}){ 
     
@@ -10,16 +10,16 @@ export default  function App({result}){
 <Grid.Container gap={2} justify="center">
           {result.map(function(a,i){
             return(
-              <Link href={`/detail/${result[i]._id}`}>  
+             
               <Grid xs={12} sm={4}> 
 
-  <Card>
+  <Card   isHoverable>
     <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
       <Col>
         <Text size={24} weight="bold" transform="uppercase" color="black">
-        <img src={`https://www.countryflagicons.com/FLAT/16/${result[i].nation}.png`}></img>  {result[i].name}
+      {result[i].name}
         </Text>
-        <Text h4 color="white">
+        <Text h4 color="black">
         {result[i].role}
         </Text>
       </Col>
@@ -30,11 +30,60 @@ export default  function App({result}){
       width="100%"
       height={340}
       alt="Card image background"
-    />
+    /> <Card.Footer
+    isBlurred
+    css={{
+      position: "absolute",
+      bgBlur: "#0f111466",
+      borderTop: "$borderWeights$light solid $gray800",
+      bottom: 0,
+      zIndex: 1,
+    }}
+  >
+    <Row>
+      <Col>
+        <Row>
+          <Col span={3}>
+            <Card.Image
+              src={`https://www.countryflagicons.com/FLAT/24/${result[i].nation}.png`}
+              height={40}
+              width={30}
+              alt="flag"
+            />
+          </Col>
+          <Col>
+            <Text color="#d1d1d1" size={12}>
+            {result[i].name}
+            </Text>
+          </Col>
+        </Row>
+      </Col>
+      <Col>
+        <Row justify='space-evenly'>
+          <Button
+            flat
+            auto
+            css={{ color: "#94f9f0", bg: "#94f9f026" }}
+          ><Link  href={`/detail/${result[i]._id}`}>  
+            <Text
+              css={{ color: "#F31260"
+
+              }}
+              size={12}
+              weight="bold"
+              transform="uppercase"
+            >
+              See more
+            </Text></Link>
+          </Button>
+        </Row>
+      </Col>
+    </Row>
+  </Card.Footer>
  
   </Card>            
             </Grid>
-            </Link>
+            // </Link>
             )
           })}  
   

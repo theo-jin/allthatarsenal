@@ -1,16 +1,14 @@
-'use client'
-import { Input,Spacer } from '@nextui-org/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from "../../pages/api/auth/[...nextauth]"
+import CreateNewPlayer from "./CreateNewPlayer"
+import FailPage from "./FailPage"
 
-export default function Register() {
-    return (
+export default async function Register() {
+  let session = await getServerSession(authOptions)
+
+  return (
       <>
-      
-       <form method="POST" action="/api/auth/signup">
-      <Spacer y={2.5} />
-      <Input clearable label="Name" placeholder="Name" initialValue="NextUI" />
-      <Spacer y={2.5} />
-      <Input.Password labelPlaceholder="Password" initialValue="nextui123" />
-      </form>
+    {session ? <CreateNewPlayer/>:<FailPage/> }
     </>
     )
   }
