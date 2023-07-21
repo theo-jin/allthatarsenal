@@ -1,5 +1,5 @@
 'use client'
-import { Input,Textarea ,Grid,Text} from '@nextui-org/react';
+import { Input,Textarea ,Grid,Text,Spacer} from '@nextui-org/react';
 
 export default function App() {
     
@@ -7,28 +7,35 @@ export default function App() {
       <>
       <Grid.Container  gap={1} justify="center">
       <Grid xs={12} justify="center" ><Text h1>Create New Player</Text></Grid>
-      <Grid xs={6} justify="center" >
+      <Grid xs={3} justify="center" >
       <Input   width="200px"  clearable label="Player Name" placeholder="Player Name" initialValue="Player Name" />
       </Grid>
-      <Grid xs={6} justify="center" >
+      <Grid xs={3} justify="center" >
       <Input   width="200px"  clearable label="Role" placeholder="Role " initialValue="Role" />
       </Grid>
-      <Grid xs={6} justify="center" >
+      <Grid xs={3} justify="center" >
       <Input   width="200px"  clearable label="Nation code" placeholder="Nation code" initialValue="Nation code" />
       </Grid>
-      <Grid xs={6} justify="center" >
+      <Grid xs={3} justify="center" >
       <Input   width="200px"  clearable label="Number" placeholder="Number" initialValue="Number" />
       </Grid>
-      <Grid xs={6  } justify="center" >
+      <Grid xs={3  } justify="center" >
       <Input 
           width="200px" 
           label="Birth" 
           type="date" 
         />
       </Grid>
-      <Grid xs={6} justify="center" >
-      <Input   width="200px"  clearable label="Height " placeholder="Height" initialValue="Height" />
+      <Grid xs={3} justify="center" >
+      <Input   width="200px"  clearable label="Height" placeholder="Height (cm)" initialValue="Height" />
       </Grid>
+      <Grid xs={3} justify="center" >
+      <Input   width="200px"  clearable label="Picture1" placeholder="Picture1" initialValue="Picture1" />
+      </Grid>
+      <Grid xs={3} justify="center" >
+      <Input   width="200px"  clearable label="Picture2" placeholder="Picture2" initialValue="Picture2" />
+      </Grid>
+      
       <Grid  xs={4} justify="center">
       <Input clearable label="pace" placeholder="pace" initialValue="0" />
       </Grid>

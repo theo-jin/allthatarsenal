@@ -1,6 +1,6 @@
 'use client'
 import {Card, Grid,Text,Spacer } from "@nextui-org/react";
-import Chart from "./Chart"
+
 
 export default function App({result}){
 
@@ -19,7 +19,7 @@ export default function App({result}){
 <Grid.Container justify="center">
 <Grid >
 <Spacer y={1} />
-<Card   variant="bordered" borderWeight="normal"   isPressable css={{ p: "$4", mw: "500px"  }} >
+<Card   variant="bordered" borderWeight="normal"  css={{ p: "$4", mw: "500px", borderEndEndRadius:"0px",borderBottomLeftRadius:"0px", borderBottom: "$borderWeights$bold solid $red600 "  }} >
       <Card.Header>
         <img
           alt="nextui logo"
@@ -44,16 +44,12 @@ export default function App({result}){
             <Text css={{ color: "black" }}>Height: {result.height}cm</Text>
           </Grid>
           <Grid xs={12}>
-            <Text css={{ color: "black" }}>Nation team</Text>
+            <Text css={{ color: "black" }}>Nation team:</Text>
           </Grid> <img src={`https://www.countryflagicons.com/FLAT/32/${result.nation}.png`}/>
         </Grid.Container>
       </Card.Header>
    
-      <Card.Body css={{ py: "$2" ,borderBottom: "$borderWeights$bold solid $red600"}}>
-        <Text>
-         
-        </Text>
-      </Card.Body>
+    
     
     </Card>
 
