@@ -2,9 +2,9 @@
 import { connectDB } from "../../../util/database";
 import { ObjectId } from "mongodb"
 import Chart from "./Chart"
-import Biography from "./Biography"
 import Info from "./Info"
 import Describe from "./Describe"
+import Comments from "./Comments"
 export default async function App(props) {
   const client=await connectDB;
   const db = client.db('arsenal');
@@ -15,6 +15,7 @@ export default async function App(props) {
       <Info result={result}/>
       <Chart result={result}/>
       <Describe result={result}/>
+      <Comments result={result}/>
     </>
     )
   }
