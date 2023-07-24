@@ -1,5 +1,5 @@
 'use client'
-import { Input,Textarea ,Grid,Text,Spacer} from '@nextui-org/react';
+import { Input,Textarea ,Grid,Text} from '@nextui-org/react';
 
 export default function App() {
     
@@ -30,10 +30,10 @@ export default function App() {
       <Input   width="200px"  clearable label="Height" placeholder="Height (cm)" initialValue="Height" />
       </Grid>
       <Grid xs={3} justify="center" >
-      <Input   width="200px"  clearable label="Picture1" placeholder="Picture1" initialValue="Picture1" />
+      <Input   width="200px"   label="Picture1" placeholder="Picture1" initialValue="Picture1" />
       </Grid>
       <Grid xs={3} justify="center" >
-      <Input   width="200px"  clearable label="Picture2" placeholder="Picture2" initialValue="Picture2" />
+      <Input   width="200px"   label="Picture2" placeholder="Picture2" initialValue="Picture2" />
       </Grid>
       
       <Grid  xs={4} justify="center">
@@ -57,7 +57,7 @@ export default function App() {
     </Grid.Container>
     <Grid.Container gap={2.5} css={{ mt: "10px" }} justify="center">
     <Grid>
-        <Textarea placeholder="describe" />
+        <Textarea label="describe" placeholder="describe"  size='xl' />
       </Grid>
       </Grid.Container>
     </>

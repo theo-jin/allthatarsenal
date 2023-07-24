@@ -64,7 +64,7 @@ interface Result {
         <Grid.Container justify="center">
         
             <Grid>
-            <Text h3 align="center">Player stat</Text>
+            <Text h3 >Player Stat</Text>
       <RadarChart cx={250} cy={180} outerRadius={150} width={500} height={350} data={data}>
  
         <PolarGrid />

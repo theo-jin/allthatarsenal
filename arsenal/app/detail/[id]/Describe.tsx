@@ -7,8 +7,8 @@ export default function App({result}){
     return(
 <Grid.Container justify="center">
 <Grid >
-<Spacer y={1} />
-<Card variant="bordered" borderWeight="normal"  css={{ p: "$4", mw: "500px",borderRadius:"0px"     }} >
+<Spacer y={0.5} />
+<Card variant="bordered" borderWeight="normal"  css={{ p: "$4", mw: "500px",borderRadius:"5px"     }} >
   
         <Grid.Container css={{ pl: "$6" }}>
         <Grid xs={12}   justify="center">
