@@ -6,7 +6,7 @@ import { authOptions } from "../auth/[...nextauth]"
 export default async function handler(req, res){
        let session = await getServerSession(req,res,authOptions)
       req.body=JSON.parse(req.body)
-      console.log(req.body)
+  
       let save={
         comment:req.body.comment,
         parent: new ObjectId(req.body._id),
@@ -18,7 +18,7 @@ export default async function handler(req, res){
         const db = (await connectDB).db("arsenal")
         let result= await db.collection('comment').insertOne(save)
       
-        res.status(200).redirect('/')
+        res.status(200).redirect('/list')
       }
     }else{
         res.status(500).json('로그인해주세요')

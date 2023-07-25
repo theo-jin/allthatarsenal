@@ -1,17 +1,17 @@
 'use client'
 
-import React from "react";
+import {React,useState} from "react";
 import { Modal, Input, Row, Checkbox, Button, Text } from "@nextui-org/react";
 
 
 export default function App(comment) {
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
+  let [com,setCom]= useState('')
   const handler = () => setVisible(true);       
   const closeHandler = () => {
     setVisible(false);
   };
-
-  
+ 
   return (
     <div>
       <Button auto css={{ background:"#687076"}} onPress={handler}>
@@ -37,16 +37,26 @@ export default function App(comment) {
             fullWidth
             color="primary"
             size="lg"
-            placeholder="Password"
-            initialValue={comment.comment}
+            initialValue={comment.comment.comment}
+            onChange={(e)=>{ setCom(e.target.value) }} 
           />
         
         </Modal.Body>
         <Modal.Footer>
-          <Button auto flat onPress={closeHandler}>
+          <Button auto flat onPress={()=>{
+                    fetch('/api/comment/edit',{
+                        method : 'POST', 
+                        body:JSON.stringify({
+                            comment :com,
+                            _id :comment.comment._id})}).then(()=>{setVisible(false)})
+                 }}>
            Edit
           </Button>
-          <Button auto flat  color="error" onPress={closeHandler}>
+          <Button auto flat  color="error" onPress={()=>{
+                    fetch('/api/comment/delete',{
+                        method : 'DELETE', 
+                        body : comment.comment._id}).then(()=>{setVisible(false)})
+                 }}>
             Delete
           </Button>
         </Modal.Footer>

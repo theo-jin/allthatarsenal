@@ -4,7 +4,7 @@ import { Link,Grid, Card, Col, Text,Row,Button } from "@nextui-org/react";
 
 export default  function App({result}){ 
     
-    console.log(result)
+   
     return(
       <div>
 <Grid.Container gap={2} justify="center">
