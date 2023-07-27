@@ -15,7 +15,7 @@ export default async function handler(req, res){
 
         if(pp.author == session.user.email){
           let result= await db.collection('comment').deleteOne({_id:new ObjectId(req.body)})
-          return res.status(200).redirect('/list')
+      
         }else{
           return res.status(500).json('작성자와 맞지 않았습니다.').redirect('/list')
         }

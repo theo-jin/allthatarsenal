@@ -29,7 +29,7 @@ export const  NaviBar=({session})=> {
 
       </Navbar.Brand>
       <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
-        <Navbar.Link href="/list">Player LIST</Navbar.Link>
+        <Navbar.Link href="/list">Player List</Navbar.Link>
         <Navbar.Link href="/createnewplayer">Create New Player</Navbar.Link>
         <Navbar.Link href="/playervsplayer">Player Vs Player</Navbar.Link>
         

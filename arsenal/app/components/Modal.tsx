@@ -6,7 +6,7 @@ import { Modal, Input, Row, Checkbox, Button, Text } from "@nextui-org/react";
 
 export default function App(comment) {
   const [visible, setVisible] = useState(false);
-  let [com,setCom]= useState('')
+  let [com,setCom]= useState(`${comment.comment.comment}`)
   const handler = () => setVisible(true);       
   const closeHandler = () => {
     setVisible(false);
@@ -19,7 +19,7 @@ export default function App(comment) {
       </Button>
       <Modal
         closeButton
-        blur
+        
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
@@ -37,7 +37,7 @@ export default function App(comment) {
             fullWidth
             color="primary"
             size="lg"
-            initialValue={comment.comment.comment}
+            initialValue={com}
             onChange={(e)=>{ setCom(e.target.value) }} 
           />
         

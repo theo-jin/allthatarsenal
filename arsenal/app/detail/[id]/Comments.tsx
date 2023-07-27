@@ -39,7 +39,7 @@ export default function Comment({result}) {
      <Grid xs={12}  justify="center">
         <Input size="lg"  placeholder="Write Comment" 
         onChange={(e)=>{ setComment(e.target.value) }} />
-        <Button    auto css={{ background:"#687076"}}    onClick={()=>{
+        <Button    auto css={{ background:"#687076"}}    onPress={()=>{
              fetch('/api/comment/new',{
               method:'POST',
               body:JSON.stringify({

@@ -9,7 +9,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
-  Legend
+
 } from "recharts";
 
 interface Result {

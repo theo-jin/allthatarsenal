@@ -5,17 +5,6 @@ import {Card, Grid,Text,Spacer } from "@nextui-org/react";
 export default function App({result}){
 
     return(
-//    <Grid.Container justify="center">
-//     <Grid>
-        
-//         <Text h1> {result.name}</Text><Col span={1}>
-//         <Image    width={30}
-//               alt="flag" src={`https://www.countryflagicons.com/FLAT/32/${result.nation}.png`}></Image> </Col>
-//         <Text h4>{result.role}</Text>
-  
-//         <Chart result={result}/>
-//     </Grid>
-//    </Grid.Container>
 <Grid.Container justify="center">
 <Grid >
 <Spacer y={1} />
