@@ -1,9 +1,14 @@
 import Chart from "./Chart"
-export default  function App() {
-    
+import { connectDB } from "../../util/database";
+export default async function App() {
+    const client = await connectDB;
+    const db = client.db('arsenal');
+    let result = await db.collection('PlayerList').find().toArray();
+ 
     return (
-        <>
-  <Chart/>
-      </>
+        <div>
+  <Chart result={result}/>
+      </div>
       )
     }
+

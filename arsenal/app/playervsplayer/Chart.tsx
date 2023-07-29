@@ -1,65 +1,93 @@
 'use client'
 
-import React, { PureComponent } from 'react';
-import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import { Grid ,Text,Dropdown,Button} from "@nextui-org/react";
 
-const data = [
-  {
-    subject: 'Math',
-    A: 120,
-    B: 110,
-    fullMark: 99,
-  },
-  {
-    subject: 'Chinese',
-    A: 98,
-    B: 130,
-    fullMark: 99,
-  },
-  {
-    subject: 'English',
-    A: 86,
-    B: 130,
-    fullMark: 99,
-  },
-  {
-    subject: 'Geography',
-    A: 99,
-    B: 100,
-    fullMark: 99,
-  },
-  {
-    subject: 'Physics',
-    A: 85,
-    B: 90,
-    fullMark: 99,
-  },
-  {
-    subject: 'History',
-    A: 65,
-    B: 85,
-    fullMark: 99,
-  },
-];
+import React, { useState } from "react";
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
 
-export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/radar-chart-specified-domain-mfl04';
+} from "recharts";
 
-  render() {
-    return (
-      <>
-     
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={30} domain={[0, 150]} />
-          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
-          <Legend />
-        </RadarChart>
-      </ResponsiveContainer>
-      </>
-    );
+
+
+
+interface Result {
+    pace: number;
+    dribble: number;
+    shot: number;
+    pass: number;
+    physical: number;
+    defence: number;
   }
-}
+  
+  interface AppProps {
+    result: Result;
+  }
+  
+  const App: React.FC<AppProps> = ({ result }) => {
+    let[player1,setPlayer1]=useState();
+    let[player2,setPlayer2]=useState();
+    const data = [
+      {
+        subject: "PACE",
+        A: result.pace,
+        fullMark: 99
+      },
+      {
+        subject: "DRIBBLE",
+        A: result.dribble,
+        fullMark: 99
+      },
+      {
+        subject: "SHOT",
+        A: result.shot,
+        fullMark: 99
+      },
+      {
+        subject: "PASS",
+        A: result.pass,
+        fullMark: 99
+      },
+      {
+        subject: "PHYSICAL",
+        A: result.physical,
+        fullMark: 99
+      },
+      {
+        subject: "DEFENCE",
+        A: result.defence,
+        fullMark: 99
+      },  
+    ];
+  
+    return (
+        <Grid.Container justify="center">
+        
+            <Grid>
+            <Text h3 >Player Stat</Text>
+      <RadarChart cx={250} cy={180} outerRadius={150} width={500} height={350} data={data}>
+ 
+        <PolarGrid />
+        <PolarAngleAxis dataKey="subject" />
+       
+        <PolarRadiusAxis />
+       
+        <Radar
+          name={result.name}
+          dataKey="A"
+          stroke="#8884d8"
+          fill="#8884d8"
+          fillOpacity={0.6}
+        />
+   
+      </RadarChart>
+      </Grid>
+      </Grid.Container>
+    );
+  };
+  
+  export default App;

@@ -10,8 +10,8 @@ export default async function handler(req, res){
 
         const db = (await connectDB).db('arsenal')
         let pp = await db.collection('comment').findOne({ _id : new ObjectId(req.body) })
-         console.log(pp.author) 
-        // console.log(`${session.user.email}***************${found.author}`) 
+        
+
 
         if(pp.author == session.user.email){
           let result= await db.collection('comment').deleteOne({_id:new ObjectId(req.body)})

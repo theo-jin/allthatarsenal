@@ -4,13 +4,24 @@ import { useState ,useEffect } from "react"
 import { Button, Grid,Card, Input,Text} from "@nextui-org/react";
 import Modal from "../../components/Modal"
 export default function Comment({result}) {
+  
   let [comment,setComment]= useState('')
   let [data,setData]=useState([])
+
   useEffect(()=>{
     fetch('/api/comment/list?id='+result._id).then(r=>r.json()).then((result)=>{
       setData(result)
     })
   },[data]) 
+
+  const submitHandler=()=>{
+    fetch('/api/comment/new',{
+     method:'POST',
+     body:JSON.stringify({
+       comment : comment,
+        _id :result._id }) 
+   })
+}
 
   return (
     <Grid.Container justify="center">
@@ -39,14 +50,7 @@ export default function Comment({result}) {
      <Grid xs={12}  justify="center">
         <Input size="lg"  placeholder="Write Comment" 
         onChange={(e)=>{ setComment(e.target.value) }} />
-        <Button    auto css={{ background:"#687076"}}    onPress={()=>{
-             fetch('/api/comment/new',{
-              method:'POST',
-              body:JSON.stringify({
-                comment : comment,
-                 _id :result._id }) 
-            })
-        }}>submit</Button>
+        <Button    auto css={{ background:"#687076"}}  onPress={submitHandler}>submit</Button>
 
         </Grid>
        

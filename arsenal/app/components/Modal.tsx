@@ -1,7 +1,7 @@
 'use client'
 
-import {React,useState} from "react";
-import { Modal, Input, Row, Checkbox, Button, Text } from "@nextui-org/react";
+import {useState} from "react";
+import { Modal, Input, Row, Checkbox,Link,Button, Text } from "@nextui-org/react";
 
 
 export default function App(comment) {
@@ -11,7 +11,23 @@ export default function App(comment) {
   const closeHandler = () => {
     setVisible(false);
   };
- 
+
+  const handleEdit = ()=>{
+    fetch('/api/comment/edit',{
+        method : 'POST', 
+        body:JSON.stringify({
+            comment :com,
+            _id :comment.comment._id})}).then(()=>{setVisible(false)})
+ }
+
+ const handleDelete = () => {
+  fetch('/api/comment/delete', {
+    method: 'DELETE',
+    body: comment.comment._id
+  })
+};
+
+
   return (
     <div>
       <Button auto css={{ background:"#687076"}} onPress={handler}>
@@ -19,7 +35,6 @@ export default function App(comment) {
       </Button>
       <Modal
         closeButton
-        
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
@@ -43,22 +58,14 @@ export default function App(comment) {
         
         </Modal.Body>
         <Modal.Footer>
-          <Button auto flat onPress={()=>{
-                    fetch('/api/comment/edit',{
-                        method : 'POST', 
-                        body:JSON.stringify({
-                            comment :com,
-                            _id :comment.comment._id})}).then(()=>{setVisible(false)})
-                 }}>
+          <Button auto flat onPress={handleEdit}>
            Edit
           </Button>
-          <Button auto flat  color="error" onPress={()=>{
-                    fetch('/api/comment/delete',{
-                        method : 'DELETE', 
-                        body : comment.comment._id}).then(()=>{setVisible(false)})
-                 }}>
+          <Link   href={`/detail/${comment.comment.parent}`}>  
+          <Button auto flat  color="error" onPress={handleDelete} >
             Delete
           </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </div>

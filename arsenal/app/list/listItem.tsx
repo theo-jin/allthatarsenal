@@ -1,18 +1,21 @@
 'use client'
 
 import { Link,Grid, Card, Col, Text,Row,Button } from "@nextui-org/react";
-import Downdrop from"../components/Dropdown";
 import { useState } from "react";
+
 export default  function App({result}){ 
-    
-   let [copyResult,setCopyResult]=useState({...result});
-   console.log(copyResult);
+    console.log(result)
+    let [copy,setCopy]=useState([...result]);
+     
+     let copySort=copy.sort(function (a,b){
+      return a.number-b.number;
+     })
     return(
       <div>
     <Grid.Container justify="center">
                 <Grid xs={6}><Text h1>Player List </Text></Grid>
                 <Grid justify="flex-end" xs={6}>
-                  <Text>  <Downdrop  /></Text>
+                  <Text></Text>
             
                 </Grid>  
                 </Grid.Container>
@@ -76,7 +79,9 @@ export default  function App({result}){
             css={{ color: "#94f9f0", bg: "#94f9f026" }}
           ><Link  href={`/detail/${result[i]._id}`}>  
             <Text
-              css={{ color: "#F31260" }}
+              css={{ color: "#F31260"
+
+              }}
               size={12}
               weight="bold"
               transform="uppercase"
