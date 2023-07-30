@@ -22,9 +22,8 @@ export default function Register() {
 
       if (response.ok) {
         // 요청이 성공적으로 완료되었을 때 수행할 작업
-      } else {
-        // 요청이 실패했을 때 수행할 작업
-      }
+             window.location.href = '/'
+      } 
     } catch (error) {
       // 요청이 실패하거나 예외가 발생했을 때 수행할 작업
     }

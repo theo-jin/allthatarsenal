@@ -1,4 +1,4 @@
-import Chart from "./Chart"
+import Versus from "./Versus"
 import { connectDB } from "../../util/database";
 export default async function App() {
     const client = await connectDB;
@@ -7,7 +7,7 @@ export default async function App() {
  
     return (
         <div>
-  <Chart result={result}/>
+  <Versus result={result}/>
       </div>
       )
     }

@@ -27,7 +27,7 @@ export default function App({result}){
             <Text css={{ color: "$accents8" }}>{result.role}</Text>
           </Grid>
           <Grid xs={12}>
-            <Text css={{ color: "black" }}>Birth: {result.birth}</Text>
+            <Text css={{ color: "black" }}>Birth: {result.birth.toDateString()}</Text>
           </Grid>
           <Grid xs={12}>
             <Text css={{ color: "black" }}>Height: {result.height}cm</Text>

@@ -5,11 +5,7 @@ import { useState } from "react";
 
 export default  function App({result}){ 
     console.log(result)
-    let [copy,setCopy]=useState([...result]);
-     
-     let copySort=copy.sort(function (a,b){
-      return a.number-b.number;
-     })
+  
     return(
       <div>
     <Grid.Container justify="center">
