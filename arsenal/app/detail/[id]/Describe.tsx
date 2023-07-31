@@ -3,7 +3,7 @@ import {Card, Grid,Text,Spacer } from "@nextui-org/react";
 
 
 export default function App({result}){
-
+  console.log('dd')
     return(
 <Grid.Container justify="center">
 <Grid >

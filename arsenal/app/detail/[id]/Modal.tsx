@@ -1,12 +1,13 @@
 'use client'
 
 import {useState} from "react";
-import { Modal, Input, Row, Checkbox,Link,Button, Text } from "@nextui-org/react";
+import { Modal, Input,Link,Button, Text } from "@nextui-org/react";
 
 
-export default function App(comment) {
+export default function App({comment}) {
+    console.log(comment)
   const [visible, setVisible] = useState(false);
-  let [com,setCom]= useState(`${comment.comment.comment}`)
+  let [com,setCom]= useState(`${comment.comment}`)
   const handler = () => setVisible(true);       
   const closeHandler = () => {
     setVisible(false);
@@ -17,13 +18,13 @@ export default function App(comment) {
         method : 'POST', 
         body:JSON.stringify({
             comment :com,
-            _id :comment.comment._id})}).then(()=>{setVisible(false)})
+            _id :comment._id})}).then(()=>{setVisible(false)})
  }
 
  const handleDelete = () => {
   fetch('/api/comment/delete', {
     method: 'DELETE',
-    body: comment.comment._id
+    body: comment._id
   })
 };
 
@@ -61,7 +62,7 @@ export default function App(comment) {
           <Button auto flat onPress={handleEdit}>
            Edit
           </Button>
-          <Link   href={`/detail/${comment.comment.parent}`}>  
+          <Link   href={`/detail/${comment.parent}`}>  
           <Button auto flat  color="error" onPress={handleDelete} >
             Delete
           </Button>

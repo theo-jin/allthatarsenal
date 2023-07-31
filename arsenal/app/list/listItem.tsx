@@ -4,7 +4,7 @@ import { Link,Grid, Card, Col, Text,Row,Button } from "@nextui-org/react";
 import { useState } from "react";
 
 export default  function App({result}){ 
-    console.log(result)
+
   
     return(
       <div>
@@ -76,7 +76,6 @@ export default  function App({result}){
           ><Link  href={`/detail/${result[i]._id}`}>  
             <Text
               css={{ color: "#F31260"
-
               }}
               size={12}
               weight="bold"

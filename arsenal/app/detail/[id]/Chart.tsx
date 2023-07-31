@@ -59,7 +59,7 @@ interface Result {
         fullMark: 99
       },  
     ];
-  
+  console.log("ee")
     return (
         <Grid.Container justify="center">
         

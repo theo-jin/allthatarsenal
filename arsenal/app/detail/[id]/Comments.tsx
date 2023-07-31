@@ -2,17 +2,31 @@
 
 import { useState ,useEffect } from "react"
 import { Button, Grid,Card, Input,Text} from "@nextui-org/react";
-import Modal from "../../components/Modal"
-export default function Comment({result}) {
+import Modal from "./Modal"
+import { ObjectId } from "mongodb";
+
+interface CommentItem {
+  comment: string;
+  _id: ObjectId;
+}
+
+interface CommentProps {
+  result: {
+    _id: ObjectId;
+  };
+}
+
+export default function Comment({ result }: CommentProps) {
   
   let [comment,setComment]= useState('')
-  let [data,setData]=useState([])
+  let [data, setData] = useState<CommentItem[]>([]);
 
   useEffect(()=>{
     fetch('/api/comment/list?id='+result._id).then(r=>r.json()).then((result)=>{
       setData(result)
     })
-  },[data]) 
+  },[result._id]);
+
 
   const submitHandler=()=>{
     fetch('/api/comment/new',{
@@ -22,7 +36,7 @@ export default function Comment({result}) {
         _id :result._id }) 
    })
 }
-
+console.log('cc')
   return (
     <Grid.Container justify="center">
     <Grid xs={12}  justify="center">
