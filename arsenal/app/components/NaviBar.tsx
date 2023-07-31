@@ -5,7 +5,17 @@ import { Logo } from "./Logo";
 import SignInBtn from "./SignInBtn"
 import LogOut from "./LogOutBtn"
 
-export const  NaviBar=({session})=> {
+interface Session {
+  user: {
+    name: string;
+  };
+}
+
+interface NaviBarProps {
+  session: Session | null;
+}
+
+const NaviBar = ({ session }: NaviBarProps) => {
   const collapseItems = [
 
     "List",
