@@ -10,7 +10,9 @@ export default function Register() {
 <Grid> 
     <Text h1 >
      Available after Sign in
-        </Text></Grid>
+      </Text>
+      
+      <Link href={'/register'}>가입하러 가기</Link></Grid>
  </Grid.Container>
 
         </> 

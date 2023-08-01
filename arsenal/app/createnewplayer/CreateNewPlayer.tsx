@@ -1,7 +1,6 @@
 'use client'
 
 import { Input,Button ,Grid,Text} from '@nextui-org/react';
-import { redirect } from 'next/dist/server/api-utils';
 import { useState,FormEvent } from 'react';
 
 

@@ -1,9 +1,23 @@
 'use client'
+
 import {Card, Grid,Text,Spacer } from "@nextui-org/react";
+import { ObjectId } from "mongodb";
 
+interface CommentProps {
+  result: {
+    _id: ObjectId;
+    pace:number;
+    dribble:number;
+    shot:number;
+    pass:number;
+    physical:number;
+    defence:number;
+    describe:string;
+  };
+}
 
-export default function App({result}){
-  console.log('dd')
+export default function App({ result }: CommentProps){
+
     return(
 <Grid.Container justify="center">
 <Grid >

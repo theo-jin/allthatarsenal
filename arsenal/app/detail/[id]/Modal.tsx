@@ -5,7 +5,7 @@ import { Modal, Input,Link,Button, Text } from "@nextui-org/react";
 
 
 export default function App({comment}) {
-    console.log(comment)
+
   const [visible, setVisible] = useState(false);
   let [com,setCom]= useState(`${comment.comment}`)
   const handler = () => setVisible(true);       
@@ -25,7 +25,7 @@ export default function App({comment}) {
   fetch('/api/comment/delete', {
     method: 'DELETE',
     body: comment._id
-  })
+  }).then(()=>{setVisible(false)})
 };
 
 
@@ -59,9 +59,11 @@ export default function App({comment}) {
         
         </Modal.Body>
         <Modal.Footer>
+        <Link   href={`/detail/${comment.parent}`}>  
           <Button auto flat onPress={handleEdit}>
            Edit
           </Button>
+          </Link>
           <Link   href={`/detail/${comment.parent}`}>  
           <Button auto flat  color="error" onPress={handleDelete} >
             Delete

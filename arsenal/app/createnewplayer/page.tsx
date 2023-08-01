@@ -3,17 +3,8 @@ import { authOptions } from "../../pages/api/auth/[...nextauth]"
 import CreateNewPlayer from "./CreateNewPlayer"
 import FailPage from "./FailPage"
 
-interface Session {
-  user: {
-    name: string;
-   
-  };
- 
-}
-
-export default async function Register() {
-  let session: Session | null = await getServerSession(authOptions);
-
+export default async function App() {
+  let session = await getServerSession(authOptions)
 
   return (
       <>

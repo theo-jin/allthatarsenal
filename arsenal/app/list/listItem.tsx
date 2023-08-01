@@ -17,7 +17,7 @@ export default  function App({result}){
                 </Grid.Container>
          
 <Grid.Container gap={2} justify="center">
-          {result.map(function(a,i){
+          {result.map(function(a: any,i: string | number){
             return(
              
               <Grid xs={12} sm={4}> 

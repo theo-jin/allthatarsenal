@@ -13,6 +13,7 @@ export default async function handler(req, res){
        const db = (await connectDB).db("arsenal")
        let result= await db.collection('PlayerList').insertOne(req.body)
       
+       return res.status(200).redirect('/list')
        }
      }else{
         res.status(500).json('로그인해주세요')

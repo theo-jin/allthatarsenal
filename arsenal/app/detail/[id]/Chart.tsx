@@ -59,7 +59,7 @@ interface Result {
         fullMark: 99
       },  
     ];
-  console.log("ee")
+
     return (
         <Grid.Container justify="center">
         
@@ -73,7 +73,7 @@ interface Result {
         <PolarRadiusAxis />
        
         <Radar
-          name={result.name}
+      
           dataKey="A"
           stroke="#8884d8"
           fill="#8884d8"

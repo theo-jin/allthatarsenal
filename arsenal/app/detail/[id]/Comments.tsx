@@ -8,6 +8,8 @@ import { ObjectId } from "mongodb";
 interface CommentItem {
   comment: string;
   _id: ObjectId;
+  author:string;
+  parent: ObjectId;
 }
 
 interface CommentProps {
@@ -25,7 +27,8 @@ export default function Comment({ result }: CommentProps) {
     fetch('/api/comment/list?id='+result._id).then(r=>r.json()).then((result)=>{
       setData(result)
     })
-  },[result._id]);
+  },[]);
+ 
 
 
   const submitHandler=()=>{
@@ -34,9 +37,11 @@ export default function Comment({ result }: CommentProps) {
      body:JSON.stringify({
        comment : comment,
         _id :result._id }) 
-   })
+   }).then(()=>fetch('/api/comment/list?id='+result._id).then(r=>r.json()).then((result)=>{
+    setData(result)
+  }))
 }
-console.log('cc')
+
   return (
     <Grid.Container justify="center">
     <Grid xs={12}  justify="center">
@@ -64,7 +69,7 @@ console.log('cc')
      <Grid xs={12}  justify="center">
         <Input size="lg"  placeholder="Write Comment" 
         onChange={(e)=>{ setComment(e.target.value) }} />
-        <Button    auto css={{ background:"#687076"}}  onPress={submitHandler}>submit</Button>
+        <Button auto css={{ background:"#687076"}}  onPress={submitHandler}>submit</Button>
 
         </Grid>
        

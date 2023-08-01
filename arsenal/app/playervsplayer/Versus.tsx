@@ -11,9 +11,25 @@ import {
     PolarRadiusAxis,
     Legend 
   } from "recharts";
-export default function App({result}) {
-    let[playerA,setPlayerA]=useState({name:'',pace:0,dribble:0,shot:0,pass:0,physical:0,defence:0});
-    let[playerB,setPlayerB]=useState({name:'',pace:0,dribble:0,shot:0,pass:0,physical:0,defence:0});
+
+  interface Player {
+    name: string;
+    number:number;
+    pace: number;
+    dribble: number;
+    shot: number;
+    pass: number;
+    physical: number;
+    defence: number;
+  }
+  
+  interface Props {
+    result: Player[];
+  }
+  
+  export default function App({ result }: Props) {
+    let [playerA, setPlayerA] = useState<Player>({name:'', number:0,pace:0,dribble:0,shot:0,pass:0,physical:0,defence:0});
+    let [playerB, setPlayerB] = useState<Player>({name:'',number:0, pace:0,dribble:0,shot:0,pass:0,physical:0,defence:0});
     const data = [
         {
           subject: "PACE",
@@ -60,7 +76,7 @@ export default function App({result}) {
       <Dropdown.Button light>Player A</Dropdown.Button>
       <Dropdown.Menu aria-label="Static Actions">
       {result.map(function(a,i){
-            return(<Dropdown.Item ><Button  light color="#889096" auto onPress={()=>{setPlayerA(result[i])}}>
+            return(<Dropdown.Item ><Button  light  auto onPress={()=>{setPlayerA(result[i])}}>
               #{result[i].number}    {result[i].name}
               </Button>
                 </Dropdown.Item>)})}
@@ -74,7 +90,7 @@ export default function App({result}) {
       <Dropdown.Button light>Player B</Dropdown.Button>
       <Dropdown.Menu aria-label="Static Actions">
       {result.map(function(a,i){
-            return(<Dropdown.Item ><Button  light color="#889096" auto onPress={()=>{setPlayerB(result[i])}}>
+            return(<Dropdown.Item ><Button  light auto onPress={()=>{setPlayerB(result[i])}}>
               #{result[i].number}    {result[i].name}
               </Button>
                 </Dropdown.Item>)})}
