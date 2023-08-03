@@ -1,9 +1,9 @@
 'use client'
 
 import { Link,Grid, Card, Col, Text,Row,Button } from "@nextui-org/react";
-import { useState } from "react";
 
-export default  function App({result}){ 
+
+export default  function App({result}:any){ 
 
   
     return(

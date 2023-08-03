@@ -27,7 +27,7 @@ export default function Comment({ result }: CommentProps) {
     fetch('/api/comment/list?id='+result._id).then(r=>r.json()).then((result)=>{
       setData(result)
     })
-  },[]);
+  },[data]);
  
 
 

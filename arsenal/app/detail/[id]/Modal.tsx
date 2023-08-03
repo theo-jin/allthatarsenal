@@ -4,7 +4,7 @@ import {useState} from "react";
 import { Modal, Input,Link,Button, Text } from "@nextui-org/react";
 
 
-export default function App({comment}) {
+export default function App({comment}:any) {
 
   const [visible, setVisible] = useState(false);
   let [com,setCom]= useState(`${comment.comment}`)
@@ -59,11 +59,11 @@ export default function App({comment}) {
         
         </Modal.Body>
         <Modal.Footer>
-        <Link   href={`/detail/${comment.parent}`}>  
+       
           <Button auto flat onPress={handleEdit}>
            Edit
           </Button>
-          </Link>
+          
           <Link   href={`/detail/${comment.parent}`}>  
           <Button auto flat  color="error" onPress={handleDelete} >
             Delete
