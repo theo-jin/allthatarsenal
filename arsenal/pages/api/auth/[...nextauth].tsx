@@ -5,7 +5,10 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
-
+interface Credentials {
+  email: string;
+  password: string;
+}
 export const authOptions :any = {
   providers: [
     GithubProvider({
@@ -24,7 +27,7 @@ export const authOptions :any = {
       //2. 로그인요청시 실행되는코드
       //직접 DB에서 아이디,비번 비교하고 
       //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
-      async authorize(credentials) {
+      async authorize(credentials:Credentials) {
         let db = (await connectDB).db('arsenal');
         let user = await db.collection('user_cred').findOne({email : credentials.email})
         if (!user) {
@@ -36,7 +39,7 @@ export const authOptions :any = {
           console.log('비번틀림');
           return null
         }
-        return user
+        return user 
       }
     })
   ],

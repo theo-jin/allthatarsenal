@@ -1,7 +1,8 @@
 import { connectDB } from "../../../util/database"
 import { ObjectId } from "mongodb"
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req, res){
+export default async function handler(req:NextApiRequest, res:NextApiResponse){
     req.body=JSON.parse(req.body)
    
       if (req.method == 'POST'){
