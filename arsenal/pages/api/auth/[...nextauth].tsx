@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
 
-export const authOptions = {
+export const authOptions :any = {
   providers: [
     GithubProvider({
       clientId: '680692b7ab4a52017571',
