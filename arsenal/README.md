@@ -1,4 +1,4 @@
-# 개인프로젝트-ALLTHATARSENAL
+#   개인프로젝트-ALLTHATARSENAL
 
 
 <!--  -->
@@ -55,24 +55,24 @@ $ npm run dev
 -->
 <p>
 <!-- npm -->
-<img src= "https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
+<img src= "https://img.shields.io/badge/npm-CB3837?&logo=npm&logoColor=white">
   
 <!-- NEXT.js -->
-<img src= "https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white">
+<img src= "https://img.shields.io/badge/Next.js-000000?&logo=Next.js&logoColor=white">
 <!-- NextAuth -->
-<img src= "https://img.shields.io/badge/NextAuth-000000?style=for-the-badge&logo=Next.js&logoColor=white">
+<img src= "https://img.shields.io/badge/NextAuth-000000?&logo=Next.js&logoColor=white">
 <!-- NEXTUI -->
-<img src= "https://img.shields.io/badge/NextUI-000000?style=for-the-badge&logo=&logoColor=white">
+<img src= "https://img.shields.io/badge/NextUI-000000?&logo=&logoColor=white">
 <!-- MongoDB -->
-<img src= "https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
+<img src= "https://img.shields.io/badge/MongoDB-47A248?&logo=MongoDB&logoColor=white">
 <!-- Typescript -->
-<img src= "https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+<img src= "https://img.shields.io/badge/typescript-3178C6?&logo=typescript&logoColor=white">
 <!-- Recharts-->
-<img src="https://img.shields.io/badge/Recharts-FF6384?style=for-the-badge&logo=Recharts&logoColor=white">
+<img src="https://img.shields.io/badge/Recharts-FF6384?&logo=Recharts&logoColor=white">
 <!-- emotion -->
-<img src="https://img.shields.io/badge/emotion-D26AC2?style=for-the-badge&logoColor=white">
+<img src="https://img.shields.io/badge/emotion-D26AC2?&logoColor=white">
 <!-- Vercel -->
-<img src= "https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">
+<img src= "https://img.shields.io/badge/vercel-000000?&logo=vercel&logoColor=white">
 
 </p>
 
