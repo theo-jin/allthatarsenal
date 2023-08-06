@@ -4,6 +4,7 @@ import { NaviBar } from './components/NaviBar'
 import { Box } from './components/Box'
 import { getServerSession } from 'next-auth';
 import { authOptions } from "./../pages/api/auth/[...nextauth]"
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -27,7 +28,7 @@ export default async function RootLayout({
     }}
   > <NaviBar session={session}/>
       {children}   </Box></body>
-   
+
     </html>
   )
 }

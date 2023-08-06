@@ -13,7 +13,7 @@ export default function App({result}:any){
         <img
           alt="nextui logo"
           src={result.pic2}
-          width="400px"
+          width="70%"
           
         
         />
