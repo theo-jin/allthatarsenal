@@ -56,8 +56,9 @@ export default function Comment({ result }: CommentProps) {
                <Card  variant="bordered" borderWeight="normal" 
                css={{  p: "$4", mw: "500px",borderRadius:"5px" ,margin:"1px",padding:"1px"}} >
                <Grid.Container justify="center">
-                <Grid xs={6}>#{i+1}. {data[i].comment} </Grid>
-                <Grid justify="flex-end" xs={6}>
+                <Grid xs={7}>#{i+1}. {data[i].comment}  </Grid>
+                <Grid xs={4}>작성자:{data[i].author} </Grid>
+                <Grid justify="flex-end" xs={1}>
                 <Modal comment={data[i]}/>
                 </Grid>  
                 </Grid.Container>
