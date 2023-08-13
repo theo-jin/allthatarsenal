@@ -35,10 +35,23 @@ $ npm run dev
 
 ## 🔗 배포 링크
 
-[바로 가기](https://allthatarsenal-672k5mal1-theo-jin.vercel.app/)
+[바로 가기](https://allthatarsenal.vercel.app/)
 
 <!--  -->
 <br />
+
+## 🖱️ 기능
+
+### 로그인 및 회원가입.
+
+![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/d83a3a98-b6a6-4ed3-aaaf-198fc853390d)
+
+### mongoDB에서 선수 목록 출력 및 생성.
+
+![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/779b2113-86be-4c4a-b1bf-674450da2798)
+
+
+
 
 ## 🛠️ 기술 스택
 
