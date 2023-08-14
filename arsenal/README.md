@@ -46,15 +46,24 @@ $ npm run dev
 
 ![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/d83a3a98-b6a6-4ed3-aaaf-198fc853390d)
 
+
+
+
 ### mongoDB에서 선수 목록 출력 및 생성.
 
 ![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/779b2113-86be-4c4a-b1bf-674450da2798)
 
 ![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/e0805ef7-921a-4894-9aa8-b8a50cdbd021)
 
-### 선수 정보 출력 및 선수당 댓글 출력,작성,수정,삭제기능 구현.
+
+
+
+### 선수 정보 출력 및 선수당 댓글 출력,작성,수정,삭제기능 구현.(작성자와 현재로그인 상태가 일치해야 작동합니다.)
 
 ![CPT2308140250-1384x907](https://github.com/theo-jin/allthatarsenal/assets/83561523/d4cb5772-407f-4537-aeb9-1cbf7d86fde9)
+
+
+
 
 ###  Recharts를 활용한 선수간 스탯 비교 기능 구현
 ![CPT2308140254-1441x687](https://github.com/theo-jin/allthatarsenal/assets/83561523/19cb8655-adf9-4161-9694-729ae1e0da63)
