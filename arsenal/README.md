@@ -44,7 +44,8 @@ $ npm run dev
 
 ### 로그인 및 회원가입.
 
-![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/d83a3a98-b6a6-4ed3-aaaf-198fc853390d)
+![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/6f6bea30-b1b9-47b7-bf7c-3cc3614ed08c)
+
 
 
 
