@@ -1,7 +1,6 @@
 import { connectDB } from "../../../util/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
@@ -9,27 +8,22 @@ interface Credentials {
   email: string;
   password: string;
 }
-export const authOptions :any = {
+export const authOptions: any = {
   providers: [
-    GithubProvider({
-      clientId: '680692b7ab4a52017571',
-      clientSecret: '50fc9b9c2b0697a34cb5f7b7fe652ec5867bbab5',
-    }),
-
     CredentialsProvider({
       //1. 로그인페이지 폼 자동생성해주는 코드 
       name: "credentials",
-        credentials: {
-          email: { label: "email", type: "text" },
-          password: { label: "password", type: "password" },
+      credentials: {
+        email: { label: "email", type: "text" },
+        password: { label: "password", type: "password" },
       },
 
       //2. 로그인요청시 실행되는코드
-      //직접 DB에서 아이디,비번 비교하고 
-      //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
-      async authorize(credentials:any): Promise<any> {
+      //직접 DB에서 아이디,비번 비교 
+      //아이디,비번 맞으면 return 결과, 틀리면 return null 
+      async authorize(credentials: any): Promise<any> {
         let db = (await connectDB).db('arsenal');
-        let user = await db.collection('user_cred').findOne({email : credentials.email})
+        let user = await db.collection('user_cred').findOne({ email: credentials.email })
         if (!user) {
           console.log('해당 이메일은 없음');
           return null
@@ -39,13 +33,13 @@ export const authOptions :any = {
           console.log('비번틀림');
           return null
         }
-        return user 
+        return user
       }
-    })
+    }),
   ],
 
-   //3. jwt 써놔야 잘됩니다 + jwt 만료일설정
-   session: {
+  //3. jwt + jwt 만료일설정
+  session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60 //30일
   },
@@ -53,8 +47,8 @@ export const authOptions :any = {
 
   callbacks: {
     //4. jwt 만들 때 실행되는 코드 
-    //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
-    jwt: async ({ token, user }:any) => {
+    //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장시 jwt에 들어갑니다.
+    jwt: async ({ token, user }: any) => {
       if (user) {
         token.user = {};
         token.user.name = user.name
@@ -63,13 +57,13 @@ export const authOptions :any = {
       return token;
     },
     //5. 유저 세션이 조회될 때 마다 실행되는 코드
-    session: async ({ session, token }:any) => {
-      session.user = token.user;  
+    session: async ({ session, token }: any) => {
+      session.user = token.user;
       return session;
     },
   },
 
-  secret : 'qwe159' ,
-  adapter:MongoDBAdapter(connectDB)
+  secret: 'qwe159',
+  adapter: MongoDBAdapter(connectDB)
 };
 export default NextAuth(authOptions); 

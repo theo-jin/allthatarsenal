@@ -22,7 +22,7 @@ export default  function App({result}:any){
              
               <Grid xs={12} sm={4}> 
 
-  <Card   isHoverable>
+  <Card isHoverable>
     <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
       <Col>
         <Text size={24} weight="bold" transform="uppercase" color="black">
