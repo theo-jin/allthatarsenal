@@ -5,7 +5,7 @@ import { Code } from "@nextui-org/code"
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { KakaoIcon } from "@/components/icons";
 
 export default function Home() {
 	return (
@@ -15,7 +15,7 @@ export default function Home() {
 				<h1 className={title({ color: "pink" })}>beautiful&nbsp;</h1>
 				<br />
 				<h1 className={title()}>
-					fan community and Make&nbsp;
+					Fan community and Make&nbsp;
 				</h1>
 				<h1 className={title({ color: "pink" })}>ARSENAL&nbsp;</h1>
 				<h1 className={title()}>
@@ -30,28 +30,20 @@ export default function Home() {
 				<Link
 					isExternal
 					as={NextLink}
-					href={siteConfig.links.docs}
+					href={siteConfig.links.officialpage}
 					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
 				>
-					Documentation
+					Official Page
 				</Link>
 				<Link
 					isExternal
 					as={NextLink}
 					className={buttonStyles({ variant: "bordered", radius: "full" })}
-					href={siteConfig.links.github}
+					href={siteConfig.links.kakao}
 				>
-					<GithubIcon size={20} />
-					GitHub
+					<KakaoIcon size={20} />
+					Kakao Fan Chat
 				</Link>
-			</div>
-
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="flat">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
 			</div>
 		</section>
 	);

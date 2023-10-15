@@ -21,7 +21,7 @@ import clsx from "clsx";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
 
-	HeartFilledIcon,
+
 	SearchIcon,
 } from "@/components/icons";
 
@@ -83,17 +83,28 @@ export const Navbar = () => {
 				<NavbarItem className="hidden sm:flex gap-2">
 					<ThemeSwitch />
 				</NavbarItem>
-				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				<NavbarItem className="hidden md:flex">
 					<Button
 						isExternal
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"
-						href={siteConfig.links.sponsor}
-						startContent={<HeartFilledIcon className="text-danger" />}
+						href={siteConfig.links.kakao}
+						// startContent={<PencilIcon className="text-danger" />}
 						variant="flat"
 					>
-						Kakao chat
+						Sign Up
+					</Button>
+				</NavbarItem>
+				<NavbarItem className="hidden md:flex">
+					<Button
+						isExternal
+						as={Link}
+						className="text-sm font-normal text-default-600 bg-default-100"
+						href={siteConfig.links.kakao}
+						// startContent={<PencilIcon className="text-danger" />}
+						variant="flat"
+					>
+						Sign In
 					</Button>
 				</NavbarItem>
 			</NavbarContent>
@@ -105,7 +116,26 @@ export const Navbar = () => {
 			</NavbarContent>
 
 			<NavbarMenu>
-				{searchInput}
+				<Button
+					isExternal
+					as={Link}
+					className="text-sm font-normal text-default-600 bg-default-100"
+					href={siteConfig.links.kakao}
+					// startContent={<PencilIcon className="text-danger" />}
+					variant="flat"
+				>
+					Sign Up
+				</Button>
+				<Button
+					isExternal
+					as={Link}
+					className="text-sm font-normal text-default-600 bg-default-100"
+					href={siteConfig.links.kakao}
+					// startContent={<PencilIcon className="text-danger" />}
+					variant="flat"
+				>
+					Sign In
+				</Button>
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
@@ -113,7 +143,7 @@ export const Navbar = () => {
 								color={
 									"foreground"
 								}
-								href="#"
+								href={item.href}
 								size="lg"
 							>
 								{item.label}
