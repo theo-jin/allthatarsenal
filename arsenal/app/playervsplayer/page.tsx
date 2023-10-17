@@ -1,9 +1,13 @@
-import { title } from "@/components/primitives";
+import Versus from "./Versus"
+import { connectDB } from "../../util/database";
+export default async function App() {
+	const client = await connectDB;
+	const db = client.db('arsenal');
+	let result: any = await db.collection('PlayerList').find().toArray();
 
-export default function DocsPage() {
 	return (
 		<div>
-			<h1 className={title()}>Docs</h1>
+			<Versus result={result} />
 		</div>
-	);
+	)
 }

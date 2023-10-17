@@ -1,9 +1,15 @@
-import { title } from "@/components/primitives";
+import { connectDB } from "../../util/database";
+import PlayerCard from "./listItem"
 
-export default function BlogPage() {
+export default async function list() {
+	const client = await connectDB;
+	const db = client.db('arsenal');
+	let result = await db.collection('PlayerList').find().toArray();
+
 	return (
 		<div>
-			<h1 className={title()}>Blog</h1>
+			<PlayerCard result={result} />
 		</div>
+
 	);
 }

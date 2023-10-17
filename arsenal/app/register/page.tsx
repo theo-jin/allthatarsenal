@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Input, Button, Grid } from '@nextui-org/react';
-
+import { Input, Button } from '@nextui-org/react';
+import { title, subtitle } from "@/components/primitives";
 export default function Register() {
 	const [showErr, setShowErr] = useState("");
 	const [name, setName] = useState('');
@@ -48,59 +48,69 @@ export default function Register() {
 	};
 
 	return (
-		<Grid.Container gap={4} justify="center">
-			<form onSubmit={handleSubmit}>
-				<Grid>
-					<h2>회원가입</h2>
+		<>
+			<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+				<div className="inline-block max-w-lg text-center justify-center">
+					<h1 className={title()}>Join</h1>
+					<h2 className={subtitle()}>All that arsenal의 멤버가 되세요!</h2>
+				</div>
+			</section>
 
+
+			<form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+
+				<div className="inline-block max-w-lg text-center justify-center">
 					<Input
 						size='md'
 						clearable
-						label="NAME"
 						placeholder="Name"
 						type="text"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
-				</Grid>
-				<Grid>
+				</div>
+
+				<div className="inline-block max-w-lg text-center justify-center">
 					<Input
 						size='md'
 						clearable
-						label="EMAIL"
 						placeholder="Email (@ 포함)"
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-				</Grid>
-				<Grid>
+				</div>
+				<div className="inline-block max-w-lg text-center justify-center">
 					<Input.Password
 						size='md'
-						label="Password"
 						type="password"
 						placeholder="8자 이상"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-				</Grid>
-				<Grid>
+				</div>
+				<div className="inline-block max-w-lg text-center justify-center">
 					<Input.Password
 						size='md'
-						label="PasswordConfirm"
 						type="passwordConfirm"
 						placeholder="8자 이상"
 						value={passwordConfirm}
 						onChange={(e) => setPasswordConfirm(e.target.value)}
 					/>
-				</Grid>
-				<Grid>
-					<p>{showErr}</p>
+				</div>
+				<div className="inline-block max-w-lg text-center justify-center">
+
 					<Button flat color="primary" type="submit" disabled={!validInput}>
 						Submit
 					</Button>
-				</Grid>
+
+				</div>
+				<div className="inline-block max-w-lg text-center justify-center">
+					<p className={subtitle()}>{showErr}</p>
+				</div>
+
 			</form>
-		</Grid.Container>
+
+		</>
 	);
 }

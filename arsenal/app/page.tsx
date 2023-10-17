@@ -1,7 +1,5 @@
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
@@ -31,7 +29,7 @@ export default function Home() {
 					isExternal
 					as={NextLink}
 					href={siteConfig.links.officialpage}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
+					className={buttonStyles({ color: "primary", radius: "full" })}
 				>
 					Official Page
 				</Link>
