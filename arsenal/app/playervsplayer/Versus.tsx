@@ -1,10 +1,11 @@
 'use client'
-
-import { Dropdown, Button, Grid, Text } from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
+import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { title } from "@/components/primitives";
-
+import { Image } from "@nextui-org/image";
+import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import {
     Radar,
     RadarChart,
@@ -24,6 +25,9 @@ interface Player {
     pass: number;
     physical: number;
     defence: number;
+    role: string;
+    pic: string;
+    nation: string;
 }
 
 interface Props {
@@ -31,8 +35,8 @@ interface Props {
 }
 
 export default function App({ result }: Props) {
-    let [playerA, setPlayerA] = useState<Player>({ name: '', number: 0, pace: 0, dribble: 0, shot: 0, pass: 0, physical: 0, defence: 0 });
-    let [playerB, setPlayerB] = useState<Player>({ name: '', number: 0, pace: 0, dribble: 0, shot: 0, pass: 0, physical: 0, defence: 0 });
+    let [playerA, setPlayerA] = useState<Player>({ name: '', number: 0, pace: 0, dribble: 0, shot: 0, pass: 0, physical: 0, defence: 0, role: "", pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png", nation: "KR" });
+    let [playerB, setPlayerB] = useState<Player>({ name: '', number: 0, pace: 0, dribble: 0, shot: 0, pass: 0, physical: 0, defence: 0, role: "", pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png", nation: "KR" });
     let dispatch = useDispatch();
     const data = [
         {
@@ -73,62 +77,111 @@ export default function App({ result }: Props) {
         },
     ];
     return (
-        <Grid.Container gap={1} justify="center">
 
-            <Grid xs={6} justify="flex-end">
-                <Dropdown>
-                    <Dropdown.Button light>Player A</Dropdown.Button>
-                    <Dropdown.Menu aria-label="Static Actions">
-                        {result.map(function (a, i) {
-                            return (<Dropdown.Item ><Button light auto onPress={() => { setPlayerA(result[i]) }}>
-                                #{result[i].number}    {result[i].name}
+        <>
+            <section className="flex flex-col justify-items-center gap-4 py-8 md:py-10">
+                <h1 className={title()}>Player vs Player</h1>
+            </section>
+            <div className="grid grid-cols-2 gap-4 justify-items-center">
+                <div className="col-span-1 justify-items-center">
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button variant="light" size="lg">
+                                Player A
                             </Button>
-                            </Dropdown.Item>)
-                        })}
-                    </Dropdown.Menu>
-                </Dropdown>
-            </Grid>
+                        </DropdownTrigger>
+                        <DropdownMenu aria-label="Static Actions">
+                            {result.map(function (a, i) {
+                                return (
+                                    <DropdownItem onPress={() => { setPlayerA(result[i]) }}>
+                                        #{result[i].number}    {result[i].name}
+                                    </DropdownItem>)
+                            })}
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
 
 
-            <Grid xs={6} justify="flex-start">
-                <Dropdown>
-                    <Dropdown.Button light>Player B</Dropdown.Button>
-                    <Dropdown.Menu aria-label="Static Actions">
-                        {result.map(function (a, i) {
-                            return (<Dropdown.Item ><Button light auto onPress={() => { setPlayerB(result[i]) }}>
-                                #{result[i].number}    {result[i].name}
+                <div className="col-span-1 justify-items-center">
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button variant="light" size="lg" >
+                                Player B
                             </Button>
-                            </Dropdown.Item>)
-                        })}
-                    </Dropdown.Menu>
-                </Dropdown>
-            </Grid>
-            <Grid>
-                <h1 className={title()}>Player Stat</h1>
-                <RadarChart cx={250} cy={180} outerRadius={150} width={500} height={400} data={data}>
+                        </DropdownTrigger>
 
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="subject" />
-                    <PolarRadiusAxis />
+                        <DropdownMenu aria-label="Static Actions">
+                            {result.map(function (a, i) {
+                                return (
+                                    <DropdownItem onPress={() => { setPlayerB(result[i]) }}>
+                                        #{result[i].number}    {result[i].name}
+                                    </DropdownItem>)
+                            })}
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+                <div className="col-span-1 justify-items-center">
+                    <Card isFooterBlurred className="w-full h-[280px] ">
+                        <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                            <h4 className="text-black font-bold text-2xl">#{playerA.number}</h4>
+                        </CardHeader>
+                        <Image
+                            removeWrapper
+                            alt="Player Pic"
+                            className="z-0 w-full object-cover h-[200px]"
+                            src={playerA.pic}
+                        />
+                        <CardFooter className="text-small justify-between">
+                            <b>{playerA.name}</b>
+                            <p className="text-default-500">{playerA.role}</p>
+                        </CardFooter>
+                    </Card>
+                </div>
+                <div className="col-span-1 justify-items-center">
+                    <Card className="w-full h-[280px] ">
+                        <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                            <h4 className="text-black font-bold text-2xl">#{playerB.number}</h4>
+                        </CardHeader>
+                        <Image
+                            removeWrapper
+                            alt="Player Pic"
+                            className="z-0  w-full object-cover h-[200px]"
+                            src={playerB.pic}
+                        />
+                        <CardFooter className="text-small justify-between">
+                            <b> {playerB.name}</b>
+                            <p className="text-default-500">{playerB.role}</p>
+                        </CardFooter>
+                    </Card>
+                </div>
+                <div className="col-span-2 justify-items-center">
 
-                    <Radar
-                        name={playerA.name}
-                        dataKey="A"
-                        stroke="#8884d8"
-                        fill="#8884d8"
-                        fillOpacity={0.6}
-                    />
-                    <Radar
-                        name={playerB.name}
-                        dataKey="B"
-                        stroke="#82ca9d"
-                        fill="#82ca9d"
-                        fillOpacity={0.6}
-                    />
-                    <Legend />
+                    <RadarChart cx={200} cy={150} outerRadius={100} width={400} height={300} data={data}>
 
-                </RadarChart>
+                        <PolarGrid />
+                        <PolarAngleAxis dataKey="subject" />
+                        <PolarRadiusAxis />
+                        <Radar
+                            name={playerA.name}
+                            dataKey="A"
+                            stroke="#8884d8"
+                            fill="#8884d8"
+                            fillOpacity={0.6}
+                        />
+                        <Radar
+                            name={playerB.name}
+                            dataKey="B"
+                            stroke="#82ca9d"
+                            fill="#82ca9d"
+                            fillOpacity={0.6}
+                        />
+                        <Legend />
+                    </RadarChart>
 
-            </Grid></Grid.Container>
+
+                </div>
+
+            </div>
+        </>
     );
 }

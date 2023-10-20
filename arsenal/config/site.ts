@@ -17,13 +17,13 @@ export const siteConfig = {
 			href: "/playervsplayer",
 		},
 		{
-			label: "Create Player",
-			href: "/createplayer",
+			label: "History",
+			href: "/history",
 		},
 		{
 			label: "About",
 			href: "/about",
-		},
+		}
 
 
 	],
@@ -42,8 +42,8 @@ export const siteConfig = {
 			href: "/playervsplayer",
 		},
 		{
-			label: "Create Player",
-			href: "/createplayer",
+			label: "History",
+			href: "/history",
 		},
 		{
 			label: "About",

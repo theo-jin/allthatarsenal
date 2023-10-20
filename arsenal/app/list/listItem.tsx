@@ -1,6 +1,8 @@
 'use client'
 
-import { Link, Grid, Card, Col, Text, Row, Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
+import { Image } from "@nextui-org/image";
+import { Card, CardHeader, CardFooter } from "@nextui-org/card";
 import { title } from "@/components/primitives";
 
 export default function App({ result }: any) {
@@ -14,85 +16,36 @@ export default function App({ result }: any) {
                 </div>
             </section>
 
-            <Grid.Container gap={2} justify="center">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center">
                 {result.map(function (a: any, i: string | number) {
                     return (
-
-                        <Grid xs={12} sm={4}>
-
-                            <Card isHoverable>
-                                <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-                                    <Col>
-                                        <Text size={24} weight="bold" transform="uppercase" color="black">
-                                            {result[i].name}
-                                        </Text>
-                                        <Text h4 color="black">
-                                            {result[i].role}
-                                        </Text>
-                                    </Col>
-                                </Card.Header>
-                                <Card.Image
+                        <div className="col-auto gap-4 justify-center">
+                            <Card isFooterBlurred className="w-full h-[340px] ">
+                                <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                                    <h4 className="text-white font-bold text-2xl">{result[i].name}</h4>
+                                </CardHeader>
+                                <Image
+                                    removeWrapper
+                                    alt="Player Pic"
+                                    className="z-0 w-full h-full  object-cover"
                                     src={result[i].pic}
-                                    objectFit="cover"
-                                    width="100%"
-                                    height={340}
-                                    alt="Card image background"
-                                /> <Card.Footer
-                                    isBlurred
-                                    css={{
-                                        position: "absolute",
-                                        bgBlur: "#0f111466",
-                                        borderTop: "$borderWeights$light solid $gray800",
-                                        bottom: 0,
-                                        zIndex: 1,
-                                    }}
-                                >
-                                    <Row>
-                                        <Col>
-                                            <Row>
-                                                <Col span={3}>
-                                                    <Card.Image
-                                                        src={`https://flagsapi.com/${result[i].nation}/flat/32.png`}
-                                                        height={40}
-                                                        width={30}
-                                                        alt="flag"
-                                                    />
-                                                </Col>
-                                                <Col>
-
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                        <Col>
-                                            <Row justify='space-evenly'>
-                                                <Button
-                                                    flat
-                                                    auto
-                                                    css={{ color: "#94f9f0", bg: "#94f9f026" }}
-                                                ><Link href={`/detail/${result[i]._id}`}>
-                                                        <Text
-                                                            css={{
-                                                                color: "#F31260"
-                                                            }}
-                                                            size={12}
-                                                            weight="bold"
-                                                            transform="uppercase"
-                                                        >
-                                                            See more
-                                                        </Text></Link>
-                                                </Button>
-                                            </Row>
-                                        </Col>
-                                    </Row>
-                                </Card.Footer>
-
+                                />
+                                <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+                                    <div>
+                                        <Image
+                                            src={`https://flagsapi.com/${result[i].nation}/flat/32.png`}
+                                            alt="flag"
+                                        />
+                                        <p className="text-black text-base font-normal">{result[i].role}</p>
+                                    </div>
+                                    <Button color="danger" size="md">
+                                        See more
+                                    </Button>
+                                </CardFooter>
                             </Card>
-                        </Grid>
-
+                        </div>
                     )
-                })}
-
-            </Grid.Container>
+                })}</div>
         </div>
     )
 }
