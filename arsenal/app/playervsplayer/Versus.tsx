@@ -132,6 +132,10 @@ export default function App({ result }: Props) {
                             src={playerA.pic}
                         />
                         <CardFooter className="text-small justify-between">
+                        <Image
+                                src={`https://flagsapi.com/${playerA.nation}/flat/32.png`}
+                                alt="flag"
+                            />
                             <b>{playerA.name}</b>
                             <p className="text-default-500">{playerA.role}</p>
                         </CardFooter>
@@ -149,6 +153,10 @@ export default function App({ result }: Props) {
                             src={playerB.pic}
                         />
                         <CardFooter className="text-small justify-between">
+                            <Image
+                                src={`https://flagsapi.com/${playerB.nation}/flat/32.png`}
+                                alt="flag"
+                            />
                             <b> {playerB.name}</b>
                             <p className="text-default-500">{playerB.role}</p>
                         </CardFooter>

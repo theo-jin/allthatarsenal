@@ -27,11 +27,12 @@ export default function Register() {
 		setShowErr("이메일과 비밀번호를 입력해주세요");
 		// 이메일 및 비밀번호 유효성 검증
 		if (
-			email.includes("@") &&
+			email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i) &&
 			password.length >= 8 &&
 			passwordConfirm.length >= 8
-		)
+		) {
 			setValidInput(true);
+		}
 		else setValidInput(false);
 	}, [email, password, passwordConfirm]);
 
@@ -72,14 +73,6 @@ export default function Register() {
 			<form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 
 				<div className="inline-block max-w-lg text-center justify-center">
-					{/* <Input
-						size='md'
-						clearable
-						placeholder="Name"
-						type="text"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-					/> */}
 					<Input
 						isClearable
 						type="text"
@@ -95,19 +88,12 @@ export default function Register() {
 				</div>
 
 				<div className="inline-block max-w-lg text-center justify-center">
-					{/* <Input
-						size='md'
-						clearable
-						placeholder="Email (@ 포함)"
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/> */}
+
 					<Input
 						isClearable
 						type="text"
 						label="Email"
-						placeholder="Email (@ 포함)"
+						placeholder="Email (@와. 포함)"
 						variant="bordered"
 						defaultValue="arsenal@allthatarsenal.com"
 						value={email}
@@ -117,13 +103,7 @@ export default function Register() {
 					/>
 				</div>
 				<div className="inline-block max-w-lg text-center justify-center">
-					{/* <Input.Password
-						size='md'
-						type="password"
-						placeholder="8자 이상"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/> */}
+
 					<Input
 						label="Password"
 						variant="bordered"
@@ -144,13 +124,7 @@ export default function Register() {
 					/>
 				</div>
 				<div className="inline-block max-w-lg text-center justify-center">
-					{/* <Input.Password
-						size='md'
-						type="passwordConfirm"
-						placeholder="8자 이상"
-						value={passwordConfirm}
-						onChange={(e) => setPasswordConfirm(e.target.value)}
-					/> */}
+
 					<Input
 						label="Password"
 						variant="bordered"
@@ -172,7 +146,7 @@ export default function Register() {
 				</div>
 				<div className="inline-block max-w-lg text-center justify-center">
 
-					<Button className={title({ color: "pink" })} type="submit" disabled={!validInput}>
+					<Button className={subtitle({ color: "pink" })} type="submit" disabled={!validInput}>
 						Submit
 					</Button>
 

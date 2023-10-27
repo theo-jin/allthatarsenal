@@ -2,12 +2,13 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import { Providers } from "./providers";
+import { Providers1 } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession } from 'next-auth';
 import { authOptions } from "./../pages/api/auth/[...nextauth]"
+import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
 	title: {
@@ -41,11 +42,11 @@ export default async function RootLayout({
 					fontSans.variable
 				)}
 			>
-				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+				<Providers1 themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
 						<Navbar session={session} />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-							{children}
+							<Providers>{children}</Providers>
 						</main>
 						<footer className="w-full flex items-center justify-center py-3">
 							<Link
@@ -59,7 +60,7 @@ export default async function RootLayout({
 							</Link>
 						</footer>
 					</div>
-				</Providers>
+				</Providers1>
 			</body>
 		</html>
 	);
