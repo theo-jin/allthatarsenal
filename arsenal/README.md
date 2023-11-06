@@ -59,7 +59,6 @@ $ npm run dev
 
 ![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/779b2113-86be-4c4a-b1bf-674450da2798)
 
-![image](https://github.com/theo-jin/allthatarsenal/assets/83561523/e0805ef7-921a-4894-9aa8-b8a50cdbd021)
 
 
 
