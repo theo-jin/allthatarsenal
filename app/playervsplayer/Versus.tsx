@@ -132,7 +132,7 @@ export default function App({ result }: Props) {
                             src={playerA.pic}
                         />
                         <CardFooter className="text-small justify-between">
-                        <Image
+                            <Image
                                 src={`https://flagsapi.com/${playerA.nation}/flat/32.png`}
                                 alt="flag"
                             />
@@ -158,7 +158,7 @@ export default function App({ result }: Props) {
                                 alt="flag"
                             />
                             <b> {playerB.name}</b>
-                            <p className="text-default-500">{playerB.role}</p>
+                            <p className="text-default-500">{playerB.role.toUpperCase()}</p>
                         </CardFooter>
                     </Card>
                 </div>

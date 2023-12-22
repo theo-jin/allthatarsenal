@@ -10,4 +10,4 @@ export default async function App() {
 			<Test result={result} />
 		</div>
 	)
-}
+} 

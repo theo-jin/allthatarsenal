@@ -1,7 +1,7 @@
 import { connectDB } from "../../../util/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+;
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 

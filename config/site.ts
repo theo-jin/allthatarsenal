@@ -16,10 +16,10 @@ export const siteConfig = {
 			label: "Player Vs Player",
 			href: "/playervsplayer",
 		},
-		{
-			label: "History",
-			href: "/history",
-		},
+		// {
+		// 	label: "History",
+		// 	href: "/history",
+		// },
 		{
 			label: "About",
 			href: "/about",
@@ -41,10 +41,10 @@ export const siteConfig = {
 			label: "Player Vs Player",
 			href: "/playervsplayer",
 		},
-		{
-			label: "History",
-			href: "/history",
-		},
+		// {
+		// 	label: "History",
+		// 	href: "/history",
+		// },
 		{
 			label: "About",
 			href: "/about",

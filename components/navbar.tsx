@@ -10,6 +10,7 @@ import {
 import { Button } from "@nextui-org/button";
 
 import { Link } from "@nextui-org/link";
+import { SearchBar } from "./SearchBar";
 
 
 import { link as linkStyles } from "@nextui-org/theme";
@@ -58,10 +59,11 @@ export const Navbar = ({ session }: any) => {
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end"
 			>
+
 				<NavbarItem className="hidden sm:flex gap-2">
 					<ThemeSwitch />
 				</NavbarItem>
-
+				<NavbarItem className="hidden lg:flex"><SearchBar /></NavbarItem>
 				{session ? <NavbarItem className="hidden md:flex">
 					<Avatars />
 					<LogOutBtn />
@@ -86,6 +88,7 @@ export const Navbar = ({ session }: any) => {
 			</NavbarContent>
 
 			<NavbarMenu>
+				<SearchBar />
 				{session ? <Avatars /> : <Button
 
 					as={Link}

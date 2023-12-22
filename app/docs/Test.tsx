@@ -118,7 +118,7 @@ export default function App({ result }: Props) {
 							{result.map(function (a, i) {
 								return (
 									<DropdownItem onPress={() => { dispatch(player2(result[i])); }}>
-										#{result[i].number}    {result[i].name}
+										#{result[i].number}  {result[i].name}
 									</DropdownItem>)
 							})}
 						</DropdownMenu>
@@ -127,7 +127,7 @@ export default function App({ result }: Props) {
 				<div className="col-span-1 justify-items-center">
 					<Card isFooterBlurred className="w-full h-[280px] ">
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-black font-bold text-2xl">#{playerA.number}</h4>
+							<h4 className="text-white font-bold text-xl">#{playerA.number} {playerA.name}</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -141,14 +141,14 @@ export default function App({ result }: Props) {
 								alt="flag"
 							/>
 							<b>{playerA.name}</b>
-							<p className="text-default-500">{playerA.role}</p>
+							<p className="text-default-500">{playerA.role.toUpperCase()}</p>
 						</CardFooter>
 					</Card>
 				</div>
 				<div className="col-span-1 justify-items-center">
 					<Card className="w-full h-[280px] ">
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-black font-bold text-2xl">#{playerB.number}</h4>
+							<h4 className="text-white font-bold text-xl">#{playerB.number}{playerB.name}</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -161,8 +161,8 @@ export default function App({ result }: Props) {
 								src={`https://flagsapi.com/${playerB.nation}/flat/32.png`}
 								alt="flag"
 							/>
-							<b> {playerB.name}</b>
-							<p className="text-default-500">{playerB.role}</p>
+					
+							<p className="text-default-500">{playerB.role.toUpperCase()}</p>
 						</CardFooter>
 					</Card>
 				</div>
