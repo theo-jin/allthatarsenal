@@ -10,20 +10,16 @@ import {
 import { Button } from "@nextui-org/button";
 
 import { Link } from "@nextui-org/link";
-import { SearchBar } from "./SearchBar";
-
-
 import { link as linkStyles } from "@nextui-org/theme";
-
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
-
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Avatars } from "./Avatars";
 import { LogOutBtn } from "./LogOutBtn";
 import { SignInBtn } from "./SignInBtn";
 import { Logo } from "@/components/Logo";
+import { SignInModal } from "./SignInModal";
 
 export const Navbar = ({ session }: any) => {
 
@@ -63,7 +59,6 @@ export const Navbar = ({ session }: any) => {
 				<NavbarItem className="hidden sm:flex gap-2">
 					<ThemeSwitch />
 				</NavbarItem>
-				<NavbarItem className="hidden lg:flex"><SearchBar /></NavbarItem>
 				{session ? <NavbarItem className="hidden md:flex">
 					<Avatars />
 					<LogOutBtn />
@@ -77,7 +72,8 @@ export const Navbar = ({ session }: any) => {
 					>
 						Sign Up
 					</Button>
-					<SignInBtn />
+					{/* <SignInBtn /> */}
+					<SignInModal />
 				</NavbarItem>}
 			</NavbarContent>
 
@@ -88,7 +84,7 @@ export const Navbar = ({ session }: any) => {
 			</NavbarContent>
 
 			<NavbarMenu>
-				<SearchBar />
+
 				{session ? <Avatars /> : <Button
 
 					as={Link}
@@ -98,7 +94,7 @@ export const Navbar = ({ session }: any) => {
 				>
 					Sign Up
 				</Button>}
-				{session ? null : <SignInBtn />}
+				{session ? null : 	<SignInModal />}
 
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (

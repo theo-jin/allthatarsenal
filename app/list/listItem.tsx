@@ -8,13 +8,12 @@ import Link from "next/link";
 
 export default function App({ playerList }: any) {
 
-
     return (
         <div>
             <section className="flex flex-col items-left justify-start gap-4 py-8 md:py-10">
-                <div className="inline-block max-w-lg text-left justify-start">
+                <header className="inline-block max-w-lg text-left justify-start">
                     <h1 className={title()}>Player List</h1>
-                </div>
+                </header>
             </section>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center">
@@ -39,12 +38,12 @@ export default function App({ playerList }: any) {
                                         />
                                         <p className="text-black text-base font-normal">{playerList[i].role.toUpperCase()}</p>
                                     </div>
-                                    
+
                                     <Button color="danger" size="md">
-                                    <Link  href={`/detail/${playerList[i]._id}`}>  
-         
-              See more
-        </Link>
+                                        <Link href={`/detail/${playerList[i]._id}`}>
+
+                                            See more
+                                        </Link>
                                     </Button>
                                 </CardFooter>
                             </Card>

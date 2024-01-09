@@ -10,6 +10,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from "./../pages/api/auth/[...nextauth]"
 import { Providers } from "@/redux/provider";
 
+
 export const metadata: Metadata = {
 	title: {
 		default: siteConfig.name,
@@ -21,9 +22,8 @@ export const metadata: Metadata = {
 		{ media: "(prefers-color-scheme: dark)", color: "black" },
 	],
 	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon-16x16.png",
-		apple: "/apple-touch-icon.png",
+		icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png"
+
 	},
 };
 

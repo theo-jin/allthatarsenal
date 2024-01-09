@@ -104,8 +104,6 @@ export default function App({ result }: Props) {
 						</DropdownMenu>
 					</Dropdown>
 				</div>
-
-
 				<div className="col-span-1 justify-items-center">
 					<Dropdown>
 						<DropdownTrigger>
@@ -125,9 +123,9 @@ export default function App({ result }: Props) {
 					</Dropdown>
 				</div>
 				<div className="col-span-1 justify-items-center">
-					<Card isFooterBlurred className="w-full h-[280px] ">
+					<Card isFooterBlurred className="w-full h-[280px]">
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-white font-bold text-xl">#{playerA.number} {playerA.name}</h4>
+							<h4 className="text-white font-bold text-xl">#{playerA.number}&nbsp;{playerA.name}</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -140,7 +138,7 @@ export default function App({ result }: Props) {
 								src={`https://flagsapi.com/${playerA.nation}/flat/32.png`}
 								alt="flag"
 							/>
-							<b>{playerA.name}</b>
+							<b className="text-default-500">{playerA.name}</b>
 							<p className="text-default-500">{playerA.role.toUpperCase()}</p>
 						</CardFooter>
 					</Card>
@@ -148,7 +146,7 @@ export default function App({ result }: Props) {
 				<div className="col-span-1 justify-items-center">
 					<Card className="w-full h-[280px] ">
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-white font-bold text-xl">#{playerB.number}{playerB.name}</h4>
+							<h4 className="text-black font-bold text-xl">#{playerB.number}&nbsp;{playerB.name}</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -161,7 +159,7 @@ export default function App({ result }: Props) {
 								src={`https://flagsapi.com/${playerB.nation}/flat/32.png`}
 								alt="flag"
 							/>
-					
+
 							<p className="text-default-500">{playerB.role.toUpperCase()}</p>
 						</CardFooter>
 					</Card>
@@ -189,14 +187,8 @@ export default function App({ result }: Props) {
 						/>
 						<Legend />
 					</RadarChart>
-
-
 				</div>
-
-
 			</div>
-
-
 		</>
 	);
 }

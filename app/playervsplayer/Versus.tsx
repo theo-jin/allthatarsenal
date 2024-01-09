@@ -2,7 +2,6 @@
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
 import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { title } from "@/components/primitives";
 import { Image } from "@nextui-org/image";
 import { Card, CardFooter, CardHeader } from "@nextui-org/card";
@@ -37,7 +36,7 @@ interface Props {
 export default function App({ result }: Props) {
     let [playerA, setPlayerA] = useState<Player>({ name: '', number: 0, pace: 0, dribble: 0, shot: 0, pass: 0, physical: 0, defence: 0, role: "", pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png", nation: "KR" });
     let [playerB, setPlayerB] = useState<Player>({ name: '', number: 0, pace: 0, dribble: 0, shot: 0, pass: 0, physical: 0, defence: 0, role: "", pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png", nation: "KR" });
-    let dispatch = useDispatch();
+
     const data = [
         {
             subject: "PACE",
@@ -137,7 +136,7 @@ export default function App({ result }: Props) {
                                 alt="flag"
                             />
                             <b>{playerA.name}</b>
-                            <p className="text-default-500">{playerA.role}</p>
+                            <p className="text-default-500">{playerA.role.toUpperCase()}</p>
                         </CardFooter>
                     </Card>
                 </div>

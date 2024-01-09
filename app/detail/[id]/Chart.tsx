@@ -1,7 +1,5 @@
 'use client'
 
-import { Grid, Text } from "@nextui-org/react";
-import "./styles.css";
 import React from "react";
 import {
     Radar,
@@ -22,67 +20,64 @@ interface Result {
 }
 
 interface AppProps {
-    result: Result;
+    player: Result;
 }
 
-const App: React.FC<AppProps> = ({ result }) => {
+const App: React.FC<AppProps> = ({ player }) => {
 
     const data = [
         {
             subject: "PACE",
-            A: result.pace,
+            A: player.pace,
             fullMark: 99
         },
         {
             subject: "DRIBBLE",
-            A: result.dribble,
+            A: player.dribble,
             fullMark: 99
         },
         {
             subject: "SHOT",
-            A: result.shot,
+            A: player.shot,
             fullMark: 99
         },
         {
             subject: "PASS",
-            A: result.pass,
+            A: player.pass,
             fullMark: 99
         },
         {
             subject: "PHYSICAL",
-            A: result.physical,
+            A: player.physical,
             fullMark: 99
         },
         {
             subject: "DEFENCE",
-            A: result.defence,
+            A: player.defence,
             fullMark: 99
         },
     ];
 
     return (
-        <Grid.Container justify="center">
+        <div className="flex justify-center">
 
-            <Grid>
-                <Text h3 >Player Stat</Text>
-                <RadarChart cx={250} cy={180} outerRadius={150} width={500} height={350} data={data}>
+            <RadarChart cx={200} cy={150} outerRadius={100} width={400} height={300} data={data}>
 
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="subject" />
+                <PolarGrid />
+                <PolarAngleAxis dataKey="subject" />
 
-                    <PolarRadiusAxis />
+                <PolarRadiusAxis />
 
-                    <Radar
+                <Radar
 
-                        dataKey="A"
-                        stroke="#8884d8"
-                        fill="#8884d8"
-                        fillOpacity={0.6}
-                    />
+                    dataKey="A"
+                    stroke="#8884d8"
+                    fill="#8884d8"
+                    fillOpacity={0.6}
+                />
 
-                </RadarChart>
-            </Grid>
-        </Grid.Container>
+            </RadarChart>
+        </div>
     );
 };
 
