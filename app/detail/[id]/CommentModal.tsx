@@ -1,51 +1,52 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link } from "@nextui-org/react";
+import { EditIcon } from "@/components/icons";
 
-
-export default function CommentModal() {
+export default function CommentModal({ comment }: any) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+    let [com, setCom] = useState(`${comment.comment}`)
+    const handleEdit = () => {
+        fetch('/api/comment/edit', {
+            method: 'POST',
+            body: JSON.stringify({
+                comment: com,
+                _id: comment._id
+            })
+        })
+    }
     return (
         <>
-            <Button onPress={onOpen} color="primary">Open Modal</Button>
+            <span onClick={onOpen}><EditIcon /></span>
             <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
             >
                 <ModalContent>
-                    {(onClose) => ( 
+                    {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">EDIT COMMENT</ModalHeader>
                             <ModalBody>
                                 <Input
                                     autoFocus
-                                    label="Email"
+                                    onChange={(e) => { setCom(e.target.value) }}
+                                    defaultValue={com}
+                                    label="Comment"
                                     placeholder="Enter your email"
                                     variant="bordered"
                                 />
 
-                                <div className="flex py-2 px-1 justify-between">
-                                    <Checkbox
-                                        classNames={{
-                                            label: "text-small",
-                                        }}
-                                    >
-                                        Remember me
-                                    </Checkbox>
-                                    <Link color="primary" href="#" size="sm">
-                                        Forgot password?
-                                    </Link>
-                                </div>
+
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="danger" variant="flat" onPress={onClose}>
-                                    Close
-                                </Button>
                                 <Button color="primary" onPress={onClose}>
-                                    Sign in
+                                    수정
                                 </Button>
+                                <Button color="danger" variant="flat" onPress={onClose}>
+                                    취소
+                                </Button>
+
                             </ModalFooter>
                         </>
                     )}

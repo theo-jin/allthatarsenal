@@ -72,8 +72,8 @@ export const Navbar = ({ session }: any) => {
 					>
 						Sign Up
 					</Button>
-					{/* <SignInBtn /> */}
-					<SignInModal />
+					<SignInBtn />
+					{/* <SignInModal /> */}
 				</NavbarItem>}
 			</NavbarContent>
 
@@ -94,7 +94,7 @@ export const Navbar = ({ session }: any) => {
 				>
 					Sign Up
 				</Button>}
-				{session ? null : 	<SignInModal />}
+				{session ? null : <SignInModal />}
 
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (

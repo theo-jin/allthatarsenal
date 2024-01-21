@@ -8,3 +8,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let result = await db.collection('comment').find({ parent: new ObjectId(id) }).toArray();
     res.status(200).json(result)
 }
+

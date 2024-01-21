@@ -10,7 +10,7 @@ import {
 
 } from "recharts";
 
-interface Result {
+interface Player {
     pace: number;
     dribble: number;
     shot: number;
@@ -20,7 +20,7 @@ interface Result {
 }
 
 interface AppProps {
-    player: Result;
+    player: Player;
 }
 
 const App: React.FC<AppProps> = ({ player }) => {

@@ -12,8 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const db = (await connectDB).db('arsenal')
         let pp: any = await db.collection('comment').findOne({ _id: new ObjectId(req.body) })
 
-
-
         if (pp.author == session.user.email) {
             let result = await db.collection('comment').deleteOne({ _id: new ObjectId(req.body) })
 
@@ -24,3 +22,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     }
 }
+

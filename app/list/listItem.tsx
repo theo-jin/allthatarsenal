@@ -41,7 +41,6 @@ export default function App({ playerList }: any) {
 
                                     <Button color="danger" size="md">
                                         <Link href={`/detail/${playerList[i]._id}`}>
-
                                             See more
                                         </Link>
                                     </Button>

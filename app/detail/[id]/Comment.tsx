@@ -4,7 +4,7 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from 
 import { useState, useEffect } from "react";
 import { EditIcon } from "@/components/icons";
 import { DeleteIcon } from "@/components/icons";
-
+import CommentModal from "./CommentModal";
 import { ObjectId } from "mongodb";
 
 interface CommentItem {
@@ -21,43 +21,58 @@ interface CommentProps {
 }
 
 export default function Comment({ player }: any) {
-    // let [comment, setComment] = useState('')
-    // let [data, setData] = useState<CommentItem[]>([]);
 
-    // useEffect(() => {
-    //     fetch('/api/comment/list?id=' + player._id).then(r => r.json()).then((result) => {
-    //         setData(result)
-    //     })
-    // }, [data]);
+    let [data, setData] = useState<CommentItem[]>([]);
 
-    // const handleDelete = () => {
-    //     fetch('/api/comment/delete', {
-    //         method: 'DELETE',
-    //         body: comment._id
-    //     }).then(() => { setVisible(false) })
-    // };
+    useEffect(() => {
+        fetch('/api/comment/list?id=' + player._id).then(r => r.json()).then((result) => {
+            setData(result)
+        })
+    }, [player._id]);
+
+    const handleDelete = (i: number) => {
+        console.log(data[i]._id)
+        fetch('/api/comment/delete', {
+            method: 'DELETE',
+            body: JSON.stringify(data[i]._id),
+        })
+    };
     return (
         <div className="flex justify-center">
-            <Table aria-label="Example static collection table">
+            <Table aria-label=" Example static collection table" className="flex w-full md:w-1/2 justify-center" >
                 <TableHeader>
-                    <TableColumn>NAME</TableColumn>
-                    <TableColumn>AUTHOR</TableColumn>
-                    <TableColumn>EDIT & DELETE</TableColumn>
+                    <TableColumn style={{ width: "80%" }}>Comments</TableColumn>
+                    <TableColumn style={{ width: "10%" }} >AUTHOR</TableColumn>
+                    <TableColumn style={{ width: "10%" }} >EDIT & DELETE</TableColumn>
                 </TableHeader>
-                <TableBody>
-                    <TableRow key="1">
-                        <TableCell key="comment">Tony Reichert</TableCell>
-                        <TableCell key="author">{player.name}</TableCell>
-                        <TableCell className="relative flex items-center gap-3">
-                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                                <DeleteIcon />
-                            </span>
-                        </TableCell>
-                    </TableRow>
-                </TableBody>
+
+                {data.length > 0 ? (
+                    <TableBody>
+                        {data.map(function (a, i) {
+                            return (
+                                <TableRow key={data[i]._id.toString()}>
+                                    <TableCell key="comment" style={{ width: "80%" }}>{data[i].comment}</TableCell>
+                                    <TableCell key="author" style={{ width: "10%" }}>{data[i].author}</TableCell>
+                                    <TableCell className="relative flex items-center gap-3" style={{ width: "10%" }}>
+                                        <span className="text-lg text-default-400 cursor-pointer active:opacity-50" 
+                                     
+                                        >
+                                            <CommentModal comment={data[i]} />
+                                        </span>
+                                        <span
+                                            className="text-lg text-danger cursor-pointer active:opacity-50"
+                                            onClick={() => handleDelete(i)}
+                                        >
+                                            <DeleteIcon />
+                                        </span>
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                ) : (
+                    <TableBody emptyContent={"No rows to display."}>{[]}</TableBody>
+                )}
             </Table>
         </div>
     );

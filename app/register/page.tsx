@@ -1,10 +1,7 @@
 'use client'
 
-import React from "react";
-import { useState, useEffect } from 'react';
-
-import { Input } from '@nextui-org/input';
-import { Button } from "@nextui-org/button";
+import React, { useState, useEffect, useRef } from "react";
+import { Input, Button } from "@nextui-org/react"
 import { title, subtitle } from "@/components/primitives";
 import { EyeFilledIcon } from '@/components/EyeFilledIcon';
 import { EyeSlashFilledIcon } from '@/components/EyeSlashFilledIcon';
@@ -23,6 +20,8 @@ export default function Register() {
 
 	const toggleVisibility = () => setIsVisible(!isVisible);
 	const togglePwcVisibility = () => setPwcIsVisible(!PwcisVisible);
+	const pwcRef = useRef()
+
 	useEffect(() => {
 		setShowErr("이메일과 비밀번호를 입력해주세요");
 		// 이메일 및 비밀번호 유효성 검증
@@ -31,9 +30,10 @@ export default function Register() {
 			password.length >= 8 &&
 			passwordConfirm.length >= 8
 		) {
+			
 			setValidInput(true);
 		}
-		else setValidInput(false);
+		else { setValidInput(false); }
 	}, [email, password, passwordConfirm]);
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -57,6 +57,7 @@ export default function Register() {
 			}
 		} catch (error) {
 			// 요청이 실패하거나 예외가 발생했을 때 수행할 작업
+			setShowErr("이메일과 비밀번호를 다시 확인해주세요");
 		}
 	};
 
@@ -71,7 +72,6 @@ export default function Register() {
 
 
 			<form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-
 				<div className="inline-block max-w-lg text-center justify-center">
 					<Input
 						isClearable
@@ -79,9 +79,8 @@ export default function Register() {
 						label="Name"
 						placeholder="Name"
 						variant="bordered"
-						defaultValue="arsenal"
-						onClear={() => console.log("input cleared")}
 						value={name}
+						onClear={() => console.log("input cleared")}
 						onChange={(e) => setName(e.target.value)}
 						className="max-w-xs"
 					/>
@@ -95,7 +94,6 @@ export default function Register() {
 						label="Email"
 						placeholder="Email (@와. 포함)"
 						variant="bordered"
-						defaultValue="arsenal@allthatarsenal.com"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						onClear={() => console.log("input cleared")}
@@ -129,6 +127,7 @@ export default function Register() {
 						label="Password"
 						variant="bordered"
 						placeholder="8자 이상"
+
 						value={passwordConfirm}
 						onChange={(e) => setPasswordConfirm(e.target.value)}
 						endContent={

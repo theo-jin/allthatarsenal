@@ -13,7 +13,6 @@ export default function Info({ player }: any) {
             <Card
                 isBlurred
                 className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
-
             >
                 <CardBody>
                     <div className="grid grid-cols-12 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
@@ -34,7 +33,7 @@ export default function Info({ player }: any) {
                                     <p className=" text-foreground/80">{player.role.toUpperCase()}</p>
 
                                     <div className="text-foreground/90">Birth: {player.birth.toDateString()}</div>
-                                    <div className="text-foreground/90">height: {player.height}cm</div>
+                                    <div className="text-foreground/90">Height: {player.height}cm</div>
                                     <h1 className="text-large font-medium mt-2">
                                         <Image
                                             src={`https://flagsapi.com/${player.nation}/flat/32.png`}
@@ -42,6 +41,8 @@ export default function Info({ player }: any) {
                                         />
                                     </h1>
                                 </div>
+                                {/* 
+                                즐겨찾기 추후 개발 
                                 <Button
                                     isIconOnly
                                     className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
@@ -53,7 +54,7 @@ export default function Info({ player }: any) {
                                         className={liked ? "[&>path]:stroke-transparent" : ""}
                                         fill={liked ? "currentColor" : "none"}
                                     />
-                                </Button>
+                                </Button> */}
                             </div>
 
 

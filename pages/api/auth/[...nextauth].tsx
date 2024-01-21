@@ -70,3 +70,4 @@ export const authOptions: any = {
     adapter: MongoDBAdapter(connectDB)
 };
 export default NextAuth(authOptions); 
+

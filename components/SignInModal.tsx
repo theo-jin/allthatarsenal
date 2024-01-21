@@ -7,6 +7,7 @@ import { signIn } from 'next-auth/react';
 
 export const SignInModal = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const [name,setName]
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -56,7 +57,8 @@ export const SignInModal = () => {
                                     <Input
                                         endContent={
                                             <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                                        }
+                                        } 
+                                        value
                                         label="Password"
                                         placeholder="Enter your password"
                                         type="password"
