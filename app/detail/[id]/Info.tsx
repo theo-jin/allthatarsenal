@@ -2,11 +2,11 @@
 
 import React from "react";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
-import { HeartIcon } from "@/components/icons";
+// 즐겨찾기 추후 개발 import { HeartIcon } from "@/components/icons";
 
 
 export default function Info({ player }: any) {
-    const [liked, setLiked] = React.useState(false);
+    //  즐겨찾기 추후 개발 const [liked, setLiked] = React.useState(false);
 
     return (
         <div className="flex justify-center">
