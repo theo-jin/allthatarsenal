@@ -60,7 +60,7 @@ export const Navbar = ({ session }: any) => {
 					<ThemeSwitch />
 				</NavbarItem>
 				{session ? <NavbarItem className="hidden md:flex">
-					<Avatars />
+					<Avatars session={session} />
 					<LogOutBtn />
 				</NavbarItem> : <NavbarItem className="hidden md:flex">
 					<Button
@@ -85,7 +85,7 @@ export const Navbar = ({ session }: any) => {
 
 			<NavbarMenu>
 
-				{session ? <Avatars /> : <Button
+				{session ? <Avatars session={session} /> : <Button
 
 					as={Link}
 					className="text-sm font-normal text-default-600 bg-default-100"

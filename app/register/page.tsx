@@ -30,15 +30,16 @@ export default function Register() {
 			password.length >= 8 &&
 			passwordConfirm.length >= 8
 		) {
-			
+
 			setValidInput(true);
 		}
 		else { setValidInput(false); }
 	}, [email, password, passwordConfirm]);
-
+	
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (password !== passwordConfirm) {
+			
 			setShowErr("비밀번호가 일치하지 않습니다");
 			return;
 		}
@@ -103,6 +104,7 @@ export default function Register() {
 				<div className="inline-block max-w-lg text-center justify-center">
 
 					<Input
+					
 						label="Password"
 						variant="bordered"
 						placeholder="8자 이상"

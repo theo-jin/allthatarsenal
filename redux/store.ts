@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import playerSlice from "./slices/playerSlice"
-import playerSlice2 from "./slices/playerSlice2";
+import commentSlice from "./slices/commentSlice";
+
 export const store = configureStore({
     reducer: {
 
         playerA: playerSlice,
-        playerB: playerSlice2,
-
+        // comment:commentSlice
     },
     devTools: process.env.NODE_ENV !== "production",
 });

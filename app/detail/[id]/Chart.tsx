@@ -19,11 +19,7 @@ interface Player {
     defence: number;
 }
 
-interface AppProps {
-    player: Player;
-}
-
-const App: React.FC<AppProps> = ({ player }) => {
+const App = ({ player }: any) => {
 
     const data = [
         {

@@ -33,6 +33,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	let session = await getServerSession(authOptions)
+	
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />

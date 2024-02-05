@@ -6,6 +6,7 @@ import { EditIcon } from "@/components/icons";
 export default function CommentModal({ comment }: any) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     let [com, setCom] = useState(`${comment.comment}`)
+    
     const handleEdit = () => {
         fetch('/api/comment/edit', {
             method: 'POST',
@@ -40,7 +41,7 @@ export default function CommentModal({ comment }: any) {
 
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="primary" onPress={onClose}>
+                                <Button color="primary" onPress={handleEdit} onClick={onClose}>
                                     수정
                                 </Button>
                                 <Button color="danger" variant="flat" onPress={onClose}>
