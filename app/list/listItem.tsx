@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/react";
 import { Image } from "@nextui-org/image";
@@ -19,8 +19,9 @@ export default function App({ playerList }: any) {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedRole, setSelectedRole] = useState("");
-    const [selectedKeys, setSelectedKeys] = React.useState(new Set(["Role"]));
-    const selectedValue = React.useMemo(
+    const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set(["ROLE"]));
+
+    const selectedValue = useMemo(
         () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
         [selectedKeys]
     );
@@ -124,34 +125,35 @@ export default function App({ playerList }: any) {
             </section>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center">
-                {currentPlayers.map(function (a: any, i: number) {
+                {currentPlayers.map((player) => {
                     return (
-                        <div className="col-auto gap-4 justify-center" key={i}>
+                        <div className="col-auto gap-4 justify-center" key={player}>
                             <Card isFooterBlurred className="w-full h-[340px] ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                                     <h4 className="text-white font-bold text-2xl">
-                                        {currentPlayers[i].name}
+                                        {player.name}
                                     </h4>
                                 </CardHeader>
                                 <Image
+                                    loading="lazy"
                                     removeWrapper
                                     alt="Player Pic"
                                     className="z-0 w-full h-full  object-cover"
-                                    src={currentPlayers[i].pic}
+                                    src={player.pic}
                                 />
                                 <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
                                     <div>
                                         <Image
-                                            src={`https://flagsapi.com/${currentPlayers[i].nation}/flat/32.png`}
+                                            src={`https://flagsapi.com/${player.nation}/flat/32.png`}z
                                             alt="flag"
                                         />
                                         <p className="text-black text-base font-normal">
-                                            {currentPlayers[i].role.toUpperCase()}
+                                            {player.role.toUpperCase()}
                                         </p>
                                     </div>
 
                                     <Button color="danger" size="md">
-                                        <Link href={`/detail/${currentPlayers[i]._id}`}>
+                                        <Link href={`/detail/${player._id}`}>
                                             See more
                                         </Link>
                                     </Button>

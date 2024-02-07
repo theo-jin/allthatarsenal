@@ -1,11 +1,12 @@
 'use client'
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input, Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 import { DeleteIcon } from "@/components/icons";
 import CommentModal from "./CommentModal";
 import { ObjectId } from "mongodb";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { comment } from "@/redux/slices/commentSlice";
+import { KeyboardEvent } from "@react-types/shared";
 
 
 interface CommentItem {
@@ -22,6 +23,8 @@ export default function Comment({ player }: any) {
     // let commentData = useAppSelector((state) => state.comment)
     // let dispatch = useAppDispatch()
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
         fetch('/api/comment/list?id=' + player._id).then(r => r.json()).then((result) => {
             setData(result)
@@ -29,6 +32,10 @@ export default function Comment({ player }: any) {
     }, [player._id]);
 
     const submitHandler = () => {
+        if (comment === "") {
+            inputRef.current?.focus();
+            return;
+        }
         fetch('/api/comment/new', {
             method: 'POST',
             body: JSON.stringify({
@@ -37,7 +44,10 @@ export default function Comment({ player }: any) {
             })
         }).then(() => fetch('/api/comment/list?id=' + player._id).then(r => r.json()).then((result) => {
             setData(result)
-        }))
+        })
+
+        )
+
     }
 
     const handleDelete = (i: number) => {
@@ -48,6 +58,11 @@ export default function Comment({ player }: any) {
         }).then(() => fetch('/api/comment/list?id=' + player._id).then(r => r.json()).then((result) => {
             setData(result)
         }))
+    }
+    const onKeyDown: (React.KeyboardEventHandler<HTMLInputElement> & ((e: KeyboardEvent) => void)) | undefined = (e: { keyCode: number; }) => {
+        if (e.keyCode === 13) {
+            submitHandler();
+        }
     }
 
     return (
@@ -88,7 +103,11 @@ export default function Comment({ player }: any) {
                 )}
             </Table>
             <div className=" grid w-full justify-center">
-                <Input size="lg" placeholder="Write Comment"
+                <Input
+                    ref={inputRef}
+                    size="lg"
+                    onKeyDown={onKeyDown}
+                    placeholder="Write Comment"
                     onChange={(e) => { setComment(e.target.value) }}
                     endContent={<Button onPress={submitHandler}>submit</Button>} />
             </div>

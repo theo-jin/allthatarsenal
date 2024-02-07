@@ -125,6 +125,7 @@ export default function App({ result }: Props) {
                             <h4 className="text-black font-bold text-2xl">#{playerA.number}</h4>
                         </CardHeader>
                         <Image
+                            loading="lazy"
                             removeWrapper
                             alt="Player Pic"
                             className="z-0 w-full object-cover h-[200px]"
@@ -146,6 +147,7 @@ export default function App({ result }: Props) {
                             <h4 className="text-black font-bold text-2xl">#{playerB.number}</h4>
                         </CardHeader>
                         <Image
+                            loading="lazy"
                             removeWrapper
                             alt="Player Pic"
                             className="z-0  w-full object-cover h-[200px]"
