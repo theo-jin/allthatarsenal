@@ -59,6 +59,8 @@ export default function Comment({ player }: any) {
             setData(result)
         }))
     }
+
+    //Enter입력시 submitHandler실행
     const onKeyDown: (React.KeyboardEventHandler<HTMLInputElement> & ((e: KeyboardEvent) => void)) | undefined = (e: { keyCode: number; }) => {
         if (e.keyCode === 13) {
             submitHandler();
@@ -66,8 +68,8 @@ export default function Comment({ player }: any) {
     }
 
     return (
-        <div className="grid grid-cols-1 justify-center">
-            <Table aria-label=" Example static collection table" className=" grid w-full justify-center" >
+        <div className="grid justify-center">
+            <Table aria-label=" Example static collection table" className=" w-full justify-center" >
                 <TableHeader>
                     <TableColumn style={{ width: "80%" }}>Comments</TableColumn>
                     <TableColumn style={{ width: "10%" }} >AUTHOR</TableColumn>

@@ -60,7 +60,6 @@ export default function App({ playerList }: any) {
         );
         setSortedPlayerList(filteredList);
         setSelectedRole(role);
-
     };
 
 
@@ -77,13 +76,13 @@ export default function App({ playerList }: any) {
 
     return (
         <div>
-            <section className="flex gap-3 py-8 md:py-10">
-                <header className=" max-w-lg text-left gap-10 ">
+            <section className="flex justify-between gap-3 py-8 md:py-10">
+                <div className=" max-w-lg text-left gap-10 ">
                     <h1 className={title()}>Player List</h1>
-                </header>
+                </div>
                 <div className="flex gap-1">
                     <Input
-                        placeholder="Search by name"
+                        placeholder=""
                         classNames={{
                             inputWrapper: "bg-default-100",
                             input: "text-sm",
@@ -127,7 +126,7 @@ export default function App({ playerList }: any) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center">
                 {currentPlayers.map((player) => {
                     return (
-                        <div className="col-auto gap-4 justify-center" key={player}>
+                        <div className="col-auto gap-4 justify-center" key={player._id}>
                             <Card isFooterBlurred className="w-full h-[340px] ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                                     <h4 className="text-white font-bold text-2xl">
@@ -144,7 +143,7 @@ export default function App({ playerList }: any) {
                                 <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
                                     <div>
                                         <Image
-                                            src={`https://flagsapi.com/${player.nation}/flat/32.png`}z
+                                            src={`https://flagsapi.com/${player.nation}/flat/32.png`} z
                                             alt="flag"
                                         />
                                         <p className="text-black text-base font-normal">

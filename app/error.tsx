@@ -23,7 +23,8 @@ export default function Error({
           () => reset()
         }
       >
-        다시 시도해 주세요!
+        404 ERROR
+     
       </button>
     </div>
   )
