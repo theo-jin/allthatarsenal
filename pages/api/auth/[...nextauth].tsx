@@ -65,6 +65,11 @@ export const authOptions: any = {
             return session;
         },
     },
+    // 여기가 추가된 부분
+  pages: {
+    signIn: "/signin",
+  },
+// 여기가 추가된 부분
 
     secret: 'qwe159',
     adapter: MongoDBAdapter(connectDB)

@@ -145,11 +145,11 @@ export default function Register() {
 						className="max-w-xs"
 					/>
 				</div>
-				<div className="inline-block max-w-lg text-center justify-center">
+				<div className='mt-6'>
 
-					<Button className={subtitle({ color: "pink" })} type="submit" disabled={!validInput}>
+					<button className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none' type="submit" disabled={!validInput}>
 						Submit
-					</Button>
+					</button>
 
 				</div>
 				<div className="inline-block max-w-lg text-center justify-center">
