@@ -6,13 +6,20 @@ import { title, subtitle } from "@/components/primitives";
 import { EyeFilledIcon } from '@/components/EyeFilledIcon';
 import { EyeSlashFilledIcon } from '@/components/EyeSlashFilledIcon';
 
+
 export default function Login() {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
 
   const handleSubmit = async () => {
-    console.log(emailRef.current)
-    console.log(passwordRef.current)
+
+
+    const result = await signIn("credentials", {
+        email: emailRef.current,
+        password: passwordRef.current,
+      redirect: true,
+      callbackUrl: "/",
+    });
   }
 
   return (

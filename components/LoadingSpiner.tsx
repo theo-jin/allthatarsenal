@@ -5,9 +5,6 @@ import { Spinner } from "@nextui-org/react";
 
 export const LoadingSpiner = () => {
     return (
-        <div className="flex gap-4">
-
-            <Spinner size="lg" />
-        </div>
+      <Spinner size="lg" label="Loading..." color="danger" labelColor="danger"/>
     );
 }
