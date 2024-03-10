@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "@nextui-org/react"
 import { title, subtitle } from "@/components/primitives";
-import { EyeFilledIcon } from '@/components/EyeFilledIcon';
-import { EyeSlashFilledIcon } from '@/components/EyeSlashFilledIcon';
+import { EyeFilledIcon ,EyeSlashFilledIcon} from  "@/components/icons";
+
 
 export default function Register() {
 	const [showErr, setShowErr] = useState("");

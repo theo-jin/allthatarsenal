@@ -10,7 +10,7 @@ import { title } from "@/components/primitives";
 import Link from "next/link";
 import { SearchIcon } from "@/components/icons";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
-
+import { motion, useScroll, useSpring } from "framer-motion";
 
 
 export default function App({ playerList }: any) {
@@ -19,7 +19,14 @@ export default function App({ playerList }: any) {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedRole, setSelectedRole] = useState("");
-    const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set(["ROLE"]));
+    const [selectedKeys, setSelectedKeys]:any = useState<Set<string>>(new Set(["ROLE"]));
+
+    const { scrollYProgress } = useScroll();
+    const scaleX = useSpring(scrollYProgress, {
+      stiffness: 100,
+      damping: 30,
+      restDelta: 0.001
+    });
 
     const selectedValue = useMemo(
         () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
@@ -76,6 +83,7 @@ export default function App({ playerList }: any) {
 
     return (
         <div>
+              <motion.div className="progress-bar" style={{ scaleX }} />
             <section className="flex justify-between gap-3 py-8 md:py-10">
                 <div className=" max-w-lg text-left gap-10 ">
                     <h1 className={title()}>Player List</h1>
@@ -143,7 +151,7 @@ export default function App({ playerList }: any) {
                                 <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
                                     <div>
                                         <Image
-                                            src={`https://flagsapi.com/${player.nation}/flat/32.png`} z
+                                            src={`https://flagsapi.com/${player.nation}/flat/32.png`}
                                             alt="flag"
                                         />
                                         <p className="text-black text-base font-normal">

@@ -50,7 +50,7 @@ export const authOptions: any = {
 
     callbacks: {
         //4. jwt 만들 때 실행되는 코드 
-        //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
+        //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어감.
         jwt: async ({ token, user }: any) => {
             if (user) {
                 token.user = {};

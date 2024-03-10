@@ -45,9 +45,7 @@ export default function Comment({ player }: any) {
         }).then(() => fetch('/api/comment/list?id=' + player._id).then(r => r.json()).then((result) => {
             setData(result)
         })
-
         )
-
     }
 
     const handleDelete = (i: number) => {
