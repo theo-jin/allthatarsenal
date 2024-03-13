@@ -1,5 +1,5 @@
 
-import { connectDB } from "../../../util/database";
+import { connectDB } from "../../../../util/database";
 import { ObjectId } from "mongodb"
 
 import Info from "./Info"

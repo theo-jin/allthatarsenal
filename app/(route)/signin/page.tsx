@@ -2,9 +2,8 @@
 import React, { useRef } from 'react'
 import { signIn } from 'next-auth/react'
 import { Input, Button } from "@nextui-org/react"
-import { title, subtitle } from "@/components/primitives";
-import { EyeFilledIcon } from '@/components/EyeFilledIcon';
-import { EyeSlashFilledIcon } from '@/components/EyeSlashFilledIcon';
+import { title, subtitle } from "@/app/_components/primitives";
+import { EyeFilledIcon } from '@/app/_components/icons';
 
 
 export default function Login() {
@@ -12,8 +11,6 @@ export default function Login() {
   const passwordRef = useRef(null)
 
   const handleSubmit = async () => {
-
-
     const result = await signIn("credentials", {
         email: emailRef.current,
         password: passwordRef.current,
@@ -24,7 +21,7 @@ export default function Login() {
 
   return (
     <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-      <h1 className='text-4xl font-semibold'>Login</h1>
+      <h1  className={title()}>Login</h1>
       <div>
         <div>
           <label

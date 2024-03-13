@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link } from "@nextui-org/react";
-import { EditIcon } from "@/components/icons";
+import { EditIcon } from "@/app/_components/icons";
 
 export default function CommentModal({ comment }: any) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();

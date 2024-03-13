@@ -1,12 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type PlayerState = {
+type PlayerState = any[]; // 배열 타입으로 변경
 
-};
-
-const initialState: PlayerState = {
-    []
-};
+const initialState: PlayerState = [];
 
 const commentSlice = createSlice({
     name: 'comment',
@@ -18,7 +14,7 @@ const commentSlice = createSlice({
         },
         comment: (state, action: PayloadAction<PlayerState>) => {
             // 전달된 액션 페이로드로 상태 업데이트
-            return { ...state, ...action.payload };
+            return [...action.payload]; // 전달된 페이로드로 상태를 업데이트하고자 할 때
         },
     },
 });

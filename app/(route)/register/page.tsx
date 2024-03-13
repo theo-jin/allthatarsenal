@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "@nextui-org/react"
-import { title, subtitle } from "@/components/primitives";
-import { EyeFilledIcon ,EyeSlashFilledIcon} from  "@/components/icons";
-
+import { title, subtitle } from "@/app/_components/primitives";
+import { EyeFilledIcon ,EyeSlashFilledIcon} from  "@/app/_components/icons";
 
 export default function Register() {
 	const [showErr, setShowErr] = useState("");
@@ -150,7 +149,6 @@ export default function Register() {
 					<Button className={subtitle({ color: "pink" })} type="submit" disabled={!validInput}>
 						Submit
 					</Button>
-
 				</div>
 				<div className="inline-block max-w-lg text-center justify-center">
 					<p className={subtitle()}>{showErr}</p>

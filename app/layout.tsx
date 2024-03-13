@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { siteConfig } from "@/app/_config/site";
+import { fontSans } from "@/app/_config/fonts";
 import { Providers1 } from "./providers";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/app/_components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession } from 'next-auth';

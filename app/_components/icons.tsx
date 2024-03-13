@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IconSvgProps } from "@/types";
+import { IconSvgProps } from "@/app/_types";
 
 export const KakaoIcon: React.FC<IconSvgProps> = ({
 	size = 24,

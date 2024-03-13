@@ -1,4 +1,4 @@
-import { title } from "@/components/primitives";
+import { title } from "@/app/_components/primitives";
 import Fotmob from 'fotmob';
 
 

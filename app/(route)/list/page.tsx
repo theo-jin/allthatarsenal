@@ -1,4 +1,4 @@
-import { connectDB } from "../../util/database";
+import { connectDB } from "../../../util/database";
 import PlayerCard from "./listItem"
 
 export default async function list() {

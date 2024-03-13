@@ -50,6 +50,7 @@ export const siteConfig = {
 			href: "/about",
 		}
 	],
+	
 	links: {
 		officialpage: "https://www.arsenal.com/",
 		kakao: "https://open.kakao.com/o/gNdkRIcb"

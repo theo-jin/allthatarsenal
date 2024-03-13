@@ -2,7 +2,7 @@
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
 import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
-import { title } from "@/components/primitives";
+import { title } from "@/app/_components/primitives";
 import { Image } from "@nextui-org/image";
 import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import {
@@ -89,7 +89,7 @@ export default function App({ result }: Props) {
                                 Player A
                             </Button>
                         </DropdownTrigger>
-                        <DropdownMenu aria-label="Static Actions">
+                        <DropdownMenu aria-label="Static Actions" >
                             {result.map(function (a, i) {
                                 return (
                                     <DropdownItem onPress={() => { setPlayerA(result[i]) }}>
@@ -99,8 +99,6 @@ export default function App({ result }: Props) {
                         </DropdownMenu>
                     </Dropdown>
                 </div>
-
-
                 <div className="col-span-1 justify-items-center">
                     <Dropdown>
                         <DropdownTrigger>

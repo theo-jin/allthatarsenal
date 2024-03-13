@@ -11,14 +11,14 @@ import { Button } from "@nextui-org/button";
 
 import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/app/_config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { ThemeSwitch } from "@/components/theme-switch";
+import { ThemeSwitch } from "@/app/_components/theme-switch";
 import { Avatars } from "./Avatars";
 import { LogOutBtn } from "./LogOutBtn";
 import { SignInBtn } from "./SignInBtn";
-import { Logo} from "../components/Logo"
+import { Logo} from "./Logo"
 
 
 export const Navbar = ({ session }: any) => {

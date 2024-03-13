@@ -1,7 +1,6 @@
 import { connectDB } from "../../../util/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
-;
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
@@ -59,6 +58,7 @@ export const authOptions: any = {
             }
             return token;
         },
+        
         //5. 유저 세션이 조회될 때 마다 실행되는 코드
         session: async ({ session, token }: any) => {
             session.user = token.user;

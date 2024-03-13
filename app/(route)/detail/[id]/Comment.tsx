@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from "react";
 import { Input, Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
-import { DeleteIcon } from "@/components/icons";
+import { DeleteIcon } from "@/app/_components/icons";
 import CommentModal from "./CommentModal";
 import { ObjectId } from "mongodb";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -32,10 +32,12 @@ export default function Comment({ player }: any) {
     }, [player._id]);
 
     const submitHandler = () => {
+        //comment에 아무것도 없을시 인풋창 포커스
         if (comment === "") {
             inputRef.current?.focus();
             return;
         }
+
         fetch('/api/comment/new', {
             method: 'POST',
             body: JSON.stringify({
@@ -49,7 +51,6 @@ export default function Comment({ player }: any) {
     }
 
     const handleDelete = (i: number) => {
-
         fetch('/api/comment/delete', {
             method: 'DELETE',
             body: JSON.stringify(data[i]._id),
@@ -66,8 +67,8 @@ export default function Comment({ player }: any) {
     }
 
     return (
-        <div className="grid justify-center">
-            <Table aria-label=" Example static collection table" className=" w-full justify-center" >
+        <div className="'flex flex-col items-center space-y-10 p-24'">
+            <Table aria-label=" Example static collection table" className=" w-full " >
                 <TableHeader>
                     <TableColumn style={{ width: "80%" }}>Comments</TableColumn>
                     <TableColumn style={{ width: "10%" }} >AUTHOR</TableColumn>
@@ -102,7 +103,7 @@ export default function Comment({ player }: any) {
                     <TableBody emptyContent={"No rows to display."}>{[]}</TableBody>
                 )}
             </Table>
-            <div className=" grid w-full justify-center">
+            <div className="grid w-full justify-center">
                 <Input
                     ref={inputRef}
                     size="lg"

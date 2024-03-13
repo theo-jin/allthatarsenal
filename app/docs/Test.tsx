@@ -3,7 +3,7 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-o
 import { Button } from "@nextui-org/button";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { title } from "@/components/primitives";
+import { title } from "@/app/_components/primitives";
 import { Image } from "@nextui-org/image";
 import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import {

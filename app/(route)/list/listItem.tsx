@@ -6,9 +6,9 @@ import { Pagination } from "@nextui-org/react";
 import { Image } from "@nextui-org/image";
 import { Input } from "@nextui-org/react";
 import { Card, CardHeader, CardFooter } from "@nextui-org/card";
-import { title } from "@/components/primitives";
+import { title } from "@/app/_components/primitives";
 import Link from "next/link";
-import { SearchIcon } from "@/components/icons";
+import { SearchIcon } from "@/app/_components/icons";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { motion, useScroll, useSpring } from "framer-motion";
 

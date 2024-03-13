@@ -1,9 +1,9 @@
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { KakaoIcon } from "@/components/icons";
+import { siteConfig } from "@/app/_config/site";
+import { title, subtitle } from "@/app/_components/primitives";
+import { KakaoIcon } from "@/app/_components/icons";
 
 export default function Home() {
 	return (

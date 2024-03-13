@@ -2,12 +2,12 @@
 
 import React from "react";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
-// 즐겨찾기 추후 개발 import { HeartIcon } from "@/components/icons";
+import { HeartIcon } from "@/app/_components/icons";
 
 
 export default function Info({ player }: any) {
     //  즐겨찾기 추후 개발 const [liked, setLiked] = React.useState(false);
-
+    const [liked, setLiked] = React.useState(false);
     return (
         <div className="flex justify-center">
             <Card
@@ -41,8 +41,7 @@ export default function Info({ player }: any) {
                                         />
                                     </h1>
                                 </div>
-                                {/* 
-                                즐겨찾기 추후 개발 
+                                
                                 <Button
                                     isIconOnly
                                     className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
@@ -54,7 +53,7 @@ export default function Info({ player }: any) {
                                         className={liked ? "[&>path]:stroke-transparent" : ""}
                                         fill={liked ? "currentColor" : "none"}
                                     />
-                                </Button> */}
+                                </Button>
                             </div>
 
 

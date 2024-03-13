@@ -17,8 +17,7 @@ export default async function handler(req: any | NextApiRequest | (IncomingMessa
             let result = await db.collection('comment').deleteOne({ _id: new ObjectId(req.body) })
 
         } else {
-            return( 
-                res.status(500).json('작성자와 맞지 않았습니다.'))
+            return res.status(500).json('작성자와 맞지 않았습니다.')
         }
 
 
