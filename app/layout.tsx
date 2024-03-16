@@ -6,10 +6,9 @@ import { Providers1 } from "./providers";
 import { Navbar } from "@/app/_components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import { getServerSession } from 'next-auth';
-import { authOptions } from "./../pages/api/auth/[...nextauth]"
+import { getServerSession } from "next-auth";
+import { authOptions } from "./../pages/api/auth/[...nextauth]";
 import { Providers } from "@/redux/provider";
-
 
 export const metadata: Metadata = {
 	title: {
@@ -22,8 +21,7 @@ export const metadata: Metadata = {
 		{ media: "(prefers-color-scheme: dark)", color: "black" },
 	],
 	icons: {
-		icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png"
-
+		icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
 	},
 };
 
@@ -32,15 +30,15 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	let session = await getServerSession(authOptions)
-	
+	let session = await getServerSession(authOptions);
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
 			<body
 				className={clsx(
 					"min-h-screen bg-background font-sans antialiased",
-					fontSans.variable
+					fontSans.variable,
 				)}
 			>
 				<Providers1 themeProps={{ attribute: "class", defaultTheme: "dark" }}>

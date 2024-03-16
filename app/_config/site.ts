@@ -21,14 +21,11 @@ export const siteConfig = {
 		// 	href: "/history",
 		// },
 		{
-			label: "About",
-			href: "/about",
-		}
-
-
+			label: "Match Day",
+			href: "/matchday",
+		},
 	],
 	navMenuItems: [
-
 		{
 			label: "Home",
 			href: "/",
@@ -46,13 +43,13 @@ export const siteConfig = {
 		// 	href: "/history",
 		// },
 		{
-			label: "About",
-			href: "/about",
-		}
+			label: "Match Day",
+			href: "/matchday",
+		},
 	],
-	
+
 	links: {
 		officialpage: "https://www.arsenal.com/",
-		kakao: "https://open.kakao.com/o/gNdkRIcb"
+		kakao: "https://open.kakao.com/o/gNdkRIcb",
 	},
 };

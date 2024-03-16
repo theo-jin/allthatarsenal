@@ -12,13 +12,9 @@ export default function Home() {
 				<h1 className={title()}>Make&nbsp;</h1>
 				<h1 className={title({ color: "pink" })}>beautiful&nbsp;</h1>
 				<br />
-				<h1 className={title()}>
-					Fan community and Make&nbsp;
-				</h1>
+				<h1 className={title()}>Fan community and Make&nbsp;</h1>
 				<h1 className={title({ color: "pink" })}>ARSENAL&nbsp;</h1>
-				<h1 className={title()}>
-					GREAT AGAIN!
-				</h1>
+				<h1 className={title()}>GREAT AGAIN!</h1>
 				<h2 className={subtitle({ class: "mt-4" })}>
 					Beautiful Football Club ARSENAL
 				</h2>

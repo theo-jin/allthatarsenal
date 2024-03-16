@@ -1,5 +1,10 @@
-'use client'
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
+"use client";
+import {
+	Dropdown,
+	DropdownTrigger,
+	DropdownMenu,
+	DropdownItem,
+} from "@nextui-org/dropdown";
 import { Button } from "@nextui-org/button";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -12,7 +17,7 @@ import {
 	PolarGrid,
 	PolarAngleAxis,
 	PolarRadiusAxis,
-	Legend
+	Legend,
 } from "recharts";
 import { player1 } from "@/redux/slices/playerSlice";
 import { player2 } from "@/redux/slices/playerSlice2";
@@ -36,49 +41,48 @@ interface Props {
 }
 
 export default function App({ result }: Props) {
-	let playerA = useAppSelector((state) => state.playerA)
-	let playerB = useAppSelector((state) => state.playerB)
-	let dispatch = useAppDispatch()
+	let playerA = useAppSelector((state) => state.playerA);
+	let playerB = useAppSelector((state) => state.playerB);
+	let dispatch = useAppDispatch();
 	const data = [
 		{
 			subject: "PACE",
 			A: playerA.pace,
 			B: playerB.pace,
-			fullMark: 99
+			fullMark: 99,
 		},
 		{
 			subject: "DRIBBLE",
 			A: playerA.dribble,
 			B: playerB.dribble,
-			fullMark: 99
+			fullMark: 99,
 		},
 		{
 			subject: "SHOT",
 			A: playerA.shot,
 			B: playerB.shot,
-			fullMark: 99
+			fullMark: 99,
 		},
 		{
 			subject: "PASS",
 			A: playerA.pass,
 			B: playerB.pass,
-			fullMark: 99
+			fullMark: 99,
 		},
 		{
 			subject: "PHYSICAL",
 			A: playerA.physical,
 			B: playerB.physical,
-			fullMark: 99
+			fullMark: 99,
 		},
 		{
 			subject: "DEFENCE",
 			A: playerA.defence,
 			B: playerB.defence,
-			fullMark: 99
+			fullMark: 99,
 		},
 	];
 	return (
-
 		<>
 			<section className="flex flex-col justify-items-center gap-4 py-8 md:py-10">
 				<h1 className={title()}>Player vs Player</h1>
@@ -94,12 +98,14 @@ export default function App({ result }: Props) {
 						<DropdownMenu aria-label="Static Actions">
 							{result.map(function (a, i) {
 								return (
-									<DropdownItem onPress={() => {
-										dispatch(player1(result[i]));
-
-									}}>
-										#{result[i].number}    {result[i].name}
-									</DropdownItem>)
+									<DropdownItem
+										onPress={() => {
+											dispatch(player1(result[i]));
+										}}
+									>
+										#{result[i].number} {result[i].name}
+									</DropdownItem>
+								);
 							})}
 						</DropdownMenu>
 					</Dropdown>
@@ -107,7 +113,7 @@ export default function App({ result }: Props) {
 				<div className="col-span-1 justify-items-center">
 					<Dropdown>
 						<DropdownTrigger>
-							<Button variant="light" size="lg" >
+							<Button variant="light" size="lg">
 								Player B
 							</Button>
 						</DropdownTrigger>
@@ -115,9 +121,14 @@ export default function App({ result }: Props) {
 						<DropdownMenu aria-label="Static Actions">
 							{result.map(function (a, i) {
 								return (
-									<DropdownItem onPress={() => { dispatch(player2(result[i])); }}>
-										#{result[i].number}  {result[i].name}
-									</DropdownItem>)
+									<DropdownItem
+										onPress={() => {
+											dispatch(player2(result[i]));
+										}}
+									>
+										#{result[i].number} {result[i].name}
+									</DropdownItem>
+								);
 							})}
 						</DropdownMenu>
 					</Dropdown>
@@ -125,7 +136,9 @@ export default function App({ result }: Props) {
 				<div className="col-span-1 justify-items-center">
 					<Card isFooterBlurred className="w-full h-[280px]">
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-white font-bold text-xl">#{playerA.number}&nbsp;{playerA.name}</h4>
+							<h4 className="text-white font-bold text-xl">
+								#{playerA.number}&nbsp;{playerA.name}
+							</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -146,7 +159,9 @@ export default function App({ result }: Props) {
 				<div className="col-span-1 justify-items-center">
 					<Card className="w-full h-[280px] ">
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-black font-bold text-xl">#{playerB.number}&nbsp;{playerB.name}</h4>
+							<h4 className="text-black font-bold text-xl">
+								#{playerB.number}&nbsp;{playerB.name}
+							</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -165,9 +180,14 @@ export default function App({ result }: Props) {
 					</Card>
 				</div>
 				<div className="col-span-2 justify-items-center">
-
-					<RadarChart cx={200} cy={150} outerRadius={100} width={400} height={300} data={data}>
-
+					<RadarChart
+						cx={200}
+						cy={150}
+						outerRadius={100}
+						width={400}
+						height={300}
+						data={data}
+					>
 						<PolarGrid />
 						<PolarAngleAxis dataKey="subject" />
 						<PolarRadiusAxis />
