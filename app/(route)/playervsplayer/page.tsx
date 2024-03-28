@@ -1,5 +1,5 @@
 import Versus from "./Versus";
-import { connectDB } from "../../../util/database";
+import { connectDB } from "../../../utils/database";
 export default async function App() {
 	const client = await connectDB;
 	const db = client.db("arsenal");

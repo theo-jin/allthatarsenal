@@ -19,8 +19,9 @@ function Calendar({ teamData }: any) {
 	function handleEventClick(clickInfo: any) {
 		const date = new Date(clickInfo.event._instance.range.start);
 
-		alert(` ${clickInfo.event.title}`);
+		alert(` ${clickInfo.event.title} ${date}`);
 	}
+
 	let eventContent = (eventInfo: EventContentArg) => {
 		console.log(eventInfo);
 		return (

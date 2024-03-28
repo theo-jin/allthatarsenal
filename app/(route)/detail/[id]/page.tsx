@@ -1,10 +1,10 @@
-import { connectDB } from "../../../../util/database";
+import { connectDB } from "../../../../utils/database";
 import { ObjectId } from "mongodb";
 
 import Info from "./Info";
 import Comment from "./Comment";
 import Chart from "./Chart";
-
+import Description from "./Description";
 export default async function App(props: any) {
 	const client = await connectDB;
 	const db = client.db("arsenal");
@@ -16,6 +16,7 @@ export default async function App(props: any) {
 		<>
 			<Info player={player} />
 			<Chart player={player} />
+			<Description player={player} />
 			<Comment player={player} />
 		</>
 	);

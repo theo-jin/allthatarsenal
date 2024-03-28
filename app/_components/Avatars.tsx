@@ -1,8 +1,12 @@
 "use client";
 
 import React from "react";
-import { Avatar } from "@nextui-org/react";
+import { Avatar, Link } from "@nextui-org/react";
 
-export const Avatars = ({ session }: any) => {
-	return <Avatar className="mr-2" radius="sm" name={session.user.name} />;
+export const MyPage = ({ session }: any) => {
+	return (
+		<Link href={"/mypage"}>
+			<Avatar className="mr-2" radius="sm" name={session.user.name} />
+		</Link>
+	);
 };

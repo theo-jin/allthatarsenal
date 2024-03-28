@@ -5,10 +5,6 @@ export const siteConfig = {
 	description: "Make beautiful Fan community and Make ARSENAL GREAT AGAIN!",
 	navItems: [
 		{
-			label: "Home",
-			href: "/",
-		},
-		{
 			label: "List",
 			href: "/list",
 		},
@@ -26,10 +22,6 @@ export const siteConfig = {
 		},
 	],
 	navMenuItems: [
-		{
-			label: "Home",
-			href: "/",
-		},
 		{
 			label: "List",
 			href: "/list",

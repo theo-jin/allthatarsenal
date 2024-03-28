@@ -15,7 +15,7 @@ import { siteConfig } from "@/app/_config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { ThemeSwitch } from "@/app/_components/theme-switch";
-import { Avatars } from "./Avatars";
+import { MyPage } from "./Avatars";
 import { LogOutBtn } from "./LogOutBtn";
 import { SignInBtn } from "./SignInBtn";
 import { Logo } from "./Logo";
@@ -59,7 +59,7 @@ export const Navbar = ({ session }: any) => {
 				</NavbarItem>
 				{session ?
 					<NavbarItem className="hidden md:flex">
-						<Avatars session={session} />
+						<MyPage session={session} />
 						<LogOutBtn />
 					</NavbarItem>
 				:	<NavbarItem className="hidden md:flex">
@@ -83,7 +83,7 @@ export const Navbar = ({ session }: any) => {
 
 			<NavbarMenu>
 				{session ?
-					<Avatars session={session} />
+					<MyPage session={session} />
 				:	<Button
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"

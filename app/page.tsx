@@ -4,22 +4,23 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/app/_config/site";
 import { title, subtitle } from "@/app/_components/primitives";
 import { KakaoIcon } from "@/app/_components/icons";
-
+import Swiper from "@/app/_components/swiper";
 export default function Home() {
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "pink" })}>beautiful&nbsp;</h1>
+				<h1 className={title()}>Welcome to&nbsp;</h1>
 				<br />
-				<h1 className={title()}>Fan community and Make&nbsp;</h1>
-				<h1 className={title({ color: "pink" })}>ARSENAL&nbsp;</h1>
-				<h1 className={title()}>GREAT AGAIN!</h1>
+				<h1 className={title({ color: "pink" })}>ALL THAT ARSENAL&nbsp;</h1>
+				<br />
+				<h1 className={title()}>Let's Go &nbsp;</h1>
+				<h1 className={title({ color: "pink" })}>Gunners&nbsp;</h1>
+				{/* <h1 className={title()}>GREAT AGAIN!</h1> */}
 				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful Football Club ARSENAL
+					Beautiful Football Club ARSENAL FC
 				</h2>
 			</div>
-
+			<Swiper />
 			<div className="flex gap-3">
 				<Link
 					isExternal

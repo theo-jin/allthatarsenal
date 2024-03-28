@@ -15,7 +15,6 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from "@nextui-org/react";
-import { motion, useScroll, useSpring } from "framer-motion";
 
 export default function App({ playerList }: any) {
 	const [sortedPlayerList, setSortedPlayerList] = useState([...playerList]);
@@ -26,13 +25,6 @@ export default function App({ playerList }: any) {
 	const [selectedKeys, setSelectedKeys]: any = useState<Set<string>>(
 		new Set(["ROLE"]),
 	);
-
-	const { scrollYProgress } = useScroll();
-	const scaleX = useSpring(scrollYProgress, {
-		stiffness: 100,
-		damping: 30,
-		restDelta: 0.001,
-	});
 
 	const selectedValue = useMemo(
 		() => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
@@ -89,7 +81,6 @@ export default function App({ playerList }: any) {
 
 	return (
 		<div>
-			<motion.div className="progress-bar" style={{ scaleX }} />
 			<section className="flex justify-between gap-3 py-8 md:py-10">
 				<div className=" max-w-lg text-left gap-10 ">
 					<h1 className={title()}>Player List</h1>

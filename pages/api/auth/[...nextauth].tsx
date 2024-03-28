@@ -1,4 +1,4 @@
-import { connectDB } from "../../../util/database";
+import { connectDB } from "../../../utils/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -80,7 +80,6 @@ export const authOptions: any = {
 	pages: {
 		signIn: "/signin",
 	},
-	// 여기가 추가된 부분
 
 	secret: "qwe159",
 	adapter: MongoDBAdapter(connectDB),
