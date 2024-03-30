@@ -33,11 +33,11 @@ interface Player {
 	nation: string;
 }
 
-interface Props {
-	result: Player[];
-}
+// interface Props {
+// 	playerList: Player[];
+// }
 
-export default function App({ result }: Props) {
+export default function App({ playerList }: any) {
 	let [playerA, setPlayerA] = useState<Player>({
 		name: "",
 		number: 0,
@@ -117,14 +117,14 @@ export default function App({ result }: Props) {
 							</Button>
 						</DropdownTrigger>
 						<DropdownMenu aria-label="Static Actions">
-							{result.map(function (a, i) {
+							{playerList.map(function (a: any, i: any) {
 								return (
 									<DropdownItem
 										onPress={() => {
-											setPlayerA(result[i]);
+											setPlayerA(playerList[i]);
 										}}
 									>
-										#{result[i].number} {result[i].name}
+										#{playerList[i].number} {playerList[i].name}
 									</DropdownItem>
 								);
 							})}
@@ -140,14 +140,14 @@ export default function App({ result }: Props) {
 						</DropdownTrigger>
 
 						<DropdownMenu aria-label="Static Actions">
-							{result.map(function (a, i) {
+							{playerList.map(function (a: any, i: any) {
 								return (
 									<DropdownItem
 										onPress={() => {
-											setPlayerB(result[i]);
+											setPlayerB(playerList[i]);
 										}}
 									>
-										#{result[i].number} {result[i].name}
+										#{playerList[i].number} {playerList[i].name}
 									</DropdownItem>
 								);
 							})}

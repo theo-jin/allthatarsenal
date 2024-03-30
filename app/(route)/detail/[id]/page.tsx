@@ -11,6 +11,7 @@ export default async function App(props: any) {
 	let player = await db
 		.collection("PlayerList")
 		.findOne({ _id: new ObjectId(props.params.id) });
+	player?._id.toString();
 
 	return (
 		<>

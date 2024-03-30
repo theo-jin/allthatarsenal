@@ -3,11 +3,15 @@ import { connectDB } from "../../../utils/database";
 export default async function App() {
 	const client = await connectDB;
 	const db = client.db("arsenal");
-	let result: any = await db.collection("PlayerList").find().toArray();
-
+	let playerList = await db.collection("PlayerList").find().toArray();
+	playerList = playerList.map((a: any) => {
+		a._id = a._id.toString();
+		return a;
+	});
+	
 	return (
 		<div>
-			<Versus result={result} />
+			<Versus playerList={playerList} />
 		</div>
 	);
 }
