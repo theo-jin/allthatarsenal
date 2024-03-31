@@ -22,17 +22,17 @@ function Calendar({ teamData }: any) {
 		alert(` ${clickInfo.event.title} ${date}`);
 	}
 
-	let eventContent = (eventInfo: EventContentArg) => {
-		console.log(eventInfo);
-		return (
-			<Card>
-				<CardBody>
-					<b>{eventInfo.event.title}</b>
-					<p>Time:{eventInfo.timeText}</p>
-				</CardBody>
-			</Card>
-		);
-	};
+	// let eventContent = (eventInfo: EventContentArg) => {
+	// 	console.log(eventInfo);
+	// 	return (
+	// 		<Card>
+	// 			<CardBody>
+	// 				<b>{eventInfo.event.title}</b>
+	// 				<p>Time:{eventInfo.timeText}</p>
+	// 			</CardBody>
+	// 		</Card>
+	// 	);
+	// };
 	return (
 		<FullCalendar
 			plugins={[dayGridPlugin, interactionPlugin]}

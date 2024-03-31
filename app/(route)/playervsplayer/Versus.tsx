@@ -120,6 +120,7 @@ export default function App({ playerList }: any) {
 							{playerList.map(function (a: any, i: any) {
 								return (
 									<DropdownItem
+										key={i}
 										onPress={() => {
 											setPlayerA(playerList[i]);
 										}}
@@ -143,6 +144,7 @@ export default function App({ playerList }: any) {
 							{playerList.map(function (a: any, i: any) {
 								return (
 									<DropdownItem
+										key={i}
 										onPress={() => {
 											setPlayerB(playerList[i]);
 										}}
