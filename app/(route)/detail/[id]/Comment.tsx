@@ -16,7 +16,8 @@ import { ObjectId } from "mongodb";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { comment } from "@/redux/slices/commentSlice";
 import { KeyboardEvent } from "@react-types/shared";
-
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { LoadingSpiner } from "@/app/_components/LoadingSpiner";
 interface CommentItem {
 	comment: string;
 	_id: ObjectId;
@@ -26,19 +27,33 @@ interface CommentItem {
 
 export default function Comment({ player }: any) {
 	let [comment, setComment] = useState("");
-	let [data, setData] = useState<CommentItem[]>([]);
+	let [commentData, setCommentData] = useState<CommentItem[]>([]);
 	// let commentData = useAppSelector((state) => state.comment)
 	// let dispatch = useAppDispatch()
 
 	const inputRef = useRef<HTMLInputElement>(null);
+	const { data, isLoading, isError } = useQuery({
+		queryKey: ["comments", player._id],
+		queryFn: async () => {
+			const res = await (
+				await fetch(`/api/comment/list?id=${player._id}`)
+			).json();
+			return res;
+		},
+	});
 
-	useEffect(() => {
-		fetch("/api/comment/list?id=" + player._id)
-			.then((r) => r.json())
-			.then((result) => {
-				setData(result);
-			});
-	}, [player._id]);
+	// if (data) {
+	// 	setCommentData(data)
+	// }
+	console.log(data);
+	// useEffect(() => {
+	// 	fetch("/api/comment/list?id=" + player._id)
+	// 		.then((r) => r.json())
+	// 		.then((result) => {
+	// 			setCommentData(result);
+	// 		});
+	// }, [player._id]);
+	// console.log(commentData);
 
 	const submitHandler = () => {
 		//comment에 아무것도 없을시 인풋창 포커스
@@ -57,7 +72,7 @@ export default function Comment({ player }: any) {
 			fetch("/api/comment/list?id=" + player._id)
 				.then((r) => r.json())
 				.then((result) => {
-					setData(result);
+					setCommentData(result);
 				}),
 		);
 	};
@@ -65,12 +80,12 @@ export default function Comment({ player }: any) {
 	const handleDelete = (i: number) => {
 		fetch("/api/comment/delete", {
 			method: "DELETE",
-			body: JSON.stringify(data[i]._id),
+			body: JSON.stringify(commentData[i]._id),
 		}).then(() =>
 			fetch("/api/comment/list?id=" + player._id)
 				.then((r) => r.json())
 				.then((result) => {
-					setData(result);
+					setCommentData(result);
 				}),
 		);
 	};
@@ -84,9 +99,9 @@ export default function Comment({ player }: any) {
 			submitHandler();
 		}
 	};
-
-	return (
-		<div className="'flex flex-col items-center space-y-10 p-24'">
+	let content;
+	if (data) {
+		content = (
 			<Table aria-label=" Example static collection table" className=" w-full ">
 				<TableHeader>
 					<TableColumn style={{ width: "80%" }}>Comments</TableColumn>
@@ -96,7 +111,7 @@ export default function Comment({ player }: any) {
 
 				{data.length > 0 ?
 					<TableBody>
-						{data.map(function (a, i) {
+						{data.map(function (a: any, i: number) {
 							return (
 								<TableRow key={data[i]._id.toString()}>
 									<TableCell key="comment" style={{ width: "80%" }}>
@@ -123,8 +138,25 @@ export default function Comment({ player }: any) {
 							);
 						})}
 					</TableBody>
-				:	<TableBody emptyContent={"No rows to display."}>{[]}</TableBody>}
+				:	<TableBody emptyContent={"댓글이 없습니다."}>{[]}</TableBody>}
 			</Table>
+		);
+	}
+	if (isLoading) {
+		content = (
+			<Table aria-label=" Example static collection table" className=" w-full ">
+				<TableHeader>
+					<TableColumn style={{ width: "80%" }}>Comments</TableColumn>
+					<TableColumn style={{ width: "10%" }}>AUTHOR</TableColumn>
+					<TableColumn style={{ width: "10%" }}>EDIT & DELETE</TableColumn>
+				</TableHeader>
+				<TableBody emptyContent={"Loading Comments..."}>{[]}</TableBody>
+			</Table>
+		);
+	}
+	return (
+		<div className="'flex flex-col items-center space-y-10 p-24'">
+			{content}
 			<div className="grid w-full justify-center">
 				<Input
 					ref={inputRef}
