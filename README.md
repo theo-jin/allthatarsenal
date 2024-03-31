@@ -35,6 +35,93 @@ $ npm run dev
 <!--  -->
 <br />
 
+## 폴더구조
+
+```
+allthatarsenal
+├─ app
+│  ├─ (route)
+│  │  ├─ detail
+│  │  │  └─ [id]
+│  │  │     ├─ Chart.tsx
+│  │  │     ├─ Comment.tsx
+│  │  │     ├─ CommentModal.tsx
+│  │  │     ├─ Description.tsx
+│  │  │     ├─ edit
+│  │  │     ├─ Info.tsx
+│  │  │     └─ page.tsx
+│  │  ├─ list
+│  │  │  ├─ listItem.tsx
+│  │  │  └─ page.tsx
+│  │  ├─ playervsplayer
+│  │  │  ├─ page.tsx
+│  │  │  └─ Versus.tsx
+│  │  ├─ register
+│  │  │  └─ page.tsx
+│  │  └─ signin
+│  │     └─ page.tsx
+│  ├─ error.tsx
+│  ├─ layout.tsx
+│  ├─ loading.tsx
+│  ├─ matchday
+│  │  ├─ layout.tsx
+│  │  └─ page.tsx
+│  ├─ mypage
+│  │  └─ page.tsx
+│  ├─ page.tsx
+│  ├─ providers.tsx
+│  ├─ _components
+│  │  ├─ Avatars.tsx
+│  │  ├─ calender.tsx
+│  │  ├─ icons.tsx
+│  │  ├─ LoadingSpiner.tsx
+│  │  ├─ Logo.tsx
+│  │  ├─ LogOutBtn.tsx
+│  │  ├─ navbar.tsx
+│  │  ├─ primitives.ts
+│  │  ├─ SignInBtn.tsx
+│  │  ├─ swiper.tsx
+│  │  └─ theme-switch.tsx
+│  ├─ _config
+│  │  ├─ fonts.ts
+│  │  └─ site.ts
+│  └─ _types
+│     └─ index.ts
+├─ LICENSE
+├─ next.config.js
+├─ package-lock.json
+├─ package.json
+├─ pages
+│  └─ api
+│     ├─ auth
+│     │  ├─ signup.tsx
+│     │  └─ [...nextauth].tsx
+│     ├─ comment
+│     │  ├─ delete.tsx
+│     │  ├─ edit.tsx
+│     │  ├─ list.tsx
+│     │  └─ new.tsx
+│     └─ createplayer
+│        └─ new.tsx
+├─ postcss.config.js
+├─ public
+│  └─ arsenal-logo-32066.png
+├─ README.md
+├─ redux
+│  ├─ hooks.ts
+│  ├─ provider.tsx
+│  ├─ slices
+│  │  ├─ commentSlice.ts
+│  │  └─ playerSlice.ts
+│  └─ store.ts
+├─ styles
+│  └─ globals.css
+├─ tailwind.config.js
+├─ tsconfig.json
+└─ utils
+   └─ database.tsx
+```
+
 ## 🔗 배포 링크
 
 https://allthatarsenal-orbi.vercel.app/
@@ -48,18 +135,14 @@ https://allthatarsenal-orbi.vercel.app/
 id:asdf@asdf.com
 pw:asdfasdf
 ```
-
 ### SwiperReact를 이용한 스크롤 
 ![CPT2404010024-600x482](https://github.com/theo-jin/allthatarsenal/assets/83561523/be430768-ba9e-41c5-8684-7a0193bed63b)
-
 
 ### mongoDB에서 선수 목록 출력 및 생성및 선수별 정렬
 ![CPT2404010053-600x396](https://github.com/theo-jin/allthatarsenal/assets/83561523/212486a9-b8f1-427c-aeeb-53136cb59413)
 
 ### fobmobAPI와 Fullcalender를 통한 일정표시
 ![CPT2404010039-600x481](https://github.com/theo-jin/allthatarsenal/assets/83561523/0ab66c5f-98c0-43a8-aa18-32ee4ab4cf1b)
-
-
 
 ###  Recharts를 활용한 선수간 스탯 비교 기능 구현
 ![CPT2404010041-600x481](https://github.com/theo-jin/allthatarsenal/assets/83561523/db9ed50b-8bc4-4112-bca5-f2c3fbb9c701)
