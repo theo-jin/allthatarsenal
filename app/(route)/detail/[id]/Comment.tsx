@@ -42,19 +42,6 @@ export default function Comment({ player }: any) {
 		},
 	});
 
-	// if (data) {
-	// 	setCommentData(data)
-	// }
-	console.log(data);
-	// useEffect(() => {
-	// 	fetch("/api/comment/list?id=" + player._id)
-	// 		.then((r) => r.json())
-	// 		.then((result) => {
-	// 			setCommentData(result);
-	// 		});
-	// }, [player._id]);
-	// console.log(commentData);
-
 	const submitHandler = () => {
 		//comment에 아무것도 없을시 인풋창 포커스
 		if (comment === "") {

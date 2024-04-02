@@ -15,6 +15,7 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from "@nextui-org/react";
+import { PlayerCard } from "@/app/_components/Card";
 
 export default function App({ playerList }: any) {
 	const [sortedPlayerList, setSortedPlayerList] = useState([...playerList]);
@@ -156,35 +157,7 @@ export default function App({ playerList }: any) {
 				{currentPlayers.map((player) => {
 					return (
 						<div className="col-auto gap-4 justify-center" key={player._id}>
-							<Card isFooterBlurred className="w-full h-[340px] ">
-								<CardHeader className="absolute z-10 top-1 flex-col items-start">
-									<h4 className="text-white font-bold text-2xl">
-										{player.name}
-									</h4>
-								</CardHeader>
-								<Image
-									loading="lazy"
-									removeWrapper
-									alt="Player Pic"
-									className="z-0 w-full h-full  object-cover"
-									src={player.pic}
-								/>
-								<CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-									<div>
-										<Image
-											src={`https://flagsapi.com/${player.nation}/flat/32.png`}
-											alt="flag"
-										/>
-										<p className="text-black text-base font-normal">
-											{player.role.toUpperCase()}
-										</p>
-									</div>
-
-									<Button color="danger" size="md">
-										<Link href={`/detail/${player._id}`}>See more</Link>
-									</Button>
-								</CardFooter>
-							</Card>
+							<PlayerCard player={player} />
 						</div>
 					);
 				})}

@@ -18,6 +18,7 @@ import {
 	PolarRadiusAxis,
 	Legend,
 } from "recharts";
+import { PlayerCard } from "@/app/_components/Card";
 
 interface Player {
 	name: string;
@@ -157,52 +158,10 @@ export default function App({ playerList }: any) {
 					</Dropdown>
 				</div>
 				<div className="col-span-1 justify-items-center">
-					<Card isFooterBlurred className="w-full h-[280px] ">
-						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-black font-bold text-2xl">
-								#{playerA.number}
-							</h4>
-						</CardHeader>
-						<Image
-							loading="lazy"
-							removeWrapper
-							alt="Player Pic"
-							className="z-0 w-full object-cover h-[200px]"
-							src={playerA.pic}
-						/>
-						<CardFooter className="text-small justify-between">
-							<Image
-								src={`https://flagsapi.com/${playerA.nation}/flat/32.png`}
-								alt="flag"
-							/>
-							<b>{playerA.name}</b>
-							<p className="text-default-500">{playerA.role.toUpperCase()}</p>
-						</CardFooter>
-					</Card>
+					<PlayerCard player={playerA} />
 				</div>
 				<div className="col-span-1 justify-items-center">
-					<Card className="w-full h-[280px] ">
-						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<h4 className="text-black font-bold text-2xl">
-								#{playerB.number}
-							</h4>
-						</CardHeader>
-						<Image
-							loading="lazy"
-							removeWrapper
-							alt="Player Pic"
-							className="z-0  w-full object-cover h-[200px]"
-							src={playerB.pic}
-						/>
-						<CardFooter className="text-small justify-between">
-							<Image
-								src={`https://flagsapi.com/${playerB.nation}/flat/32.png`}
-								alt="flag"
-							/>
-							<b> {playerB.name}</b>
-							<p className="text-default-500">{playerB.role.toUpperCase()}</p>
-						</CardFooter>
-					</Card>
+					<PlayerCard player={playerB} />
 				</div>
 				<div className="col-span-2 justify-items-center">
 					<RadarChart
