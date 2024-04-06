@@ -13,8 +13,8 @@ export interface ProvidersProps {
 	themeProps?: ThemeProviderProps;
 }
 
+export const queryClient = new QueryClient();
 export function Providers1({ children, themeProps }: ProvidersProps) {
-	const queryClient = new QueryClient();
 	return (
 		<NextUIProvider>
 			<NextThemesProvider {...themeProps}>

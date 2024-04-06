@@ -3,11 +3,8 @@
 import React, { useMemo, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/react";
-import { Image } from "@nextui-org/image";
 import { Input } from "@nextui-org/react";
-import { Card, CardHeader, CardFooter } from "@nextui-org/card";
 import { title } from "@/app/_components/primitives";
-import Link from "next/link";
 import { SearchIcon } from "@/app/_components/icons";
 import {
 	Dropdown,

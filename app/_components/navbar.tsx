@@ -18,6 +18,7 @@ import { ThemeSwitch } from "@/app/_components/theme-switch";
 import { MyPage } from "./Avatars";
 import { LogOutBtn } from "./LogOutBtn";
 import { SignInBtn } from "./SignInBtn";
+import { SignUpBtn } from "./SignUpBtn";
 import { Logo } from "./Logo";
 
 export const Navbar = ({ session }: any) => {
@@ -63,14 +64,7 @@ export const Navbar = ({ session }: any) => {
 						<LogOutBtn />
 					</NavbarItem>
 				:	<NavbarItem className="hidden md:flex">
-						<Button
-							as={Link}
-							className="text-sm font-normal text-default-600 bg-default-100 mr-2"
-							href={"/register"}
-							variant="flat"
-						>
-							Sign Up
-						</Button>
+						<SignUpBtn />
 						<SignInBtn />
 					</NavbarItem>
 				}
@@ -84,15 +78,7 @@ export const Navbar = ({ session }: any) => {
 			<NavbarMenu>
 				{session ?
 					<MyPage session={session} />
-				:	<Button
-						as={Link}
-						className="text-sm font-normal text-default-600 bg-default-100"
-						href={"/register"}
-						variant="flat"
-					>
-						Sign Up
-					</Button>
-				}
+				:	<SignUpBtn />}
 				{session ? null : <SignInBtn />}
 
 				<div className="mx-4 mt-2 flex flex-col gap-2">

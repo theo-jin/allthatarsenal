@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 import Info from "./Info";
 import Comment from "./Comment";
 import Chart from "./Chart";
-import Description from "./Description";
+import Description from "../../../_components/Description";
 export default async function App(props: any) {
 	const client = await connectDB;
 	const db = client.db("arsenal");

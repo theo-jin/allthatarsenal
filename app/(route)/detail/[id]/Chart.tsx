@@ -7,6 +7,7 @@ import {
 	PolarGrid,
 	PolarAngleAxis,
 	PolarRadiusAxis,
+	Tooltip,
 } from "recharts";
 
 interface Player {
@@ -68,6 +69,8 @@ const App = ({ player }: any) => {
 				<PolarRadiusAxis />
 
 				<Radar dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+
+				<Tooltip />
 			</RadarChart>
 		</div>
 	);

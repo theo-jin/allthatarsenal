@@ -13,11 +13,12 @@ import {
 import { DeleteIcon } from "@/app/_components/icons";
 import CommentModal from "./CommentModal";
 import { ObjectId } from "mongodb";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { comment } from "@/redux/slices/commentSlice";
+
 import { KeyboardEvent } from "@react-types/shared";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { LoadingSpiner } from "@/app/_components/LoadingSpiner";
+
+import { queryClient } from "@/app/providers";
+import { redirect } from "next/navigation";
 interface CommentItem {
 	comment: string;
 	_id: ObjectId;
@@ -28,10 +29,11 @@ interface CommentItem {
 export default function Comment({ player }: any) {
 	let [comment, setComment] = useState("");
 	let [commentData, setCommentData] = useState<CommentItem[]>([]);
+
 	// let commentData = useAppSelector((state) => state.comment)
 	// let dispatch = useAppDispatch()
 
-	const inputRef = useRef<HTMLInputElement>(null);
+	const inputRef: any = useRef(null);
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["comments", player._id],
 		queryFn: async () => {
@@ -42,37 +44,55 @@ export default function Comment({ player }: any) {
 		},
 	});
 
+	const { mutate } = useMutation({
+		mutationFn: async () => {
+			const res = await (
+				await fetch("/api/comment/new", {
+					method: "POST",
+					body: JSON.stringify({
+						comment: comment,
+						_id: player._id,
+					}),
+				})
+			).json();
+			return res;
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["comments", player._id] });
+			
+		},
+	});
 	const submitHandler = () => {
 		//comment에 아무것도 없을시 인풋창 포커스
 		if (comment === "") {
 			inputRef.current?.focus();
 			return;
 		}
-
-		fetch("/api/comment/new", {
-			method: "POST",
-			body: JSON.stringify({
-				comment: comment,
-				_id: player._id,
-			}),
-		}).then(() =>
-			fetch("/api/comment/list?id=" + player._id)
-				.then((r) => r.json())
-				.then((result) => {
-					setCommentData(result);
-				}),
-		);
+		mutate();
+		// fetch("/api/comment/new", {
+		// 	method: "POST",
+		// 	body: JSON.stringify({
+		// 		comment: comment,
+		// 		_id: player._id,
+		// 	}),
+		// }).then(() =>
+		// 	fetch("/api/comment/list?id=" + player._id)
+		// 		.then((r) => r.json())
+		// 		.then((result) => {
+		// 			setCommentData(result);
+		// 		}),
+		// );
 	};
 
 	const handleDelete = (i: number) => {
 		fetch("/api/comment/delete", {
 			method: "DELETE",
-			body: JSON.stringify(commentData[i]._id),
+			body: JSON.stringify(data[i]._id),
 		}).then(() =>
 			fetch("/api/comment/list?id=" + player._id)
 				.then((r) => r.json())
-				.then((result) => {
-					setCommentData(result);
+				.then((player) => {
+					setCommentData(player);
 				}),
 		);
 	};

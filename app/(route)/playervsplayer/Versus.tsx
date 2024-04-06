@@ -8,8 +8,7 @@ import {
 import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
 import { title } from "@/app/_components/primitives";
-import { Image } from "@nextui-org/image";
-import { Card, CardFooter, CardHeader } from "@nextui-org/card";
+
 import {
 	Radar,
 	RadarChart,
@@ -20,7 +19,10 @@ import {
 } from "recharts";
 import { PlayerCard } from "@/app/_components/Card";
 
+import { Tooltip } from "@nextui-org/react";
+
 interface Player {
+	_id: string;
 	name: string;
 	number: number;
 	pace: number;
@@ -34,12 +36,13 @@ interface Player {
 	nation: string;
 }
 
-// interface Props {
-// 	playerList: Player[];
-// }
+interface Props {
+	playerList: Player[];
+}
 
-export default function App({ playerList }: any) {
+export default function App({ playerList }: Props) {
 	let [playerA, setPlayerA] = useState<Player>({
+		_id: "",
 		name: "",
 		number: 0,
 		pace: 0,
@@ -53,6 +56,7 @@ export default function App({ playerList }: any) {
 		nation: "KR",
 	});
 	let [playerB, setPlayerB] = useState<Player>({
+		_id: "",
 		name: "",
 		number: 0,
 		pace: 0,
@@ -104,6 +108,7 @@ export default function App({ playerList }: any) {
 			fullMark: 99,
 		},
 	];
+
 	return (
 		<>
 			<section className="flex flex-col justify-items-center gap-4 py-8 md:py-10">
@@ -182,6 +187,7 @@ export default function App({ playerList }: any) {
 							fill="#8884d8"
 							fillOpacity={0.6}
 						/>
+
 						<Radar
 							name={playerB.name}
 							dataKey="B"
@@ -189,6 +195,8 @@ export default function App({ playerList }: any) {
 							fill="#82ca9d"
 							fillOpacity={0.6}
 						/>
+
+						<Tooltip />
 						<Legend />
 					</RadarChart>
 				</div>

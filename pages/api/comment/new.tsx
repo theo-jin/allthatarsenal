@@ -14,7 +14,7 @@ export default async function handler(
 	let save = {
 		comment: req.body.comment,
 		parent: new ObjectId(req.body._id),
-		author: session.user.email,
+		author: session.user.name,
 	};
 
 	if (session) {

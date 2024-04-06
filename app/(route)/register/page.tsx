@@ -38,7 +38,7 @@ export default function Register() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (password !== passwordConfirm) {
-			setShowErr("비밀번호가 일치하지 않습니다");
+			setShowErr("비밀번호와 비밀번호 확인이 일치하지 않습니다");
 			return;
 		}
 		try {
@@ -92,7 +92,6 @@ export default function Register() {
 						className="max-w-xs"
 					/>
 				</div>
-
 				<div className="inline-block max-w-lg text-center justify-center">
 					<Input
 						isClearable
@@ -101,8 +100,8 @@ export default function Register() {
 						placeholder="Email (@와. 포함)"
 						variant="bordered"
 						value={email}
-						onChange={(e) => setEmail(e.target.value)}
 						onClear={() => console.log("input cleared")}
+						onChange={(e) => setEmail(e.target.value)}
 						className="max-w-xs"
 					/>
 				</div>
@@ -152,6 +151,9 @@ export default function Register() {
 						className="max-w-xs"
 					/>
 				</div>
+				<div className="inline-block max-w-lg text-center justify-center">
+					<p className={subtitle()}>{showErr}</p>
+				</div>{" "}
 				<div className="mt-6">
 					<Button
 						className={subtitle({ color: "pink" })}
@@ -160,9 +162,6 @@ export default function Register() {
 					>
 						Submit
 					</Button>
-				</div>
-				<div className="inline-block max-w-lg text-center justify-center">
-					<p className={subtitle()}>{showErr}</p>
 				</div>
 			</form>
 		</>

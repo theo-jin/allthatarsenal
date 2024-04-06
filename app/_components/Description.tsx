@@ -1,16 +1,9 @@
 "use client";
 
 import React from "react";
-import {
-	Card,
-	CardBody,
-	Image,
-	Button,
-	Divider,
-	CardFooter,
-} from "@nextui-org/react";
+import { Card, CardBody, Divider, CardFooter } from "@nextui-org/react";
 
-export default function Info({ player }: any) {
+export default function Description({ player }: any) {
 	return (
 		<div className="flex justify-center mb-3">
 			<Card className="max-w-[400px]">
