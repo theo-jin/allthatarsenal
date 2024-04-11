@@ -30,8 +30,6 @@ export default function Comment({ player }: any) {
 	let [comment, setComment] = useState("");
 	let [commentData, setCommentData] = useState<CommentItem[]>([]);
 
-	// let commentData = useAppSelector((state) => state.comment)
-	// let dispatch = useAppDispatch()
 
 	const inputRef: any = useRef(null);
 	const { data, isLoading, isError } = useQuery({

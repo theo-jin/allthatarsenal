@@ -13,7 +13,6 @@ import { Pagination, Navigation } from "swiper/modules";
 
 export default function App() {
 	const [wallPaperData, setWallPaperData]: any = useState([]);
-
 	useEffect(() => {
 		fetch("/api/wallpaper/list")
 			.then((r) => r.json())
@@ -21,7 +20,7 @@ export default function App() {
 				setWallPaperData(result);
 			});
 	}, []);
-	console.log(wallPaperData);
+
 	return (
 		<>
 			<Swiper
