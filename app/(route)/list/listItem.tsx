@@ -12,7 +12,7 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from "@nextui-org/react";
-import { PlayerCard } from "@/app/_components/Card";
+import { PlayerCard } from "@/app/_components/PlayerCard";
 
 export default function App({ playerList }: any) {
 	const [sortedPlayerList, setSortedPlayerList] = useState([...playerList]);

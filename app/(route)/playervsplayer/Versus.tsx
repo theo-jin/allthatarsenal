@@ -17,7 +17,7 @@ import {
 	PolarRadiusAxis,
 	Legend,
 } from "recharts";
-import { PlayerCard } from "@/app/_components/Card";
+import { PlayerCard } from "@/app/_components/PlayerCard";
 
 import { Tooltip } from "@nextui-org/react";
 
@@ -40,7 +40,7 @@ interface Props {
 	playerList: Player[];
 }
 
-export default function App({ playerList }: Props) {
+export default function App({ playerList }: any) {
 	let [playerA, setPlayerA] = useState<Player>({
 		_id: "",
 		name: "",

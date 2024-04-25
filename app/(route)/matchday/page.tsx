@@ -1,6 +1,6 @@
 import { title } from "@/app/_components/primitives";
 import Fotmob from "fotmob";
-import Calendar from "../_components/calender";
+import Calendar from "../../_components/calender";
 
 export default async function MachdayPage() {
 	const fotmob = new Fotmob();

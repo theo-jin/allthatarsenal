@@ -11,6 +11,7 @@ import { authOptions } from "./../pages/api/auth/[...nextauth]";
 import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
+	//Metadata는 모든 페이지의 head태그와 같은 영할을 한다고 생각하자.
 	title: {
 		default: siteConfig.name,
 		template: `%s - ${siteConfig.name}`,
@@ -20,9 +21,9 @@ export const metadata: Metadata = {
 		{ media: "(prefers-color-scheme: light)", color: "white" },
 		{ media: "(prefers-color-scheme: dark)", color: "black" },
 	],
-	icons: {
-		icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
-	},
+	// icons: {
+	// 	icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
+	// }, //icon.png 파일로 대체
 };
 
 export default async function RootLayout({

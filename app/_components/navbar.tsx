@@ -16,9 +16,9 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import { ThemeSwitch } from "@/app/_components/theme-switch";
 import { MyPage } from "./Avatars";
-import { LogOutBtn } from "./LogOutBtn";
-import { SignInBtn } from "./SignInBtn";
-import { SignUpBtn } from "./SignUpBtn";
+import { LogOutBtn } from "./Buttons/LogOutBtn";
+import { SignInBtn } from "./Buttons/SignInBtn";
+import { SignUpBtn } from "./Buttons/SignUpBtn";
 import { Logo } from "./Logo";
 
 export const Navbar = ({ session }: any) => {
