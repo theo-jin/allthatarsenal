@@ -7,6 +7,7 @@ import { HeartIcon } from "@/app/_components/icons";
 export default function Info({ player }: any) {
 	//  즐겨찾기 추후 개발 const [liked, setLiked] = React.useState(false);
 	const [liked, setLiked] = React.useState(false);
+	
 	return (
 		<div className="flex justify-center">
 			<Card

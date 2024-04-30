@@ -1,17 +1,10 @@
-import { connectDB } from "../../../../utils/database";
-import { ObjectId } from "mongodb";
-
 import Info from "./Info";
 import Comment from "./Comment";
 import Chart from "./Chart";
 import Description from "../../../_components/Description";
+import getPlayer from "@/pages/api/player/getPlayer";
 export default async function App(props: any) {
-	const client = await connectDB;
-	const db = client.db("arsenal");
-	let player = await db
-		.collection("PlayerList")
-		.findOne({ _id: new ObjectId(props.params.id) });
-	player?._id.toString();
+	const player = await getPlayer(props);
 
 	return (
 		<>

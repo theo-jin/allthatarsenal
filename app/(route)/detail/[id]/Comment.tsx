@@ -18,7 +18,7 @@ import { KeyboardEvent } from "@react-types/shared";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { queryClient } from "@/app/providers";
-import { redirect } from "next/navigation";
+
 interface CommentItem {
 	comment: string;
 	_id: ObjectId;
@@ -29,7 +29,6 @@ interface CommentItem {
 export default function Comment({ player }: any) {
 	let [comment, setComment] = useState("");
 	let [commentData, setCommentData] = useState<CommentItem[]>([]);
-
 
 	const inputRef: any = useRef(null);
 	const { data, isLoading, isError } = useQuery({
@@ -57,7 +56,6 @@ export default function Comment({ player }: any) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments", player._id] });
-			
 		},
 	});
 	const submitHandler = () => {
