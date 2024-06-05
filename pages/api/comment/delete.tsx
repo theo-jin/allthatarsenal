@@ -5,7 +5,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
 import { IncomingMessage } from "http";
 
-export default async function handler(
+export default async function deleteHandler(
 	req:
 		| any
 		| NextApiRequest

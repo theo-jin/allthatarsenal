@@ -1,5 +1,7 @@
 import { Button, Card, CardFooter, CardHeader, Link } from "@nextui-org/react";
 import { Image } from "@nextui-org/image";
+
+
 export const PlayerCard = ({ player }: any) => {
 	return (
 		<Card isFooterBlurred className="w-full h-[340px] ">

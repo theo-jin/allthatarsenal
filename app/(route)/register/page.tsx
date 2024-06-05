@@ -19,7 +19,6 @@ export default function Register() {
 
 	const toggleVisibility = () => setIsVisible(!isVisible);
 	const togglePwcVisibility = () => setPwcIsVisible(!PwcisVisible);
-	const pwcRef = useRef();
 
 	useEffect(() => {
 		setShowErr("이메일과 비밀번호를 입력해주세요");

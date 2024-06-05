@@ -8,11 +8,11 @@ import {
 	ModalFooter,
 	Button,
 	useDisclosure,
-	Checkbox,
 	Input,
-	Link,
 } from "@nextui-org/react";
 import { EditIcon } from "@/app/_components/icons";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryClient } from "@/app/providers";
 
 export default function CommentModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
