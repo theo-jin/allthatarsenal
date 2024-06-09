@@ -16,18 +16,18 @@ export default async function editHandler(
 
 		let pp: any = await db
 			.collection("comment")
-			.findOne({ _id: new ObjectId(req.body) });
+			.findOne({ _id: new ObjectId(req.body._id) });
 
-		if (pp.author == session.user.email) {
+		if (pp.author == session.user.name) {
 			let result = await db
 				.collection("comment")
 				.updateOne(
 					{ _id: new ObjectId(req.body._id) },
 					{ $set: { comment: req.body.comment } },
 				);
-			res.redirect(302, "/list");
+			res.status(200).json("성공");
 		}
 	} else {
-		return res.status(500).json("작성자와 맞지 않았습니다.");
+		res.status(500).json("작성자와 맞지 않았습니다.");
 	}
 }

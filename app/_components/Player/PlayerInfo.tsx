@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
 import { HeartIcon } from "@/app/_components/icons";
 
-export default function Info({ player }: any) {
+export default function PlayerInfo({ player }: any) {
 	//  즐겨찾기 추후 개발 const [liked, setLiked] = React.useState(false);
 	const [liked, setLiked] = React.useState(false);
 	return (

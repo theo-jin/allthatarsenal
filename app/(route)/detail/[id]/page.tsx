@@ -1,4 +1,4 @@
-import Info from "./Info";
+import PlayerInfo from "../../../_components/Player/PlayerInfo";
 import Comment from "./Comment";
 import Chart from "./Chart";
 import Description from "../../../_components/Description";
@@ -8,7 +8,7 @@ export default async function App(props: any) {
 
 	return (
 		<>
-			<Info player={player} />
+			<PlayerInfo player={player} />
 			<Chart player={player} />
 			<Description player={player} />
 			<Comment player={player} />

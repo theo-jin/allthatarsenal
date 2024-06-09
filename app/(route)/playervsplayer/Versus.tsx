@@ -17,7 +17,7 @@ import {
 	PolarRadiusAxis,
 	Legend,
 } from "recharts";
-import { PlayerCard } from "@/app/_components/PlayerCard";
+import { PlayerCard } from "@/app/_components/Player/PlayerCard";
 
 import { Tooltip } from "@nextui-org/react";
 

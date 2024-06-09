@@ -10,25 +10,17 @@ import {
 	TableRow,
 	TableCell,
 } from "@nextui-org/react";
-import { DeleteIcon } from "@/app/_components/icons";
-import CommentModal from "./CommentModal";
-import { ObjectId } from "mongodb";
+
+import EditCommentModal from "./EditCommentModal";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 
 import { KeyboardEvent } from "@react-types/shared";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { queryClient } from "@/app/providers";
 
-interface CommentItem {
-	comment: string;
-	_id: ObjectId;
-	author: string;
-	parent: ObjectId;
-}
-
 export default function Comment({ player }: any) {
 	let [comment, setComment] = useState("");
-	let [commentData, setCommentData] = useState<CommentItem[]>([]);
 
 	const inputRef: any = useRef(null);
 	const { data, isLoading, isError } = useQuery({
@@ -52,7 +44,6 @@ export default function Comment({ player }: any) {
 					}),
 				})
 			).json();
-			return res;
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments", player._id] });
@@ -65,32 +56,6 @@ export default function Comment({ player }: any) {
 			return;
 		}
 		mutate();
-		// fetch("/api/comment/new", {
-		// 	method: "POST",
-		// 	body: JSON.stringify({
-		// 		comment: comment,
-		// 		_id: player._id,
-		// 	}),
-		// }).then(() =>
-		// 	fetch("/api/comment/list?id=" + player._id)
-		// 		.then((r) => r.json())
-		// 		.then((result) => {
-		// 			setCommentData(result);
-		// 		}),
-		// );
-	};
-
-	const handleDelete = (i: number) => {
-		fetch("/api/comment/delete", {
-			method: "DELETE",
-			body: JSON.stringify(data[i]._id),
-		}).then(() =>
-			fetch("/api/comment/list?id=" + player._id)
-				.then((r) => r.json())
-				.then((player) => {
-					setCommentData(player);
-				}),
-		);
 	};
 
 	//Enter입력시 submitHandler실행
@@ -128,13 +93,10 @@ export default function Comment({ player }: any) {
 										style={{ width: "10%" }}
 									>
 										<span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-											<CommentModal comment={data[i]} />
+											<EditCommentModal comment={data[i]} />
 										</span>
-										<span
-											className="text-lg text-danger cursor-pointer active:opacity-50"
-											onClick={() => handleDelete(i)}
-										>
-											<DeleteIcon />
+										<span className="text-lg text-danger cursor-pointer active:opacity-50">
+											<DeleteConfirmModal comment={data[i]} />
 										</span>
 									</TableCell>
 								</TableRow>
