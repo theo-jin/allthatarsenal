@@ -53,7 +53,7 @@ export default async function RootLayout({
 								isExternal
 								className="flex items-center gap-1 text-current"
 								href="https://github.com/theo-jin"
-								title="nextui.org homepage"
+								title="theo-jin.github"
 							>
 								<span className="text-default-600">Made by</span>
 								<p className="text-primary">theo-jin</p>

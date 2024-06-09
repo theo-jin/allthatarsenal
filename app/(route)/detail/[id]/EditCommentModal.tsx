@@ -8,25 +8,36 @@ import {
 	ModalFooter,
 	Button,
 	useDisclosure,
-	Checkbox,
 	Input,
-	Link,
 } from "@nextui-org/react";
 import { EditIcon } from "@/app/_components/icons";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/app/providers";
 
 export default function CommentModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	let [com, setCom] = useState(`${comment.comment}`);
+	console.log;
+	const { mutate } = useMutation({
+		mutationFn: async () => {
+			const res = await (
+				await fetch("/api/comment/edit", {
+					method: "POST",
+					body: JSON.stringify({
+						comment: com,
+						_id: comment._id,
+					}),
+				})
+			).json();
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["comments"] });
+		},
+	});
+	function handleEdit() {
+		mutate();
+	}
 
-	const handleEdit = () => {
-		fetch("/api/comment/edit", {
-			method: "POST",
-			body: JSON.stringify({
-				comment: com,
-				_id: comment._id,
-			}),
-		});
-	};
 	return (
 		<>
 			<span onClick={onOpen}>

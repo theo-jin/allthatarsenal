@@ -12,10 +12,7 @@ export const siteConfig = {
 			label: "Player Vs Player",
 			href: "/playervsplayer",
 		},
-		// {
-		// 	label: "History",
-		// 	href: "/history",
-		// },
+
 		{
 			label: "Match Day",
 			href: "/matchday",
@@ -30,10 +27,7 @@ export const siteConfig = {
 			label: "Player Vs Player",
 			href: "/playervsplayer",
 		},
-		// {
-		// 	label: "History",
-		// 	href: "/history",
-		// },
+
 		{
 			label: "Match Day",
 			href: "/matchday",

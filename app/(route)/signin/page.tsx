@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { signIn } from "next-auth/react";
 import { Input, Button } from "@nextui-org/react";
 import { title, subtitle } from "@/app/_components/primitives";
-import { EyeFilledIcon } from "@/app/_components/icons";
+
 
 export default function Login() {
 	const emailRef = useRef(null);

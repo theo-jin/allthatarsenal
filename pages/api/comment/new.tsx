@@ -22,7 +22,7 @@ export default async function handler(
 			const db = (await connectDB).db("arsenal");
 			let result = await db.collection("comment").insertOne(save);
 
-			res.status(200).redirect("/list");
+			res.status(200).json("성공");
 		}
 	} else {
 		res.status(500).json("로그인해주세요");
