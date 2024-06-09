@@ -52,7 +52,7 @@ export default function DeleteConfirmModal({ comment }: any) {
 								댓글 삭제
 							</ModalHeader>
 							<ModalBody>
-								<p>"{comment.comment}"</p>
+								<p>{comment.comment}</p>
 								<p>해당 댓글을 삭제 하시겠습니까?</p>
 							</ModalBody>
 							<ModalFooter>
