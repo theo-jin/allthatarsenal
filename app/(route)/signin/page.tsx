@@ -1,9 +1,13 @@
 "use client";
 import React, { useRef } from "react";
 import { signIn } from "next-auth/react";
-import { Input, Button } from "@nextui-org/react";
 import { title, subtitle } from "@/app/_components/primitives";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+	//Metadata는 모든 페이지의 head태그와 같은 역할을 한다고 생각하자.
+	title: "로그인",
+	description: "로그인",
+};
 
 export default function Login() {
 	const emailRef = useRef(null);
