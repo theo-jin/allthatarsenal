@@ -4,12 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "@nextui-org/react";
 import { title, subtitle } from "@/app/_components/primitives";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "@/app/_components/icons";
-import { Metadata } from "next";
-export const metadata: Metadata = {
-	//Metadata는 모든 페이지의 head태그와 같은 역할을 한다고 생각하자.
-	title: "회원가입",
-	description: "회원가입",
-};
+
 export default function Register() {
 	const [showErr, setShowErr] = useState("");
 	const [name, setName] = useState("");
