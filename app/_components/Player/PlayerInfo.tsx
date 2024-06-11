@@ -2,11 +2,9 @@
 
 import React from "react";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
-import { HeartIcon } from "@/app/_components/icons";
+import { LikeBtn } from "../Buttons/LikeBtn";
 
 export default function PlayerInfo({ player }: any) {
-	//  즐겨찾기 추후 개발 const [liked, setLiked] = React.useState(false);
-	const [liked, setLiked] = React.useState(false);
 	return (
 		<div className="flex justify-center">
 			<Card
@@ -49,18 +47,7 @@ export default function PlayerInfo({ player }: any) {
 									</h1>
 								</div>
 
-								<Button
-									isIconOnly
-									className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
-									radius="full"
-									variant="light"
-									onPress={() => setLiked((v) => !v)}
-								>
-									<HeartIcon
-										className={liked ? "[&>path]:stroke-transparent" : ""}
-										fill={liked ? "currentColor" : "none"}
-									/>
-								</Button>
+								<LikeBtn id={player._id} />
 							</div>
 
 							<div className="flex w-full items-center justify-center"></div>

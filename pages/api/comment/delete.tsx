@@ -20,8 +20,7 @@ export default async function deleteHandler(
 		let pp: any = await db
 			.collection("comment")
 			.findOne({ _id: new ObjectId(req.body) });
-
-		if (pp.author == session.user.name) {
+		if (pp.author == session.user.name || session.user.role === "admin") {
 			let result = await db
 				.collection("comment")
 				.deleteOne({ _id: new ObjectId(req.body) });

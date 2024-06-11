@@ -8,7 +8,6 @@ import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./../pages/api/auth/[...nextauth]";
-import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
 	//Metadata는 모든 페이지의 head태그와 같은 영할을 한다고 생각하자.
@@ -46,7 +45,7 @@ export default async function RootLayout({
 					<div className="relative flex flex-col h-screen">
 						<Navbar session={session} />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-							<Providers>{children}</Providers>
+							{children}
 						</main>
 						<footer className="w-full flex items-center justify-center py-3">
 							<Link
