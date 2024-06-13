@@ -3,13 +3,15 @@ import Comment from "../../../_components/Comment/Comment";
 import Chart from "./Chart";
 import Description from "../../../_components/Description";
 import getPlayer from "@/pages/api/player/getPlayer";
+import likeList from "@/pages/api/like/likeList";
 
 export default async function App(props: any) {
 	const player = await getPlayer(props);
-
+	const favorites = await likeList();
+	let data = { player, favorites };
 	return (
 		<>
-			<PlayerInfo player={player} />
+			<PlayerInfo data={data} />
 			<Chart player={player} />
 			<Description player={player} />
 			<Comment player={player} />

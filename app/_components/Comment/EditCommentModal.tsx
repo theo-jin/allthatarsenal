@@ -17,7 +17,7 @@ import { queryClient } from "@/app/providers";
 export default function CommentModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	let [com, setCom] = useState(`${comment.comment}`);
-	console.log;
+
 	const { mutate } = useMutation({
 		mutationFn: async () => {
 			const res = await (

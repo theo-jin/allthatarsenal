@@ -11,12 +11,6 @@ interface Credentials {
 }
 export const authOptions: any = {
 	providers: [
-		// Google({
-		//     profile(profile) {
-		//       return { role: profile.role ?? "user", ... }
-		//     },
-		//     ...
-		//   }),
 		CredentialsProvider({
 			//1. 로그인페이지 폼 자동생성해주는 코드
 			name: "credentials",
