@@ -1,23 +1,24 @@
 import { connectDB } from "../../../utils/database";
-import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(
+export default async function editHandler(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {
-	let session: any = await getServerSession(req, res, authOptions);
 	req.body = JSON.parse(req.body);
-
-	if (session) {
-		if (req.method == "POST") {
-			const db = (await connectDB).db("arsenal");
-
-			res.status(200).json("성공");
-		}
+	if (req.method == "POST") {
+		let session: any = await getServerSession(req, res, authOptions);
+		const db = (await connectDB).db("arsenal");
+		let result = await db
+			.collection("user_cred")
+			.updateOne(
+				{ email: session.user.email },
+				{ $set: { favorites: req.body.favorites } },
+			);
+		res.status(200).json("성공");
 	} else {
-		res.status(500).json("로그인해주세요");
+		res.status(500).json("작성자와 맞지 않았습니다.");
 	}
 }
