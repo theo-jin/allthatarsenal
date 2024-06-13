@@ -6,31 +6,46 @@ import { queryClient } from "@/app/providers";
 
 export const LikeBtn = ({ data }: any) => {
 	let list = data.favorites;
-	let target = data.player._id;
-
-	let checkFavoritesValue = list ? list.hasOwnProperty(target) : false;
+	let target = data.player;
+	console.log(list);
+	let checkFavoritesValue = list ? list.hasOwnProperty(target._id) : false;
 
 	const [liked, setLiked] = React.useState(checkFavoritesValue);
-	const { mutate } = useMutation({
-		mutationFn: async () => {
+
+	const mutation = useMutation({
+		mutationFn: async (newList) => {
 			const res = await (
 				await fetch("/api/like/likePlayer", {
 					method: "POST",
-					body: data.player._id,
+					body: JSON.stringify({ favorites: newList }),
 				})
 			).json();
 		},
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["comments"] });
+			queryClient.invalidateQueries({ queryKey: ["favorites", target._id] });
 		},
 	});
+	const handlePress = () => {
+		setLiked((prev: any) => {
+			const updatedLiked = !prev;
+			const newList = { ...list };
+			if (updatedLiked) {
+				newList[target._id] = target.name;
+			} else {
+				delete newList[target._id];
+			}
+			mutation.mutate(newList);
+			return updatedLiked;
+		});
+	};
+
 	return (
 		<Button
 			isIconOnly
 			className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
 			radius="full"
 			variant="light"
-			onPress={() => setLiked((v: any) => !v)}
+			onPress={handlePress}
 		>
 			<HeartIcon
 				className={liked ? "[&>path]:stroke-transparent" : ""}

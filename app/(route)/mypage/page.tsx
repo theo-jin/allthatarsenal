@@ -7,6 +7,7 @@ import Link from "next/link";
 import { title } from "@/app/_components/primitives";
 import likeList from "@/pages/api/like/likeList";
 import { LikeTable } from "@/app/_components/LikeTable";
+import UserInfo from "@/app/_components/UserInfo";
 export const metadata: Metadata = {
 	//Metadata는 모든 페이지의 head태그와 같은 역할을 한다고 생각하자.
 	title: "Myspage",
@@ -20,10 +21,15 @@ export default async function App() {
 	return (
 		<>
 			{session != null ?
-				<main className="flex min-h-screen flex-col items-center space-y-10 p-24">
-					<div className={title()}> {session.user.name}님의 Mypage</div>
-					<LikeTable favorites={favorites} />
-				</main>
+				<>
+					<main className="flex  flex-col items-center space-y-10 pb-10">
+						<div className={title()}> {session.user.name}님의 즐겨찾기</div>
+					</main>
+					<div className="'flex flex-col items-center space-y-10 p-24'">
+						<UserInfo session={session} />
+						<LikeTable favorites={favorites} />
+					</div>
+				</>
 			:	<main className="flex min-h-screen flex-col items-center space-y-10 p-24">
 					<Link className={title()} href="/signin">
 						로그인 해주세요
