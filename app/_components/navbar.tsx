@@ -13,7 +13,6 @@ import { link as linkStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/app/_config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { ThemeSwitch } from "@/app/_components/theme-switch";
 import { MyPage } from "./Avatars";
 import { LogOutBtn } from "./Buttons/LogOutBtn";
 import { SignInBtn } from "./Buttons/SignInBtn";
@@ -54,9 +53,6 @@ export const Navbar = ({ session }: any) => {
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end"
 			>
-				<NavbarItem className="hidden sm:flex gap-2">
-					<ThemeSwitch />
-				</NavbarItem>
 				{session ?
 					<NavbarItem className="hidden md:flex">
 						<MyPage session={session} />
@@ -70,7 +66,6 @@ export const Navbar = ({ session }: any) => {
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-				<ThemeSwitch />
 				<NavbarMenuToggle />
 			</NavbarContent>
 
