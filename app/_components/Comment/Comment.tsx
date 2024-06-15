@@ -9,6 +9,12 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
+	useDisclosure,
+	ModalContent,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
+	Modal,
 } from "@nextui-org/react";
 
 import EditCommentModal from "./EditCommentModal";
@@ -21,7 +27,11 @@ import { queryClient } from "@/app/providers";
 
 export default function Comment({ player }: any) {
 	let [comment, setComment] = useState("");
-
+	const {
+		isOpen: isErrorOpen,
+		onOpen: onErrorOpen,
+		onOpenChange: onErrorOpenChange,
+	} = useDisclosure();
 	const inputRef: any = useRef(null);
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["comments", player._id],
@@ -47,6 +57,9 @@ export default function Comment({ player }: any) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments", player._id] });
+		},
+		onError: () => {
+			onErrorOpen();
 		},
 	});
 	const submitHandler = () => {
@@ -134,6 +147,35 @@ export default function Comment({ player }: any) {
 					endContent={<Button onPress={submitHandler}>submit</Button>}
 				/>
 			</div>
+
+			{/* ErrorModal */}
+			<Modal
+				backdrop="opaque"
+				isOpen={isErrorOpen}
+				onOpenChange={onErrorOpenChange}
+				classNames={{
+					backdrop:
+						"bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20",
+				}}
+			>
+				<ModalContent>
+					{(onClose) => (
+						<>
+							<ModalHeader className="flex flex-col gap-1">
+								에러 발생
+							</ModalHeader>
+							<ModalBody>
+								<p>로그인 해주세요.</p>
+							</ModalBody>
+							<ModalFooter>
+								<Button color="primary" onPress={onClose}>
+									닫기
+								</Button>
+							</ModalFooter>
+						</>
+					)}
+				</ModalContent>
+			</Modal>
 		</div>
 	);
 }

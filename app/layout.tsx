@@ -7,7 +7,7 @@ import { Navbar } from "@/app/_components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./../pages/api/auth/[...nextauth]";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
 
 export const metadata: Metadata = {
 	//Metadata는 모든 페이지의 head태그와 같은 영할을 한다고 생각하자.

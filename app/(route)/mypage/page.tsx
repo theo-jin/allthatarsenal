@@ -2,7 +2,6 @@ import React from "react";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
-
 import Link from "next/link";
 import { title } from "@/app/_components/primitives";
 import likeList from "@/pages/api/like/likeList";

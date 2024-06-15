@@ -7,7 +7,7 @@ import { queryClient } from "@/app/providers";
 export const LikeBtn = ({ data }: any) => {
 	let list = data.favorites;
 	let target = data.player;
-	console.log(list);
+	
 	let checkFavoritesValue = list ? list.hasOwnProperty(target._id) : false;
 
 	const [liked, setLiked] = React.useState(checkFavoritesValue);
@@ -38,7 +38,17 @@ export const LikeBtn = ({ data }: any) => {
 			return updatedLiked;
 		});
 	};
-
+	let heart;
+	if (list) {
+		heart = (
+			<HeartIcon
+				className={liked ? "[&>path]:stroke-transparent" : ""}
+				fill={liked ? "currentColor" : "none"}
+			/>
+		);
+	} else {
+		heart = <HeartIcon fill={"none"} />;
+	}
 	return (
 		<Button
 			isIconOnly
@@ -47,10 +57,7 @@ export const LikeBtn = ({ data }: any) => {
 			variant="light"
 			onPress={handlePress}
 		>
-			<HeartIcon
-				className={liked ? "[&>path]:stroke-transparent" : ""}
-				fill={liked ? "currentColor" : "none"}
-			/>
+			{heart}
 		</Button>
 	);
 };

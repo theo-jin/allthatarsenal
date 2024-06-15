@@ -14,23 +14,36 @@ import { queryClient } from "@/app/providers";
 
 export default function DeleteConfirmModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const {
+		isOpen: isErrorOpen,
+		onOpen: onErrorOpen,
+		onOpenChange: onErrorOpenChange,
+	} = useDisclosure();
 
 	const { mutate } = useMutation({
 		mutationFn: async () => {
 			const res = await (
 				await fetch("/api/comment/delete", {
 					method: "DELETE",
-					body: comment._id,
+					body: JSON.stringify({ id: comment._id }),
+					headers: {
+						"Content-Type": "application/json",
+					},
 				})
 			).json();
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments"] });
 		},
+		onError: () => {
+			onErrorOpen();
+		},
 	});
+
 	function handleDelete() {
 		mutate();
 	}
+
 	return (
 		<>
 			<span onClick={onOpen}>
@@ -58,13 +71,44 @@ export default function DeleteConfirmModal({ comment }: any) {
 							<ModalFooter>
 								<Button
 									color="primary"
-									onPress={handleDelete}
-									onClick={onClose}
+									onPress={() => {
+										handleDelete();
+										onClose();
+									}}
 								>
 									삭제
 								</Button>
 								<Button color="danger" variant="light" onPress={onClose}>
 									취소
+								</Button>
+							</ModalFooter>
+						</>
+					)}
+				</ModalContent>
+			</Modal>
+
+			{/* ErrorModal */}
+			<Modal
+				backdrop="opaque"
+				isOpen={isErrorOpen}
+				onOpenChange={onErrorOpenChange}
+				classNames={{
+					backdrop:
+						"bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20",
+				}}
+			>
+				<ModalContent>
+					{(onClose) => (
+						<>
+							<ModalHeader className="flex flex-col gap-1">
+								에러 발생
+							</ModalHeader>
+							<ModalBody>
+								<p>작성자와 맞지 않습니다.</p>
+							</ModalBody>
+							<ModalFooter>
+								<Button color="primary" onPress={onClose}>
+									확인
 								</Button>
 							</ModalFooter>
 						</>
