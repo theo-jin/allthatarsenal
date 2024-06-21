@@ -97,38 +97,39 @@ export default function Comment({ player }: any) {
 					<TableColumn style={{ width: "10%" }}>AUTHOR</TableColumn>
 					<TableColumn style={{ width: "10%" }}>EDIT & DELETE</TableColumn>
 				</TableHeader>
-				<TableBody>
-					{data.length > 0 ?
-						data.map(
-							(item: {
-								_id: { toString: () => React.Key | null | undefined };
-								comment:
-									| string
-									| number
-									| boolean
-									| React.ReactElement<
-											any,
-											string | React.JSXElementConstructor<any>
-									  >
-									| Iterable<React.ReactNode>
-									| React.ReactPortal
-									| React.PromiseLikeOfReactNode
-									| null
-									| undefined;
-								author:
-									| string
-									| number
-									| boolean
-									| React.ReactElement<
-											any,
-											string | React.JSXElementConstructor<any>
-									  >
-									| Iterable<React.ReactNode>
-									| React.ReactPortal
-									| React.PromiseLikeOfReactNode
-									| null
-									| undefined;
-							}) => (
+
+				{data.length > 0 ?
+					data.map(
+						(item: {
+							_id: { toString: () => React.Key | null | undefined };
+							comment:
+								| string
+								| number
+								| boolean
+								| React.ReactElement<
+										any,
+										string | React.JSXElementConstructor<any>
+								  >
+								| Iterable<React.ReactNode>
+								| React.ReactPortal
+								| React.PromiseLikeOfReactNode
+								| null
+								| undefined;
+							author:
+								| string
+								| number
+								| boolean
+								| React.ReactElement<
+										any,
+										string | React.JSXElementConstructor<any>
+								  >
+								| Iterable<React.ReactNode>
+								| React.ReactPortal
+								| React.PromiseLikeOfReactNode
+								| null
+								| undefined;
+						}) => (
+							<TableBody>
 								<TableRow key={item._id.toString()}>
 									<TableCell style={{ width: "80%" }}>{item.comment}</TableCell>
 									<TableCell style={{ width: "10%" }}>{item.author}</TableCell>
@@ -144,10 +145,10 @@ export default function Comment({ player }: any) {
 										</span>
 									</TableCell>
 								</TableRow>
-							),
-						)
-					:	<TableBody emptyContent={"댓글이 없습니다."}>{[]}</TableBody>}
-				</TableBody>
+							</TableBody>
+						),
+					)
+				:	<TableBody emptyContent={"댓글이 없습니다."}>{[]}</TableBody>}
 			</Table>
 		);
 	} else if (isError) {
