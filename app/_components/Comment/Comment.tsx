@@ -129,7 +129,7 @@ export default function Comment({ player }: any) {
 								| null
 								| undefined;
 						}) => (
-							<TableBody>
+							<TableBody key={item._id.toString()}>
 								<TableRow key={item._id.toString()}>
 									<TableCell style={{ width: "80%" }}>{item.comment}</TableCell>
 									<TableCell style={{ width: "10%" }}>{item.author}</TableCell>
