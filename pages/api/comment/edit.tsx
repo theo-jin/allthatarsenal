@@ -8,8 +8,6 @@ export default async function editHandler(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {
-	req.body = JSON.parse(req.body);
-
 	if (req.method == "POST") {
 		let session: any = await getServerSession(req, res, authOptions);
 		const db = (await connectDB).db("arsenal");

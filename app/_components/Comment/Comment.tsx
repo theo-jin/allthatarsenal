@@ -42,11 +42,8 @@ export default function Comment({ player }: any) {
 		mutationFn: async () => {
 			const res = await fetch("/api/comment/new", {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
 				body: JSON.stringify({
-					comment,
+					comment: comment,
 					_id: player._id,
 				}),
 			});
@@ -58,6 +55,7 @@ export default function Comment({ player }: any) {
 			setComment("");
 		},
 		onError: () => {
+			setComment("");
 			onErrorOpen();
 		},
 	});
@@ -99,55 +97,31 @@ export default function Comment({ player }: any) {
 				</TableHeader>
 
 				{data.length > 0 ?
-					data.map(
-						(item: {
-							_id: { toString: () => React.Key | null | undefined };
-							comment:
-								| string
-								| number
-								| boolean
-								| React.ReactElement<
-										any,
-										string | React.JSXElementConstructor<any>
-								  >
-								| Iterable<React.ReactNode>
-								| React.ReactPortal
-								| React.PromiseLikeOfReactNode
-								| null
-								| undefined;
-							author:
-								| string
-								| number
-								| boolean
-								| React.ReactElement<
-										any,
-										string | React.JSXElementConstructor<any>
-								  >
-								| Iterable<React.ReactNode>
-								| React.ReactPortal
-								| React.PromiseLikeOfReactNode
-								| null
-								| undefined;
-						}) => (
-							<TableBody key={item._id.toString()}>
-								<TableRow key={item._id.toString()}>
-									<TableCell style={{ width: "80%" }}>{item.comment}</TableCell>
-									<TableCell style={{ width: "10%" }}>{item.author}</TableCell>
+					<TableBody>
+						{data.map(function (a: any, i: number) {
+							return (
+								<TableRow key={data[i]._id.toString()}>
+									<TableCell key="comment" style={{ width: "80%" }}>
+										{data[i].comment}
+									</TableCell>
+									<TableCell key="author" style={{ width: "10%" }}>
+										{data[i].author}
+									</TableCell>
 									<TableCell
-										style={{ width: "10%" }}
 										className="relative flex items-center gap-3"
+										style={{ width: "10%" }}
 									>
 										<span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-											<EditCommentModal comment={item} />
+											<EditCommentModal comment={data[i]} />
 										</span>
 										<span className="text-lg text-danger cursor-pointer active:opacity-50">
-											<DeleteConfirmModal comment={item} />
+											<DeleteConfirmModal comment={data[i]} />
 										</span>
 									</TableCell>
 								</TableRow>
-							</TableBody>
-						),
-					)
+							);
+						})}
+					</TableBody>
 				:	<TableBody emptyContent={"댓글이 없습니다."}>{[]}</TableBody>}
 			</Table>
 		);
@@ -162,6 +136,7 @@ export default function Comment({ player }: any) {
 				<Input
 					ref={inputRef}
 					size="lg"
+					value={comment}
 					onKeyDown={onKeyDown}
 					placeholder="Write Comment"
 					onChange={(e) => setComment(e.target.value)}

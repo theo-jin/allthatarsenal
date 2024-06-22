@@ -161,7 +161,7 @@ export default function App({ playerList }: any) {
 			</div>
 
 			<Pagination
-				className="justify-center"
+				className="justify-items-center "
 				color="danger"
 				onChange={paginate}
 				total={Math.ceil(sortedPlayerList.length / playersPerPage)}

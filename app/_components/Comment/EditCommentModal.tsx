@@ -28,9 +28,6 @@ export default function CommentModal({ comment }: any) {
 		mutationFn: async () => {
 			const res = await fetch("/api/comment/edit", {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
 				body: JSON.stringify({
 					comment: com,
 					_id: comment._id,
@@ -51,6 +48,9 @@ export default function CommentModal({ comment }: any) {
 		mutate();
 	};
 
+	const closeBtn = () => {
+		setCom(comment.comment);
+	};
 	return (
 		<>
 			<span onClick={onOpen}>
@@ -83,7 +83,14 @@ export default function CommentModal({ comment }: any) {
 								>
 									수정
 								</Button>
-								<Button color="danger" variant="flat" onPress={onClose}>
+								<Button
+									color="danger"
+									variant="flat"
+									onPress={() => {
+										closeBtn();
+										onClose();
+									}}
+								>
 									취소
 								</Button>
 							</ModalFooter>
