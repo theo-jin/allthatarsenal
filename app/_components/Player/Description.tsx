@@ -1,13 +1,10 @@
-"use client";
-
 import React from "react";
-import { Card, CardBody, Divider, CardFooter } from "@nextui-org/react";
 
 export default function Description({ player }: any) {
 	return (
 		<div className="flex justify-center mb-3">
-			<Card className="max-w-[400px]">
-				<CardBody className="grid grid-cols-2 gap-3 px-3 py-0 text-small text-default-400">
+			<div className="w-[400px] rounded-xl border-1 border-zinc-300">
+				<div className="grid grid-cols-2 gap-3 px-3 py-0 text-small text-default-400">
 					<h3 className="font-semibold text-center text-foreground/90 p-1">
 						PACE :{player.pace}
 					</h3>
@@ -26,12 +23,14 @@ export default function Description({ player }: any) {
 					<h3 className="font-semibold text-center text-foreground/90 p-1">
 						DEFENCE: {player.defence}
 					</h3>
-				</CardBody>
-				<Divider />
-				<CardFooter>
-					<div className="text-foreground/90">{player.describe}</div>
-				</CardFooter>
-			</Card>
+				</div>
+
+				<div className="border-t-1  border-zinc-300 p-3">
+					<div className="text-foreground/90 text-center">
+						{player.describe}
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

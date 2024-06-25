@@ -8,7 +8,8 @@ import likeList from "@/pages/api/like/likeList";
 export default async function App(props: any) {
 	const player = await getPlayer(props);
 	const favorites = await likeList();
-	let data = { player, favorites };
+	const data = { player, favorites };
+
 	return (
 		<>
 			<PlayerInfo data={data} />

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Card, CardBody, Image, Button } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 import { LikeBtn } from "../Buttons/LikeBtn";
 
 export default function PlayerInfo({ data }: any) {
@@ -11,7 +11,7 @@ export default function PlayerInfo({ data }: any) {
 				<CardBody>
 					<div className="grid grid-cols-12 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
 						<div className="relative col-span-12 md:col-span-4">
-							<Image
+							<img
 								alt="Album cover"
 								className="object-cover"
 								height={200}
@@ -37,7 +37,7 @@ export default function PlayerInfo({ data }: any) {
 										Height: {data.player.height}cm
 									</div>
 									<h1 className="text-large font-medium mt-2">
-										<Image
+										<img
 											src={`https://flagsapi.com/${data.player.nation}/flat/32.png`}
 											alt="flag"
 										/>
