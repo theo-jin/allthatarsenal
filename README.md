@@ -1,33 +1,90 @@
-# 개인프로젝트-ALLTHATARSENAL
+# ALLTHATARSENAL
+
+### NEXT.js를 활용한 아스날FC 팬 페이지
 
 <!--  -->
-<br />
 
 ## 📝 프로젝트 소개
 
-### NEXT.js를 활용한 아스날 팬 페이지
+NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝트를 하였지만 대부분 단편적으로 끝나는 경우가 많았고, 그 프로젝트를 더 이상 디벨롭하지 못해 아쉬웠던 경험이 있었습니다. 하나의 서비스를 만든다라고 생각하고, 제가 학습한 것들로 꾸준히 코드 개선을 하려는 의도로 프로젝트를 시작하였습니다.
 
-개인 프로젝트로 꾸준히 애정을 가지고 할 수 있는 프로젝트가 무엇일까? </br>
-고민한 끝에 제가 좋아하는 팀 아스날에 관한 팬 페이지를 풀스택으로 제작하고 싶은 마음에 시작하게 되었습니다. </br>
+## 🛠️ 기술 스택
 
-**진행 기간: 2023.07 ~**
+<!--
+  Shield.io 배지 양식
 
-## 구현 기능
+  <img src= "https://img.shields.io/badge/라벨-색상?style=배지스타일&logo=로고이름&logoColor=로고색상">
+
+  - 라벨: 임의의 이름
+  - 색상: https://simpleicons.org/ 에서 검색한 로고의 색상코드 (# 제외하고 입력)
+  - 배지 스타일: plastic, flat, flat-square, for-the-badge, social 중 하나 선택
+  - 로고 이름: https://simpleicons.org/ 에서 검색한 로고의 이름
+  - 로고 색상: 로고의 색상코드
+-->
+<p>
+<!-- npm -->
+<img src= "https://img.shields.io/badge/npm-CB3837?&logo=npm&logoColor=white">
+<!-- NEXT.js -->
+<img src= "https://img.shields.io/badge/Next.js-000000?&logo=Next.js&logoColor=white">
+<!-- ReactQuery -->
+<img src= "https://img.shields.io/badge/TanStackQuery-FF4154?&logo=ReactQuery&logoColor=white">
+<!-- NextAuth -->
+<img src= "https://img.shields.io/badge/NextAuth-000000?&logo=Next.js&logoColor=white">
+<!-- NEXTUI -->
+<img src= "https://img.shields.io/badge/NextUI-000000?&logo=&logoColor=white">
+<!-- MongoDB -->
+<img src= "https://img.shields.io/badge/MongoDB-47A248?&logo=MongoDB&logoColor=white">
+<!-- Typescript -->
+<img src= "https://img.shields.io/badge/typescript-3178C6?&logo=typescript&logoColor=white">
+<!-- Recharts-->
+<img src="https://img.shields.io/badge/Recharts-FF6384?&logo=Recharts&logoColor=white">
+<!-- emotion -->
+<img src="https://img.shields.io/badge/emotion-D26AC2?&logoColor=white">
+<!-- Vercel -->
+<img src= "https://img.shields.io/badge/vercel-000000?&logo=vercel&logoColor=white">
+<!-- Swiper -->
+<img src= "https://img.shields.io/badge/Swiper-000000?&logoColor=white">
+<!-- Fullcalender -->
+<img src= "https://img.shields.io/badge/Fullcalender-3178C6?&logoColor=white">
+</p>
+  <!--  -->
+  
+## 🆕 구현 기능
 
 <!--  -->
 
-#### 1. 회원가입 및 로그인 기능.NextAuth를 활용한 로그인.
+#### 1. NextAuth를 활용한 회원가입 및 로그인&로그아웃 기능.
 
-#### 2. mongoDB에서 선수 목록 출력 및 생성.
+    회원가입및 이메일 중복검사 클라이언트와 서버단에서 비밀번호 유효성검사 시행. API route로 DB에 전달. NextAuth를 활용하여 로그인과 로그아웃 기능 구현.
 
-#### 3. 선수 정보 출력 및 선수당 댓글 출력,작성,수정,삭제기능 구현.
+#### 2. mongoDB에서 선수 목록 출력 및 선수별 정렬
+
+    데이터 베이스는 mongoDB로 관리. 선수데이터, 유저정보 및 댓글 저장.선수데이터, 유저정보등은 NEXT.js에서 직접 데이터 페칭
+
+#### 3. 선수 상세 정보 출력 및 선수당 댓글 출력,작성,수정,삭제기능 구현.
+
+    데이터의 변화가 적은 선수 정보,로그인은 NEXT.js에서 직접 데이터 페칭,각 선수별 댓글,즐겨찾기와 기능은 server state로 관리하기 위해 TanstackQuery를 활용하여 데이터페칭.
 
 #### 4. Recharts를 활용한 선수간 스탯 비교 기능 구현
 
+    NEXT.js에서 가져온 선수 스탯 데이터를 Recharts로 시각화하여 선수간 스탯비교 기능을 구현.또한 Recharts는 선수 상세페이지에서도 사용
+
 #### 5. FullCalendar와 fobmobAPI를 활용한 경기 일정관리.
+
+    fobmobAPI의 경기일정 데이터를 FullCalendar로 구현하여 경기일정을 시각화.
 
 <!--  -->
 <br />
+
+## 🔃 프로젝트 흐름도
+
+![alt text](image-1.png)
+
+## 💿 데이터 베이스
+
+![alt text](image.png)
+
+<!--  -->
 
 ## 🕹️ 실행 방법
 
@@ -39,8 +96,6 @@ $ npm run dev
 
 <!--  -->
 <br />
-
-## 폴더구조
 
 ## 🔗 배포 링크
 
@@ -73,79 +128,3 @@ pw:asdfasdf
 ### Recharts를 활용한 선수간 스탯 비교 기능 구현
 
 ![CPT2404010041-600x481](https://github.com/theo-jin/allthatarsenal/assets/83561523/db9ed50b-8bc4-4112-bca5-f2c3fbb9c701)
-
-## 업데이트
-
-### 댓글기능 tanstackQuery로 마이그레이션 추후 useMutation으로 수정및 삭제 기능 업데이트트
-
-댓글 기능을 구현할때 useEffect를 사용하고 의존성배열을 player.id(player마다 comment란이 있고 그 id로 comment를 출력합니다.)넣어 관리했지만 필요없는 서버요청이 많았습니다. 그것을 해결하고자 tanstackQuery를 적용하였습니다.
-그래서 현재 댓글의 수정및 삭제기능이 정상적으로 작동 하지 않습니다.
-
-```
-<--useEffect사용-->
- useEffect(() => {
-fetch("/api/comment/list?id=" + player._id)
-  .then((r) => r.json()).then((result) => {
- 			setCommentData(result);
- 		});
- }, [player._id]);
-
-```
-
-```
-<--tanstackQuery로 로딩상황과 정상적으로 호출됐을때 상황 처리-->
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ["comments", player._id],
-		queryFn: async () => {
-			const res = await (
-				await fetch(`/api/comment/list?id=${player._id}`)
-			).json();
-			return res;
-		},
-	});
-```
-
-## 🛠️ 기술 스택
-
-<!--
-  Shield.io 배지 양식
-
-  <img src= "https://img.shields.io/badge/라벨-색상?style=배지스타일&logo=로고이름&logoColor=로고색상">
-
-  - 라벨: 임의의 이름
-  - 색상: https://simpleicons.org/ 에서 검색한 로고의 색상코드 (# 제외하고 입력)
-  - 배지 스타일: plastic, flat, flat-square, for-the-badge, social 중 하나 선택
-  - 로고 이름: https://simpleicons.org/ 에서 검색한 로고의 이름
-  - 로고 색상: 로고의 색상코드
--->
-<p>
-<!-- npm -->
-<img src= "https://img.shields.io/badge/npm-CB3837?&logo=npm&logoColor=white">
-  
-<!-- NEXT.js -->
-<img src= "https://img.shields.io/badge/Next.js-000000?&logo=Next.js&logoColor=white">
-<!-- ReactQuery -->
-<img src= "https://img.shields.io/badge/TanStackQuery-FF4154?&logo=ReactQuery&logoColor=white">
-<!-- NextAuth -->
-<img src= "https://img.shields.io/badge/NextAuth-000000?&logo=Next.js&logoColor=white">
-<!-- NEXTUI -->
-<img src= "https://img.shields.io/badge/NextUI-000000?&logo=&logoColor=white">
-<!-- MongoDB -->
-<img src= "https://img.shields.io/badge/MongoDB-47A248?&logo=MongoDB&logoColor=white">
-<!-- Typescript -->
-<img src= "https://img.shields.io/badge/typescript-3178C6?&logo=typescript&logoColor=white">
-<!-- Recharts-->
-<img src="https://img.shields.io/badge/Recharts-FF6384?&logo=Recharts&logoColor=white">
-<!-- emotion -->
-<img src="https://img.shields.io/badge/emotion-D26AC2?&logoColor=white">
-<!-- Vercel -->
-<img src= "https://img.shields.io/badge/vercel-000000?&logo=vercel&logoColor=white">
-<!-- Swiper -->
-<img src= "https://img.shields.io/badge/Swiper-000000?&logoColor=white">
-<!-- Fullcalender -->
-<img src= "https://img.shields.io/badge/Fullcalender-3178C6?&logoColor=white">
-
-</p>
-
-  <!--  -->
-  <br />

@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import { title, subtitle } from "@/app/_components/primitives";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 export default function Register() {
 	const [showErr, setShowErr] = useState("");
