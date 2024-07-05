@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function App() {
-	let session: any = await getServerSession(authOptions);
+	const session: any = await getServerSession(authOptions);
 	const favorites = await likeList();
 
 	return (

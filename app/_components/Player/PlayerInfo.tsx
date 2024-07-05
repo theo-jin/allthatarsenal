@@ -13,7 +13,7 @@ export default function PlayerInfo({ data }: any) {
 						<div className="relative col-span-12 md:col-span-4">
 							<img
 								alt="Album cover"
-								className="object-cover"
+								className="object-cover rounded-lg"
 								height={200}
 								src={data.player.pic2}
 								width="100%"

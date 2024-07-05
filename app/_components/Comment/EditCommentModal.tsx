@@ -24,7 +24,7 @@ export default function CommentModal({ comment }: any) {
 	} = useDisclosure();
 	const [com, setCom] = useState(comment.comment);
 
-	const { mutate, isError, isPending } = useMutation({
+	const { mutate } = useMutation({
 		mutationFn: async () => {
 			const res = await fetch("/api/comment/edit", {
 				method: "POST",
