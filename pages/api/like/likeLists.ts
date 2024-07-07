@@ -14,7 +14,7 @@ export default async function likeList(
 	let session: any = await getServerSession(req, res, authOptions);
 	if (session) {
 		let like = await db
-			.collection("user_cred")
+			.collection("userCred")
 			.findOne({ email: session.user.email });
 		let favoritesList = like?.favorites;
 		res.status(200).json(favoritesList);

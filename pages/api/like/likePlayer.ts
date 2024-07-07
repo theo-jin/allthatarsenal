@@ -12,7 +12,7 @@ export default async function likePlayer(
 		let session: any = await getServerSession(req, res, authOptions);
 		const db = (await connectDB).db("arsenal");
 		let result = await db
-			.collection("user_cred")
+			.collection("userCred")
 			.updateOne(
 				{ email: session.user.email },
 				{ $set: { favorites: req.body.favorites } },

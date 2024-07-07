@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { title } from "@/app/_components/primitives";
-import likeList from "@/pages/api/like/likeList";
+
 import { LikeTable } from "@/app/_components/LikeTable";
 import UserInfo from "@/app/_components/UserInfo";
 export const metadata: Metadata = {

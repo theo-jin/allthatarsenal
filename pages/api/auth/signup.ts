@@ -21,10 +21,10 @@ export default async function handler(
 
 			const db = (await connectDB).db("arsenal");
 			let user = await db
-				.collection("user_cred")
+				.collection("userCred")
 				.findOne({ email: req.body.email });
 			if (!user) {
-				await db.collection("user_cred").insertOne(req.body);
+				await db.collection("userCred").insertOne(req.body);
 				res.status(200).json({ message: "User created successfully" });
 			} else {
 				res.status(500).json({ error: "해당 이메일 존재합니다." });

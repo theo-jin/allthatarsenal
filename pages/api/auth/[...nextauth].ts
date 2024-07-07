@@ -24,7 +24,7 @@ export const authOptions: any = {
 			async authorize(credentials: any): Promise<any> {
 				let db = (await connectDB).db("arsenal");
 				let user = await db
-					.collection("user_cred")
+					.collection("userCred")
 					.findOne({ email: credentials.email });
 				if (!user) {
 					console.log("해당 이메일은 없음");

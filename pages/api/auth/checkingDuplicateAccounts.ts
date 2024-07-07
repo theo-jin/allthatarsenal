@@ -9,7 +9,7 @@ export default async function handler(
 		try {
 			const db = (await connectDB).db("arsenal");
 			const user = await db
-				.collection("user_cred")
+				.collection("userCred")
 				.findOne({ email: req.body.email });
 
 			if (!user) {
