@@ -1,16 +1,28 @@
+"use client";
 import { Button } from "@nextui-org/button";
 import { HeartIcon } from "../icons";
-import React from "react";
-import { useMutation } from "@tanstack/react-query";
+import React, { useEffect } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 
-export const LikeBtn = ({ data }: any) => {
-	let list = data.favorites;
-	let target = data.player;
-	
-	let checkFavoritesValue = list ? list.hasOwnProperty(target._id) : false;
+export const LikeBtn = ({ player }: any) => {
+	const { data } = useQuery({
+		queryKey: ["likeList"],
+		queryFn: async () => {
+			const res = await fetch(`/api/like/likeLists`);
+			if (!res.ok) throw new Error("Network response was not ok");
+			return res.json();
+		},
+	});
+	const list = data || {};
+	let checkFavoritesValue = list ? list.hasOwnProperty(player._id) : false;
+
+	let target = player;
 
 	const [liked, setLiked] = React.useState(checkFavoritesValue);
+	useEffect(() => {
+		setLiked(checkFavoritesValue);
+	}, [checkFavoritesValue]);
 
 	const mutation = useMutation({
 		mutationFn: async (newList) => {

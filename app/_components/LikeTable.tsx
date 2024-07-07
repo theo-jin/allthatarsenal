@@ -10,8 +10,18 @@ import {
 	TableHeader,
 	TableRow,
 } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
 
-export const LikeTable = ({ favorites }: { [key: string]: string }) => {
+export const LikeTable = () => {
+	const { data } = useQuery({
+		queryKey: ["likeList"],
+		queryFn: async () => {
+			const res = await fetch(`/api/like/likeLists`);
+			if (!res.ok) throw new Error("Network response was not ok");
+			return res.json();
+		},
+	});
+	const favorites = data || {};
 	const favoritesKey: string[] = Object.keys(favorites);
 	const favoritesName: string[] = Object.values(favorites);
 

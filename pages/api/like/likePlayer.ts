@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function editHandler(
+export default async function likePlayer(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {

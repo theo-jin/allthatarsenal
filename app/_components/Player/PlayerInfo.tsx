@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardBody } from "@nextui-org/react";
 import { LikeBtn } from "../Buttons/LikeBtn";
 
-export default function PlayerInfo({ data }: any) {
+export default function PlayerInfo({ player }: any) {
 	return (
 		<div className="flex justify-center">
 			<Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]">
@@ -15,7 +15,7 @@ export default function PlayerInfo({ data }: any) {
 								alt="Album cover"
 								className="object-cover rounded-lg"
 								height={200}
-								src={data.player.pic2}
+								src={player.pic2}
 								width="100%"
 							/>
 						</div>
@@ -24,27 +24,27 @@ export default function PlayerInfo({ data }: any) {
 							<div className="flex justify-between items-start">
 								<div className="flex flex-col gap-0">
 									<h3 className="font-semibold text-foreground/90">
-										No.{data.player.number} {data.player.name}
+										No.{player.number} {player.name}
 									</h3>
 									<p className=" text-foreground/80">
-										{data.player.role.toUpperCase()}
+										{player.role.toUpperCase()}
 									</p>
 
 									<div className="text-foreground/90">
-										Birth: {data.player.birth.toDateString()}
+										Birth: {player.birth.toDateString()}
 									</div>
 									<div className="text-foreground/90">
-										Height: {data.player.height}cm
+										Height: {player.height}cm
 									</div>
 									<h1 className="text-large font-medium mt-2">
 										<img
-											src={`https://flagsapi.com/${data.player.nation}/flat/32.png`}
+											src={`https://flagsapi.com/${player.nation}/flat/32.png`}
 											alt="flag"
 										/>
 									</h1>
 								</div>
 
-								<LikeBtn data={data} />
+								<LikeBtn player={player} />
 							</div>
 
 							<div className="flex w-full items-center justify-center"></div>

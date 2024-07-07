@@ -14,8 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function App() {
-	const session: any = await getServerSession(authOptions);
-	const favorites = await likeList();
+	let session: any = await getServerSession(authOptions);
 
 	return (
 		<>
@@ -26,7 +25,7 @@ export default async function App() {
 					</main>
 					<div className="'flex flex-col items-center space-y-10 p-24'">
 						<UserInfo session={session} />
-						<LikeTable favorites={favorites} />
+						<LikeTable />
 					</div>
 				</>
 			:	<main className="flex min-h-screen flex-col items-center space-y-10 p-24">
