@@ -31,21 +31,24 @@ NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝
 <!-- NextAuth -->
 <img src= "https://img.shields.io/badge/NextAuth-000000?&logo=Next.js&logoColor=white">
 <!-- NEXTUI -->
-<img src= "https://img.shields.io/badge/NextUI-000000?&logo=&logoColor=white">
+<img src= "https://img.shields.io/badge/NextUI-000000?&logo=NextUI&logoColor=white">
 <!-- MongoDB -->
 <img src= "https://img.shields.io/badge/MongoDB-47A248?&logo=MongoDB&logoColor=white">
+<!-- Firebase -->
+<img src= "https://img.shields.io/badge/Firebase-DD2C00?&logo=firebase&logoColor=white">
+<!-- Swiper -->
+<img src= "https://img.shields.io/badge/Swiper-6332F6?&logo=Swiper&logoColor=white">
 <!-- Typescript -->
 <img src= "https://img.shields.io/badge/typescript-3178C6?&logo=typescript&logoColor=white">
+<!-- Vercel -->
+<img src= "https://img.shields.io/badge/vercel-000000?&logo=vercel&logoColor=white">
 <!-- Recharts-->
 <img src="https://img.shields.io/badge/Recharts-FF6384?&logo=Recharts&logoColor=white">
 <!-- emotion -->
 <img src="https://img.shields.io/badge/emotion-D26AC2?&logoColor=white">
-<!-- Vercel -->
-<img src= "https://img.shields.io/badge/vercel-000000?&logo=vercel&logoColor=white">
-<!-- Swiper -->
-<img src= "https://img.shields.io/badge/Swiper-000000?&logoColor=white">
 <!-- Fullcalender -->
 <img src= "https://img.shields.io/badge/Fullcalender-3178C6?&logoColor=white">
+
 </p>
   <!--  -->
   
@@ -64,6 +67,7 @@ NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝
 
 - 데이터 베이스는 mongoDB로 관리.선수데이터, 유저정보 및 댓글 저장.
 - 선수데이터, 유저정보등은 NEXT.js에서 직접 데이터 페칭
+- 이미지는 Fireabase storage에서 관리
 
 #### 3. 선수 상세 정보 출력 및 선수당 댓글 출력,작성,수정,삭제기능 구현.
 
