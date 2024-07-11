@@ -150,10 +150,10 @@ export default function App({ playerList }: any) {
 				</div>
 			</section>
 
-			<div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center">
+			<div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
 				{currentPlayers.map((player) => {
 					return (
-						<div className="col-auto gap-4 justify-center" key={player._id}>
+						<div className="col-auto gap-4 aspect-square" key={player._id}>
 							<PlayerCard player={player} />
 						</div>
 					);
@@ -161,7 +161,7 @@ export default function App({ playerList }: any) {
 			</div>
 
 			<Pagination
-				className="justify-items-center "
+				className="justify-items-center"
 				color="danger"
 				onChange={paginate}
 				total={Math.ceil(sortedPlayerList.length / playersPerPage)}

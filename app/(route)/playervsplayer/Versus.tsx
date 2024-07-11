@@ -162,10 +162,10 @@ export default function App({ playerList }: any) {
 						</DropdownMenu>
 					</Dropdown>
 				</div>
-				<div className="col-span-1 justify-items-center">
+				<div className="col-span-1 justify-items-center w-full	h-[340px] ">
 					<PlayerCard player={playerA} />
 				</div>
-				<div className="col-span-1 justify-items-center">
+				<div className="col-span-1 justify-items-center w-full h-[340px]">
 					<PlayerCard player={playerB} />
 				</div>
 				<div className="col-span-2 justify-items-center">

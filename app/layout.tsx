@@ -8,7 +8,11 @@ import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
+import type { Viewport } from "next";
 
+export const viewport: Viewport = {
+	themeColor: [{ media: "(prefers-color-scheme: light)", color: "cyan" }],
+};
 export const metadata: Metadata = {
 	//Metadata는 모든 페이지의 head태그와 같은 영할을 한다고 생각하자.
 	title: {
@@ -16,10 +20,6 @@ export const metadata: Metadata = {
 		template: `%s - ${siteConfig.name}`,
 	},
 	description: siteConfig.description,
-	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "white" },
-		{ media: "(prefers-color-scheme: dark)", color: "black" },
-	],
 	// icons: {
 	// 	icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
 	// }, //icon.png 파일로 대체
@@ -41,7 +41,7 @@ export default async function RootLayout({
 					fontSans.variable,
 				)}
 			>
-				<Providers1 themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+				<Providers1 themeProps={{ attribute: "class", defaultTheme: "white" }}>
 					<div className="relative flex flex-col h-screen">
 						<Navbar session={session} />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">

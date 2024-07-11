@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardBody } from "@nextui-org/react";
 import { LikeBtn } from "../Buttons/LikeBtn";
-
+import Image from "next/image";
 export default function PlayerInfo({ player }: any) {
 	return (
 		<div className="flex justify-center">
@@ -11,12 +11,13 @@ export default function PlayerInfo({ player }: any) {
 				<CardBody>
 					<div className="grid grid-cols-12 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
 						<div className="relative col-span-12 md:col-span-4">
-							<img
+							<Image
 								alt="Album cover"
 								className="object-cover rounded-lg"
-								height={200}
 								src={player.pic2}
-								width="100%"
+								layout="responsive"
+								width={100}
+								height={200}
 							/>
 						</div>
 
@@ -37,10 +38,13 @@ export default function PlayerInfo({ player }: any) {
 										Height: {player.height}cm
 									</div>
 									<h1 className="text-large font-medium mt-2">
-										<img
-											src={`https://flagsapi.com/${player.nation}/flat/32.png`}
-											alt="flag"
-										/>
+										<div className="w-8 h-8 relative">
+											<Image
+												src={`https://flagsapi.com/${player.nation}/flat/32.png`}
+												fill={true}
+												alt="flag"
+											/>
+										</div>
 									</h1>
 								</div>
 
