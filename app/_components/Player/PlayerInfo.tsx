@@ -1,10 +1,10 @@
 "use client";
-
 import React from "react";
 import { Card, CardBody } from "@nextui-org/react";
 import { LikeBtn } from "../Buttons/LikeBtn";
 import Image from "next/image";
-export default function PlayerInfo({ player }: any) {
+
+export default function PlayerInfo({ data }: any) {
 	return (
 		<div className="flex justify-center">
 			<Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]">
@@ -14,7 +14,7 @@ export default function PlayerInfo({ player }: any) {
 							<Image
 								alt="Album cover"
 								className="object-cover rounded-lg"
-								src={player.pic2}
+								src={data.player.pic2}
 								layout="responsive"
 								width={100}
 								height={200}
@@ -25,22 +25,22 @@ export default function PlayerInfo({ player }: any) {
 							<div className="flex justify-between items-start">
 								<div className="flex flex-col gap-0">
 									<h3 className="font-semibold text-foreground/90">
-										No.{player.number} {player.name}
+										No.{data.player.number} {data.player.name}
 									</h3>
 									<p className=" text-foreground/80">
-										{player.role.toUpperCase()}
+										{data.player.role.toUpperCase()}
 									</p>
 
 									<div className="text-foreground/90">
-										Birth: {player.birth.toDateString()}
+										Birth: {data.player.birth.toDateString()}
 									</div>
 									<div className="text-foreground/90">
-										Height: {player.height}cm
+										Height: {data.player.height}cm
 									</div>
 									<h1 className="text-large font-medium mt-2">
 										<div className="w-8 h-8 relative">
 											<Image
-												src={`https://flagsapi.com/${player.nation}/flat/32.png`}
+												src={`https://flagsapi.com/${data.player.nation}/flat/32.png`}
 												fill={true}
 												alt="flag"
 											/>
@@ -48,7 +48,9 @@ export default function PlayerInfo({ player }: any) {
 									</h1>
 								</div>
 
-								<LikeBtn player={player} />
+								{data.SessionValue ?
+									<LikeBtn player={data.player} />
+								:	null}
 							</div>
 
 							<div className="flex w-full items-center justify-center"></div>

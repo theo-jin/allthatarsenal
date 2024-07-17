@@ -53,7 +53,7 @@ export const LikeTable = () => {
 						);
 					})}
 				</TableBody>
-			:	<TableBody emptyContent={"댓글이 없습니다."}>{[]}</TableBody>}
+			:	<TableBody emptyContent={"즐겨찾기된 선수가 없습니다."}>{[]}</TableBody>}
 		</Table>
 	);
 };
