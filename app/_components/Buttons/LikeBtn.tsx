@@ -13,6 +13,8 @@ export const LikeBtn = ({ player }: any) => {
 			if (!res.ok) throw new Error("Network response was not ok");
 			return res.json();
 		},
+		staleTime: 5000,
+		gcTime: 40000,
 	});
 	const list = data || {};
 	let checkFavoritesValue = list ? list.hasOwnProperty(player._id) : false;

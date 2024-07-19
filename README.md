@@ -8,6 +8,8 @@ NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝
 
 ## 기술 스택
 
+<p>
+
 <img src="https://img.shields.io/badge/typescript-3178C6?&logo=typescript&logoColor=white"  alt="typescript">
 
 <img src="https://img.shields.io/badge/npm-CB3837?&logo=npm&logoColor=white" alt="npm">
@@ -21,8 +23,9 @@ NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝
 
 <img src="https://img.shields.io/badge/MongoDB-47A248?&logo=MongoDB&logoColor=white" alt="MongoDB">
 <img src="https://img.shields.io/badge/Firebase-DD2C00?&logo=firebase&logoColor=white" alt="Firebase">
-
 <img src="https://img.shields.io/badge/vercel-000000?&logo=vercel&logoColor=white" alt="vercel">
+
+</p>
 
 ## 구현 기능
 
@@ -36,17 +39,21 @@ NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝
 #### 2. 선수 목록 출력 및 선수별 정렬
 
 - 데이터베이스는 NoSQL로 관리. 선수데이터, 사용자 정보 및 댓글 저장.
-- 선수데이터, 사용자 정보 등은 Next.js에서 페칭
-- 이미지는 Fireabase storage에서 관리.
+- 개인화되지 않은 요청인 선수 목록 출력은 NEXT.js에서 데이터 페칭.
+- 이미지는 Firebase storage에서 관리
 
 #### 3. 선수 상세 정보 출력 및 선수별 댓글 CRUD 구현
 
-- 데이터의 변화가 적은 선수 정보, 로그인은 NEXT.js에서 직접 데이터 페칭.
-- 각 선수별 댓글,즐겨찾기와 같은 개인화된 기능은 client-side에서 관리하기 위해 TanstackQuery를 활용하여 데이터페칭.
+- 개인화되지 않은 요청인 선수 상세 정보 출력은 NEXT.js에서 데이터 페칭.
+- 각 선수별 댓글,즐겨찾기와 같은 개인화된 기능은 client-side에서 관리하기 위해 TanstackQuery로 데이터페칭.
+- 댓글 및 즐겨찾기 기능은 NextAuth로 인가 받지 못하면 기능 사용 불가.
+- role이 Admin인 계정은 user확인없이 모든 댓글 삭제가능.
 
 #### 4. 선수 별 즐겨찾기 기능 구현
 
-- 댓글 및 즐겨찾기 기능은 NextAuth로 인가 받지 못하면 기능 사용 불가.
+- 로그인 상태일 때만 즐겨찾기 기능 작동 로그아웃 상태에서는 즐겨찾기 기능 미표시
+- 현재 즐겨찾기 리스트에 선수 존재 여부 확인, TanstackQuery로 출력 및 수정 기능
+- 마이페이지(인가 페이지)에서 즐겨찾기 리스트 출력
 
 #### 5. Recharts를 이용한 선수 간 스탯 비교 기능 구현
 
@@ -59,7 +66,7 @@ NEXT.js를 활용한 아스날FC 팬 페이지입니다. 여러 토이 프로젝
 
 <br />
 
-## 데이터 흐름도
+## 아키텍쳐
 
 ![alt text](image-2.png)
 
@@ -73,11 +80,10 @@ Data fetching에 관해 공부하며 개인화된 요청은 서버에 캐싱 되
 
 ### 1-1) TanstackQuery
 
-이 프로젝트에서 즐겨찾기와 같은 개인화된 요청이 있습니다. 개인화된 요청은 서버에 캐싱 되면 안 됩니다. 개인화된 요청인 경우, force-cache를 사용하면 모든 사용자에게 동일한 응답이 반환됩니다. 그래서 fetch를 사용할 때 no-store 옵션을 설정하여 사용하는 방법도 고려했지만
-이 경우, 새로고침 및 라우트 캐시가 만료될 때마다 API 호출이 발생한다는 단점이 있다는 것을 알게 되었습니다.
+이 프로젝트에서 즐겨찾기나 와 같은 개인화된 요청이 있습니다. 개인화된 요청은 서버에 캐싱 되면 안 됩니다. 개인화된 요청이 서버에 캐싱되면 서버에 과부하가 올 수도 있고, force-cache를 사용하면 모든 사용자에게 동일한 응답이 반환됩니다.
+fetch를 사용할 때 no-store 옵션을 설정하여 사용하는 방법도 고려했지만 이 경우, 새로고침 및 라우트 캐시가 만료될 때마다 API 호출이 발생한다는 단점이 있다는 것을 알게 되었습니다.
 
-그래서 개인화된 요청의 경우, client-side에서 tanstack-query를 사용하여 브라우저 메모리에 개인화된 요청에 대한 응답을 캐시를 하고 queryKey와 staleTime으로 캐시를 관리하는 방법을 사용했습니다.
-또한 개인화된 요청의 경우 검색 엔진에 노출될 필요가 없으므로 SEO를 고려하지 않고 client-side에서 tanstack-query로 요청 후 캐시를 관리하였습니다.
+그래서 개인화된 요청을 client-side에서 TanstackQuery를 사용하여 브라우저 메모리에 개인화된 요청에 대한 응답을 캐시를 하고 queryKey와 staleTime으로 캐시를 관리하는 방법을 사용했습니다. 개인화된 요청의 경우 검색 엔진에 노출될 필요가 없으므로 SEO에 대한 걱정없이 ‘use client’를 사용하였습니다.
 
 ### 1-2) Next.js에서 페칭
 
