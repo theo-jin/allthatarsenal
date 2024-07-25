@@ -8,22 +8,36 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import invincible from "../../public/Images/invincibles.webp";
-import gabriel from "../../public/Images/Gabriel-Spurs.webp";
-import communityShield from "../../public/Images/community-shield-celebs.webp";
-import stadium from "../../public/Images/Stadium-outside.webp";
-import wenger from "../../public/Images/wenger_trophies.webp";
-
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
 const images = [
-	{ image: invincible, alt: "invincible" },
-	{ image: communityShield, alt: "communityShield" },
-	{ image: stadium, alt: "stadium" },
-	{ image: wenger, alt: "wenger" },
-	{ image: gabriel, alt: "gabriel" },
+	{
+		image:
+			"https://firebasestorage.googleapis.com/v0/b/allthatarsenal.appspot.com/o/wallPaper%2Finvincibles.webp?alt=media&token=79df3a6d-3b56-4116-80e6-a56fb849b9a6",
+		alt: "invincible",
+	},
+	{
+		image:
+			"https://firebasestorage.googleapis.com/v0/b/allthatarsenal.appspot.com/o/wallPaper%2Fcommunity-shield-celebs.webp?alt=media&token=9e55e204-bd33-449d-abd6-d9adcba0d995",
+		alt: "communityShield",
+	},
+	{
+		image:
+			"https://firebasestorage.googleapis.com/v0/b/allthatarsenal.appspot.com/o/wallPaper%2FStadium-outside.webp?alt=media&token=589eb7da-d49e-4b53-91cb-738c8f64b742",
+		alt: "stadium",
+	},
+	{
+		image:
+			"https://firebasestorage.googleapis.com/v0/b/allthatarsenal.appspot.com/o/wallPaper%2Fwenger_trophies.webp?alt=media&token=fedb63b3-bee4-44ba-9b15-07a5625b4563",
+		alt: "wenger",
+	},
+	{
+		image:
+			"https://firebasestorage.googleapis.com/v0/b/allthatarsenal.appspot.com/o/wallPaper%2FGabriel-Spurs.webp?alt=media&token=2e188b03-68bb-400f-9ac7-80eed25273ce",
+		alt: "gabriel",
+	},
 ];
 
 export default function App() {
@@ -50,6 +64,9 @@ export default function App() {
 							key={index}
 							src={image.image}
 							alt={image.alt}
+							width={1000}
+							height={500}
+							layout="responsive"
 						/>
 					</SwiperSlide>
 				))}
