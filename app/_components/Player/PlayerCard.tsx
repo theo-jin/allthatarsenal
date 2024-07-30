@@ -5,7 +5,7 @@ export const PlayerCard = ({ player }: any) => {
 	return (
 		<Card isFooterBlurred className="w-full h-full relative">
 			<CardHeader className="absolute z-10 top-1 flex-col items-start">
-				<h4 className="text-white font-bold text-2xl">
+				<h4 className="text-neutral-600 font-bold text-2xl">
 					#{player.number} {player.name}
 				</h4>
 			</CardHeader>
