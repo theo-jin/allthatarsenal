@@ -26,18 +26,18 @@ export const Navbar = ({ session }: any) => {
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
 						<Logo />
-						<p className="hidden lg:flex gap-4 font-bold text-inherit">
+						<p className="hidden lg:flex gap-4 text-xl font-extrabold text-inherit">
 							ALL THAT ARSENAL
 						</p>
 					</NextLink>
 				</NavbarBrand>
-				<ul className="hidden lg:flex gap-4 justify-start ml-2">
+				<ul className="hidden lg:flex  font-semibold gap-4 justify-start ml-2">
 					{siteConfig.navItems.map((item) => (
 						<NavbarItem key={item.href}>
 							<NextLink
 								className={clsx(
 									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium",
+									"data-[active=true]:text-primary hover:text-red-700 data-[active=true]:font-medium",
 								)}
 								color="foreground"
 								href={item.href}
@@ -75,10 +75,15 @@ export const Navbar = ({ session }: any) => {
 				:	<SignUpBtn />}
 				{session ? null : <SignInBtn />}
 
-				<div className="mx-4 mt-2 flex flex-col gap-2">
+				<div className="mx-4 mt-2  flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
-							<Link color={"foreground"} href={item.href} size="lg">
+							<Link
+								className="font-semibold hover:text-red-700"
+								color={"foreground"}
+								href={item.href}
+								size="lg"
+							>
 								{item.label}
 							</Link>
 						</NavbarMenuItem>
