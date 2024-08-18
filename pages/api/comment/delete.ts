@@ -1,6 +1,6 @@
 import { connectDB } from "../../../utils/database";
 import { ObjectId } from "mongodb";
-import { getServerSession } from "next-auth";
+import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
 import { IncomingMessage } from "http";
@@ -14,7 +14,10 @@ export default async function deleteHandler(
 	res: NextApiResponse,
 ) {
 	if (req.method == "DELETE") {
-		let session: any = await getServerSession(req, res, authOptions);
+		let session: Session | null = await getServerSession(req, res, authOptions);
+		if (!session || !session.user) {
+			return res.status(401).json({ message: "로그인이 필요합니다." });
+		}
 
 		const db = (await connectDB).db("arsenal");
 		let pp: any = await db

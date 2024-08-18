@@ -3,12 +3,16 @@ import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
+import { Session } from "next-auth";
 
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {
-	let session: any = await getServerSession(req, res, authOptions);
+	let session: Session | null = await getServerSession(req, res, authOptions);
+	if (!session || !session.user) {
+		return res.status(401).json({ message: "로그인이 필요합니다." });
+	}
 	req.body = JSON.parse(req.body);
 
 	let save = {

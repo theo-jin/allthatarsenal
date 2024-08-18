@@ -1,7 +1,7 @@
 import React from "react";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
+import { getServerSession, Session } from "next-auth";
 import Link from "next/link";
 import { title } from "@/app/_components/primitives";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function App() {
-	let session: any = await getServerSession(authOptions);
+	let session:Session | null = await getServerSession(authOptions);
 
 	return (
 		<>
