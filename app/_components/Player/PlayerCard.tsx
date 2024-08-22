@@ -1,7 +1,7 @@
 import { Button, Card, CardFooter, CardHeader, Link } from "@nextui-org/react";
 import Image from "next/image";
 
-export const PlayerCard = ({ player }: any) => {
+export const PlayerCard = ({ player, isAboveFold }: any) => {
 	return (
 		<Card isFooterBlurred className="w-full h-full relative">
 			<CardHeader className="absolute z-10 top-1 flex-col items-start">
@@ -15,6 +15,7 @@ export const PlayerCard = ({ player }: any) => {
 				className="object-cover"
 				sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 				src={player.pic}
+				priority={isAboveFold}
 			/>
 			<CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
 				<div>

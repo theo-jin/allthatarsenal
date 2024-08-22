@@ -151,10 +151,10 @@ export default function App({ playerList }: any) {
 			</section>
 
 			<div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-				{currentPlayers.map((player) => {
+				{currentPlayers.map((player, index) => {
 					return (
 						<div className="col-auto gap-4 aspect-square" key={player._id}>
-							<PlayerCard player={player} />
+							<PlayerCard player={player} isAboveFold={index < 6} />
 						</div>
 					);
 				})}
