@@ -2,9 +2,21 @@
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
+import MatchdayModal from "./MatchdayModal";
+import { useDisclosure } from "@nextui-org/react";
+import { e1 } from "@fullcalendar/core/internal-common";
+import { SetStateAction, useState } from "react";
 
 function Calendar({ teamData }: any) {
+	const {
+		isOpen: isModalOpen,
+		onOpen: onModalOpen,
+		onOpenChange: onModalOpenChange,
+	} = useDisclosure();
+	let matchResult, result, date;
+	const [matchData, setMatchData] = useState([matchResult, result, date]);
 	const data = teamData?.map(function (a: any, i: string | number) {
 		const originalDate = new Date(teamData[i].status?.utcTime);
 		const formattedDate = originalDate.toISOString().split("T")[0];
@@ -23,25 +35,51 @@ function Calendar({ teamData }: any) {
 		};
 	});
 
-	function handleEventClick(clickInfo: any) {
-		let result;
-		if (clickInfo.event._def.extendedProps.detail == undefined) {
+	function handleEventClick(e: any) {
+		if (e.event._def.extendedProps.detail == undefined) {
 			result = "경기전";
-		} else result = clickInfo.event._def.extendedProps.detail;
-		const date = new Date(clickInfo.event._instance.range.start);
-
-		alert(` ${clickInfo.event.title} \n ${date} \n 결과:${result} `);
+		} else result = e.event._def.extendedProps.detail;
+		date = new Date(e.event._instance.range.start);
+		matchResult = e.event.title;
+		setMatchData([matchResult, result, date]);
+		onModalOpen();
 	}
 
 	return (
-		<FullCalendar
-			plugins={[dayGridPlugin, interactionPlugin]}
-			initialView="dayGridMonth"
-			dayMaxEvents={true}
-			events={data}
-			height={"600px"}
-			eventClick={handleEventClick}
-		/>
+		<div>
+			<div className="hidden md:block">
+				<FullCalendar
+					plugins={[dayGridPlugin, interactionPlugin]}
+					initialView="dayGridMonth"
+					dayMaxEvents={true}
+					events={data}
+					height={"600px"}
+					eventClick={handleEventClick}
+					eventDisplay={"auto"}
+				/>
+				<MatchdayModal
+					isModalOpen={isModalOpen}
+					onModalOpenChange={onModalOpenChange}
+					matchData={matchData}
+				/>
+			</div>
+			<div className="block md:hidden">
+				<FullCalendar
+					plugins={[listPlugin, dayGridPlugin, interactionPlugin]}
+					initialView="listMonth"
+					dayMaxEvents={true}
+					events={data}
+					height={"600px"}
+					eventClick={handleEventClick}
+					eventDisplay={"auto"}
+				/>
+				<MatchdayModal
+					isModalOpen={isModalOpen}
+					onModalOpenChange={onModalOpenChange}
+					matchData={matchData}
+				/>
+			</div>
+		</div>
 	);
 }
 
