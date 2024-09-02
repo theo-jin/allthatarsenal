@@ -23,12 +23,9 @@ export const Navbar = ({ session }: any) => {
 	return (
 		<NextUINavbar maxWidth="xl" position="sticky">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-				<NavbarBrand as="li" className="gap-3 max-w-fit">
+				<NavbarBrand as="li" className="gap-3 max-w-fit pt-1">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
 						<Logo />
-						<p className="hidden lg:flex gap-4 text-xl font-extrabold text-inherit">
-							ALL THAT ARSENAL
-						</p>
 					</NextLink>
 				</NavbarBrand>
 				<ul className="hidden lg:flex  font-semibold gap-4 justify-start ml-2">
