@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
 import {
-	Input,
 	Button,
 	Table,
 	TableHeader,
@@ -10,6 +9,7 @@ import {
 	TableRow,
 	TableCell,
 	useDisclosure,
+	Input,
 } from "@nextui-org/react";
 
 import EditCommentModal from "./EditCommentModal";
@@ -132,9 +132,9 @@ export default function Comment({ player }: any) {
 	}
 
 	return (
-		<div className="'flex flex-col items-center space-y-10 p-24'">
+		<div className="'flex flex-col items-center space-y-5 p-24'">
 			{content}
-			<div className="grid w-full justify-center">
+			<div className="w-full">
 				<Input
 					ref={inputRef}
 					size="lg"
@@ -142,7 +142,15 @@ export default function Comment({ player }: any) {
 					onKeyDown={onKeyDown}
 					placeholder="Write Comment"
 					onChange={(e) => setComment(e.target.value)}
-					endContent={<Button onPress={submitHandler}>submit</Button>}
+					fullWidth
+					endContent={
+						<Button
+							className="font-semibold text-gray-500"
+							onPress={submitHandler}
+						>
+							Submit
+						</Button>
+					}
 				/>
 			</div>
 

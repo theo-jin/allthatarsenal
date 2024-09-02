@@ -118,7 +118,7 @@ export default function App({ playerList }: any) {
 				<div className="col-span-1 justify-items-center">
 					<Dropdown>
 						<DropdownTrigger>
-							<Button variant="light" size="lg">
+							<Button className="font-semibold" variant="bordered" size="lg">
 								Player A
 							</Button>
 						</DropdownTrigger>
@@ -141,7 +141,7 @@ export default function App({ playerList }: any) {
 				<div className="col-span-1 justify-items-center">
 					<Dropdown>
 						<DropdownTrigger>
-							<Button variant="light" size="lg">
+							<Button className="font-semibold" variant="bordered" size="lg">
 								Player B
 							</Button>
 						</DropdownTrigger>
