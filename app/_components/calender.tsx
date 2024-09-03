@@ -6,8 +6,9 @@ import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import MatchdayModal from "./MatchdayModal";
 import { useDisclosure } from "@nextui-org/react";
-import { e1 } from "@fullcalendar/core/internal-common";
-import { SetStateAction, useState } from "react";
+
+import { useLayoutEffect, useRef, useState } from "react";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 function Calendar({ teamData }: any) {
 	const {
@@ -15,6 +16,7 @@ function Calendar({ teamData }: any) {
 		onOpen: onModalOpen,
 		onOpenChange: onModalOpenChange,
 	} = useDisclosure();
+
 	let matchResult, result, date;
 	const [matchData, setMatchData] = useState([matchResult, result, date]);
 	const data = teamData?.map(function (a: any, i: string | number) {
@@ -45,28 +47,21 @@ function Calendar({ teamData }: any) {
 		onModalOpen();
 	}
 
+	const matches = useMediaQuery("(min-width: 768px)");
+	const calendarRef = useRef<FullCalendar>(null);
+
+	useLayoutEffect(() => {
+		const calendarApi = calendarRef!.current!.getApi();
+		calendarApi.changeView(matches ? "dayGridMonth" : "listMonth");
+	}, [matches]);
+
 	return (
 		<div>
-			<div className="hidden md:block">
-				<FullCalendar
-					plugins={[dayGridPlugin, interactionPlugin]}
-					initialView="dayGridMonth"
-					dayMaxEvents={true}
-					events={data}
-					height={"600px"}
-					eventClick={handleEventClick}
-					eventDisplay={"auto"}
-				/>
-				<MatchdayModal
-					isModalOpen={isModalOpen}
-					onModalOpenChange={onModalOpenChange}
-					matchData={matchData}
-				/>
-			</div>
-			<div className="block md:hidden">
+			<div>
 				<FullCalendar
 					plugins={[listPlugin, dayGridPlugin, interactionPlugin]}
-					initialView="listMonth"
+					ref={calendarRef}
+					initialView={matches ? "dayGridMonth" : "listMonth"}
 					dayMaxEvents={true}
 					events={data}
 					height={"600px"}

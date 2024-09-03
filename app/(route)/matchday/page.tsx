@@ -14,6 +14,13 @@ export default async function MatchdayPage() {
 	let teamData: any = (
 		await fotmob.getTeam(9825, "overview", "team", "America/New_York")
 	).overview?.overviewFixtures;
+	// let dd: any = (
+	// 	await fotmob.getTeam(9825, "overview", "team", "America/New_York")
+	// ).squad;
+	// const attackers = dd.find(
+	// 	(role: { title: string }) => role.title === "attackers",
+	// );
+	// console.log(attackers);
 
 	return (
 		<div>

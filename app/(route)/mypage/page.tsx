@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function App() {
-	let session:Session | null = await getServerSession(authOptions);
+	let session: Session | null = await getServerSession(authOptions);
 
 	return (
 		<>

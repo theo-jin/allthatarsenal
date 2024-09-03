@@ -8,9 +8,9 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default async function App(props: any) {
 	const player = await getPlayer(props);
-	let session:Session | null = await getServerSession(authOptions);
+	let session: Session | null = await getServerSession(authOptions);
 	let SessionValue = session ? true : null;
-	const data={player,SessionValue}
+	const data = { player, SessionValue };
 	return (
 		<>
 			<PlayerInfo data={data} />
