@@ -15,7 +15,7 @@ export default function Home() {
 				<br />
 				<h1 className={title()}>Go!&nbsp;</h1>
 				<h1 className={title({ color: "pink" })}>Gunners!&nbsp;</h1>
-				{/* <h1 className={title()}>GREAT AGAIN!</h1> */}
+		
 				<h2 className={subtitle({ class: "mt-4" })}>
 					Beautiful Football Club ARSENAL FC
 				</h2>

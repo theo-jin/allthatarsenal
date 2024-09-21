@@ -66,7 +66,6 @@ export default function App() {
 							alt={image.alt}
 							width={1000}
 							height={500}
-							layout="responsive"
 						/>
 					</SwiperSlide>
 				))}

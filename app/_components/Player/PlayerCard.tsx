@@ -22,7 +22,8 @@ export const PlayerCard = ({ player, isAboveFold }: any) => {
 					<div className="w-8 h-8 relative">
 						<Image
 							src={`https://flagsapi.com/${player.nation}/flat/32.png`}
-							fill
+							width={32}
+							height={32}
 							alt="flag"
 						/>
 					</div>

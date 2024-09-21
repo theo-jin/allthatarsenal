@@ -4,8 +4,8 @@ import { signIn } from "next-auth/react";
 import { title } from "@/app/_components/primitives";
 
 export default function Login() {
-	const emailRef = useRef(null);
-	const passwordRef = useRef(null);
+	const emailRef = useRef<HTMLInputElement>(null);
+	const passwordRef = useRef<HTMLInputElement>(null);
 
 	const handleSubmit = async () => {
 		const result = await signIn("credentials", {
@@ -36,8 +36,8 @@ export default function Login() {
 						<div className="mt-1">
 							<input
 								ref={emailRef}
-								onChange={(e: any) => {
-									emailRef.current = e.target.value;
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+									emailRef.current!.value = e.target.value;
 								}}
 								id="email"
 								name="email"
@@ -62,7 +62,9 @@ export default function Login() {
 								id="password"
 								name="password"
 								ref={passwordRef}
-								onChange={(e: any) => (passwordRef.current = e.target.value)}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+									passwordRef.current!.value = e.target.value;
+								}}
 								className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
 							/>
 						</div>

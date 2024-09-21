@@ -36,7 +36,6 @@ function Calendar({ teamData }: any) {
 			detail: teamData[i].status?.scoreStr,
 		};
 	});
-
 	function handleEventClick(e: any) {
 		if (e.event._def.extendedProps.detail == undefined) {
 			result = "경기전";
