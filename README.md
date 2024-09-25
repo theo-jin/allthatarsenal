@@ -157,19 +157,3 @@ https://allthatarsenal-orbi.vercel.app/
 id:asdf@asdf.com
 pw:asdfasdf
 ```
-
-### SwiperReact를 이용한 스크롤
-
-![CPT2404010024-600x482](https://github.com/theo-jin/allthatarsenal/assets/83561523/be430768-ba9e-41c5-8684-7a0193bed63b)
-
-### mongoDB에서 선수 목록 출력 및 생성및 선수별 정렬
-
-![CPT2404010053-600x396](https://github.com/theo-jin/allthatarsenal/assets/83561523/212486a9-b8f1-427c-aeeb-53136cb59413)
-
-### fobmobAPI와 Fullcalender를 통한 일정표시
-
-![CPT2404010039-600x481](https://github.com/theo-jin/allthatarsenal/assets/83561523/0ab66c5f-98c0-43a8-aa18-32ee4ab4cf1b)
-
-### Recharts를 이용한 선수간 스탯 비교 기능 구현
-
-![CPT2404010041-600x481](https://github.com/theo-jin/allthatarsenal/assets/83561523/db9ed50b-8bc4-4112-bca5-f2c3fbb9c701)

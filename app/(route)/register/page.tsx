@@ -7,40 +7,40 @@ export default function Register() {
 	const [showErr, setShowErr] = useState("");
 	const [showDuplicate, setShowDuplicate] =
 		useState("이메일 중복검사를 해주세요");
-	const nameRef: any = useRef(null);
-	const emailRef: any = useRef(null);
-	const passwordRef: any = useRef(null);
-	const passwordConfirmRef: any = useRef(null);
+	const nameRef = useRef<HTMLInputElement>(null);
+	const emailRef = useRef<HTMLInputElement>(null);
+	const passwordRef = useRef<HTMLInputElement>(null);
+	const passwordConfirmRef = useRef<HTMLInputElement>(null);
 	const emailRegEx =
 		/^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 
 	const handleSubmit = async () => {
-		if (!emailRegEx.test(emailRef.current.value)) {
+		if (!emailRegEx.test(emailRef.current?.value || "")) {
 			setShowErr("이메일은 @와.을 포함해야합니다.");
 			return;
 		}
-		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+		if (passwordRef.current?.value !== passwordConfirmRef.current?.value) {
 			setShowErr("비밀번호와 비밀번호 확인이 일치하지 않습니다");
 			return;
 		}
 		if (
-			!passwordRegEx.test(passwordRef.current.value.length) ||
-			!passwordRegEx.test(passwordConfirmRef.current.value.length)
+			!passwordRegEx.test(passwordRef.current?.value || "") ||
+			!passwordRegEx.test(passwordConfirmRef.current?.value || "")
 		) {
 			setShowErr("비밀번호와 비밀번호 확인은 8자 이상 20자 이하여야합니다.");
 			return;
 		}
 
 		try {
-			const res = await fetch("/api/auth/signUp", {
+			const res = await fetch("/api/auth/signup", {
 				method: "POST",
 				body: JSON.stringify({
-					name: nameRef.current.value,
-					email: emailRef.current.value,
-					password: passwordRef.current.value,
+					name: nameRef.current?.value,
+					email: emailRef.current?.value,
+					password: passwordRef.current?.value,
 					role: "user",
-					favorites: [],
+					favorites: {},
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -64,7 +64,7 @@ export default function Register() {
 	};
 
 	const duplicateAccount = async () => {
-		if (!emailRegEx.test(emailRef.current.value)) {
+		if (!emailRegEx.test(emailRef.current?.value || "")) {
 			setShowDuplicate("이메일은 @와.을 포함해야합니다.");
 			return;
 		}
@@ -72,7 +72,7 @@ export default function Register() {
 			const res = await fetch("/api/auth/checkingDuplicateAccounts", {
 				method: "POST",
 				body: JSON.stringify({
-					email: emailRef.current.value,
+					email: emailRef.current?.value,
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -115,7 +115,7 @@ export default function Register() {
 								<input
 									ref={emailRef}
 									onChange={(e) => {
-										emailRef.current.value = e.target.value;
+										emailRef.current!.value = e.target.value;
 									}}
 									placeholder="Email (@와. 포함)"
 									id="email"
@@ -149,7 +149,7 @@ export default function Register() {
 								<input
 									ref={nameRef}
 									onChange={(e) => {
-										nameRef.current.value = e.target.value;
+										nameRef.current!.value = e.target.value;
 									}}
 									id="name"
 									name="name"
@@ -175,7 +175,9 @@ export default function Register() {
 									name="password"
 									placeholder="8자 이상 20자 이하"
 									ref={passwordRef}
-									onChange={(e) => (passwordRef.current.value = e.target.value)}
+									onChange={(e) =>
+										(passwordRef.current!.value = e.target.value)
+									}
 									className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
 								/>
 							</div>
@@ -196,7 +198,7 @@ export default function Register() {
 									placeholder="8자 이상 20자 이하"
 									ref={passwordConfirmRef}
 									onChange={(e) =>
-										(passwordConfirmRef.current.value = e.target.value)
+										(passwordConfirmRef.current!.value = e.target.value)
 									}
 									className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
 								/>
