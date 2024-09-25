@@ -6,14 +6,7 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {
-	const emailRegEx =
-		/^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
-	if (
-		req.method === "POST" &&
-		emailRegEx.test(req.body.email) &&
-		passwordRegEx.test(req.body.password.length)
-	) {
+	if (req.method === "POST") {
 		try {
 			// 비밀번호 hash 처리
 			const hash = await bcrypt.hash(req.body.password, 10);

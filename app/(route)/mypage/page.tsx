@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 	description: "Mypage",
 };
 
-export default async function App() {
+export default async function Page() {
 	let session: Session | null = await getServerSession(authOptions);
 
 	return (

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 	description: "Player List",
 };
 
-export default async function list() {
+export default async function Page() {
 	const playerList = await getPlayerList();
 
 	return (

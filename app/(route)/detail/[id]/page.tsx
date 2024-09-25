@@ -6,7 +6,7 @@ import getPlayer from "@/pages/api/player/getPlayer";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-export default async function App({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
 	const player = await getPlayer(params);
 	let session: Session | null = await getServerSession(authOptions);
 	let SessionValue = session ? true : null;

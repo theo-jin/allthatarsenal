@@ -1,33 +1,34 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { title, subtitle } from "@/app/_components/primitives";
+import { useRouter } from "next/navigation";
 
-export default function Register() {
+export default function Page() {
+	const router = useRouter();
 	const [showErr, setShowErr] = useState("");
 	const [showDuplicate, setShowDuplicate] =
 		useState("이메일 중복검사를 해주세요");
-	const nameRef = useRef<HTMLInputElement>(null);
-	const emailRef = useRef<HTMLInputElement>(null);
-	const passwordRef = useRef<HTMLInputElement>(null);
-	const passwordConfirmRef = useRef<HTMLInputElement>(null);
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const emailRegEx =
 		/^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 
-	const handleSubmit = async () => {
-		if (!emailRegEx.test(emailRef.current?.value || "")) {
+	const handleSubmit = async (e: { preventDefault: () => void }) => {
+		e.preventDefault();
+		console.log({ name, email, password, passwordConfirm });
+		if (!emailRegEx.test(email)) {
 			setShowErr("이메일은 @와.을 포함해야합니다.");
 			return;
 		}
-		if (passwordRef.current?.value !== passwordConfirmRef.current?.value) {
+		if (password !== passwordConfirm) {
 			setShowErr("비밀번호와 비밀번호 확인이 일치하지 않습니다");
 			return;
 		}
-		if (
-			!passwordRegEx.test(passwordRef.current?.value || "") ||
-			!passwordRegEx.test(passwordConfirmRef.current?.value || "")
-		) {
+		if (!passwordRegEx.test(password) || !passwordRegEx.test(passwordConfirm)) {
 			setShowErr("비밀번호와 비밀번호 확인은 8자 이상 20자 이하여야합니다.");
 			return;
 		}
@@ -36,9 +37,9 @@ export default function Register() {
 			const res = await fetch("/api/auth/signup", {
 				method: "POST",
 				body: JSON.stringify({
-					name: nameRef.current?.value,
-					email: emailRef.current?.value,
-					password: passwordRef.current?.value,
+					name: name,
+					email: email,
+					password: password,
 					role: "user",
 					favorites: {},
 				}),
@@ -49,7 +50,7 @@ export default function Register() {
 
 			if (res.ok) {
 				// 요청이 성공적으로 완료되었을 때 수행할 작업
-				window.location.href = "/";
+				router.push("/registdone");
 			} else {
 				const errorData = await res.json();
 				setShowErr(
@@ -63,8 +64,9 @@ export default function Register() {
 		}
 	};
 
-	const duplicateAccount = async () => {
-		if (!emailRegEx.test(emailRef.current?.value || "")) {
+	const duplicateAccount = async (e: { preventDefault: () => void }) => {
+		e.preventDefault();
+		if (!emailRegEx.test(email)) {
 			setShowDuplicate("이메일은 @와.을 포함해야합니다.");
 			return;
 		}
@@ -72,7 +74,7 @@ export default function Register() {
 			const res = await fetch("/api/auth/checkingDuplicateAccounts", {
 				method: "POST",
 				body: JSON.stringify({
-					email: emailRef.current?.value,
+					email: email,
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -113,9 +115,8 @@ export default function Register() {
 
 							<div className="mt-1">
 								<input
-									ref={emailRef}
 									onChange={(e) => {
-										emailRef.current!.value = e.target.value;
+										setEmail(e.target.value);
 									}}
 									placeholder="Email (@와. 포함)"
 									id="email"
@@ -147,9 +148,8 @@ export default function Register() {
 
 							<div className="mt-1">
 								<input
-									ref={nameRef}
 									onChange={(e) => {
-										nameRef.current!.value = e.target.value;
+										setName(e.target.value);
 									}}
 									id="name"
 									name="name"
@@ -174,10 +174,7 @@ export default function Register() {
 									id="password"
 									name="password"
 									placeholder="8자 이상 20자 이하"
-									ref={passwordRef}
-									onChange={(e) =>
-										(passwordRef.current!.value = e.target.value)
-									}
+									onChange={(e) => setPassword(e.target.value)}
 									className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
 								/>
 							</div>
@@ -196,10 +193,7 @@ export default function Register() {
 									id="passwordConfirm"
 									name="passwordConfirm"
 									placeholder="8자 이상 20자 이하"
-									ref={passwordConfirmRef}
-									onChange={(e) =>
-										(passwordConfirmRef.current!.value = e.target.value)
-									}
+									onChange={(e) => setPasswordConfirm(e.target.value)}
 									className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
 								/>
 							</div>

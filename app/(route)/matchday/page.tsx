@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 	description: "Match Day",
 };
 
-export default async function MatchdayPage() {
+export default async function Page() {
 	const fotmob = new Fotmob();
 	let teamData: any = (
 		await fotmob.getTeam(9825, "overview", "team", "America/New_York")

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 	title: "선수 비교",
 	description: "선수 비교",
 };
-export default async function App() {
+export default async function Page() {
 	const playerList = await getPlayerList();
 	return (
 		<div>

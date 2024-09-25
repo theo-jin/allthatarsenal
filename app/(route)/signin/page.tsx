@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { signIn } from "next-auth/react";
 import { title } from "@/app/_components/primitives";
 
-export default function Login() {
+export default function Page() {
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 

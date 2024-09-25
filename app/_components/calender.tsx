@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import MatchdayModal from "./MatchdayModal";
+import MatchdayModal from "./Modals/MatchdayModal";
 import { useDisclosure } from "@nextui-org/react";
 
 import { useLayoutEffect, useRef, useState } from "react";
