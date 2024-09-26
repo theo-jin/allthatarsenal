@@ -1,16 +1,16 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { title } from "@/app/_components/primitives";
 
 export default function Page() {
-	const emailRef = useRef<HTMLInputElement>(null);
-	const passwordRef = useRef<HTMLInputElement>(null);
-
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const handleSubmit = async () => {
+		console.log({ email, password });
 		const result = await signIn("credentials", {
-			email: emailRef.current,
-			password: passwordRef.current,
+			email: email,
+			password: password,
 			redirect: true,
 			callbackUrl: "/",
 		});
@@ -35,9 +35,8 @@ export default function Page() {
 
 						<div className="mt-1">
 							<input
-								ref={emailRef}
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-									emailRef.current!.value = e.target.value;
+									setEmail(e.target.value);
 								}}
 								id="email"
 								name="email"
@@ -61,9 +60,8 @@ export default function Page() {
 								type="password"
 								id="password"
 								name="password"
-								ref={passwordRef}
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-									passwordRef.current!.value = e.target.value;
+									setPassword(e.target.value);
 								}}
 								className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
 							/>

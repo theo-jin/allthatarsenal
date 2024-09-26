@@ -20,9 +20,6 @@ export const metadata: Metadata = {
 		template: `%s - ${siteConfig.name}`,
 	},
 	description: siteConfig.description,
-	// icons: {
-	// 	icon: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
-	// }, //icon.png 파일로 대체
 };
 
 export default async function RootLayout({
@@ -41,9 +38,7 @@ export default async function RootLayout({
 					fontSans.variable,
 				)}
 			>
-				<Providers1
-				// themeProps={{ attribute: "class", defaultTheme: "white" }}
-				>
+				<Providers1>
 					<div className="relative flex flex-col h-screen">
 						<Navbar session={session} />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">

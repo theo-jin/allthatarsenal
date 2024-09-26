@@ -5,7 +5,7 @@ import { LikeBtn } from "../Buttons/LikeBtn";
 import Image from "next/image";
 
 export default function PlayerInfo({ data }: any) {
-	const [isLoaded, setIsLoaded] =useState(false);
+	const [isLoaded, setIsLoaded] = useState(false);
 	useEffect(() => {
 		setIsLoaded(true);
 	}, [data.player.pic2]);
@@ -47,7 +47,8 @@ export default function PlayerInfo({ data }: any) {
 										<div className="w-8 h-8 relative">
 											<Image
 												src={`https://flagsapi.com/${data.player.nation}/flat/32.png`}
-												fill={true}
+												width={32}
+												height={32}
 												alt="flag"
 											/>
 										</div>

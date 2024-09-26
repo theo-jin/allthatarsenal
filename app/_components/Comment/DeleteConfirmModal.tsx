@@ -13,6 +13,7 @@ import { DeleteIcon } from "@/app/_components/icons";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import ErrorModal from "../ErrorModal";
+import { deleteComment } from "@/app/utils/commentUtils";
 
 export default function DeleteConfirmModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -23,17 +24,7 @@ export default function DeleteConfirmModal({ comment }: any) {
 	} = useDisclosure();
 
 	const { mutate } = useMutation({
-		mutationFn: async () => {
-			const res = await fetch("/api/comment/delete", {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ id: comment._id }),
-			});
-			if (!res.ok) throw new Error("Network response was not ok");
-			return res.json();
-		},
+		mutationFn: () => deleteComment(comment._id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments"] });
 		},

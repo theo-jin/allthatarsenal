@@ -19,6 +19,7 @@ import ErrorModal from "../ErrorModal";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { queryClient } from "@/app/providers";
+import { addNewComment, fetchComments } from "@/app/utils/commentUtils";
 
 export default function Comment({ player }: any) {
 	const [comment, setComment] = useState("");
@@ -31,27 +32,13 @@ export default function Comment({ player }: any) {
 
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["comments", player._id],
-		queryFn: async () => {
-			const res = await fetch(`/api/comment/list?id=${player._id}`);
-			if (!res.ok) throw new Error("Network response was not ok");
-			return res.json();
-		},
+		queryFn: () => fetchComments(player._id),
 		staleTime: 5000,
 		gcTime: 40000,
 	});
 
 	const { mutate } = useMutation({
-		mutationFn: async () => {
-			const res = await fetch("/api/comment/new", {
-				method: "POST",
-				body: JSON.stringify({
-					comment: comment,
-					_id: player._id,
-				}),
-			});
-			if (!res.ok) throw new Error("Network response was not ok");
-			return res.json();
-		},
+		mutationFn: () => addNewComment(comment, player._id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments", player._id] });
 			setComment("");
@@ -63,7 +50,6 @@ export default function Comment({ player }: any) {
 	});
 
 	const submitHandler = () => {
-		//comment에 아무것도 없을시 인풋창 포커스
 		if (comment === "") {
 			inputRef.current?.focus();
 			return;

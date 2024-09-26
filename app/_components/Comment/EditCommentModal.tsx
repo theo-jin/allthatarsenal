@@ -14,6 +14,7 @@ import { EditIcon } from "@/app/_components/icons";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import ErrorModal from "../ErrorModal";
+import { editComment } from "@/app/utils/commentUtils";
 
 export default function CommentModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -25,17 +26,7 @@ export default function CommentModal({ comment }: any) {
 	const [com, setCom] = useState(comment.comment);
 
 	const { mutate } = useMutation({
-		mutationFn: async () => {
-			const res = await fetch("/api/comment/edit", {
-				method: "POST",
-				body: JSON.stringify({
-					comment: com,
-					_id: comment._id,
-				}),
-			});
-			if (!res.ok) throw new Error("Network response was not ok");
-			return res.json();
-		},
+		mutationFn: () => editComment(comment.id, comment),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments"] });
 		},

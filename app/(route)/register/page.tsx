@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { title, subtitle } from "@/app/_components/primitives";
 import { useRouter } from "next/navigation";
+import { checkDuplicateAccount, signUp } from "@/app/utils/authUtils";
 
 export default function Page() {
 	const router = useRouter();
@@ -34,62 +35,30 @@ export default function Page() {
 		}
 
 		try {
-			const res = await fetch("/api/auth/signup", {
-				method: "POST",
-				body: JSON.stringify({
-					name: name,
-					email: email,
-					password: password,
-					role: "user",
-					favorites: {},
-				}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-
-			if (res.ok) {
-				// 요청이 성공적으로 완료되었을 때 수행할 작업
+			const response = await signUp(name, email, password);
+			if (response) {
 				router.push("/registdone");
-			} else {
-				const errorData = await res.json();
-				setShowErr(
-					errorData.message || "이메일과 비밀번호를 다시 확인해주세요",
-				);
 			}
-		} catch (error) {
-			// 요청이 실패하거나 예외가 발생했을 때 수행할 작업
-			console.log(error);
-			setShowErr("이메일과 비밀번호를 다시 확인해주세요");
+		} catch (error: any) {
+			setShowErr(error.message || "이메일과 비밀번호를 다시 확인해주세요");
 		}
 	};
 
-	const duplicateAccount = async (e: { preventDefault: () => void }) => {
+	const handleDuplicateAccount = async (e: { preventDefault: () => void }) => {
 		e.preventDefault();
+
 		if (!emailRegEx.test(email)) {
 			setShowDuplicate("이메일은 @와.을 포함해야합니다.");
 			return;
 		}
-		try {
-			const res = await fetch("/api/auth/checkingDuplicateAccounts", {
-				method: "POST",
-				body: JSON.stringify({
-					email: email,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
 
-			const resData = await res.json();
-			if (res.ok) {
-				setShowDuplicate(resData.message);
-			} else {
-				setShowDuplicate(resData.error);
-			}
-		} catch (error) {
-			console.log(error);
-			setShowDuplicate("중복 검사 중 오류가 발생했습니다. 다시 시도해주세요.");
+		try {
+			const response = await checkDuplicateAccount(email);
+			setShowDuplicate(response.message);
+		} catch (error: any) {
+			setShowDuplicate(
+				error.message || "중복 검사 중 오류가 발생했습니다. 다시 시도해주세요.",
+			);
 		}
 	};
 
@@ -129,7 +98,7 @@ export default function Page() {
 								<div>
 									<button
 										type="button"
-										onClick={duplicateAccount}
+										onClick={handleDuplicateAccount}
 										className="mt-2 rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-rose-600 focus:bg-gray-600 focus:outline-none"
 									>
 										중복검사

@@ -11,7 +11,7 @@ interface Credentials {
 export const authOptions: any = {
 	providers: [
 		CredentialsProvider({
-			//1. 로그인페이지 
+			//1. 로그인페이지
 			name: "credentials",
 			credentials: {
 				email: { label: "email", type: "text" },
@@ -20,7 +20,7 @@ export const authOptions: any = {
 
 			//2. 로그인요청시 실행되는코드
 			//직접 DB에서 아이디,비번 비교하고
-			//아이디,비번 맞으면 return 결과, 틀리면 return null 
+			//아이디,비번 맞으면 return 결과, 틀리면 return null
 			async authorize(credentials: any): Promise<any> {
 				let db = (await connectDB).db("arsenal");
 				let user = await db
