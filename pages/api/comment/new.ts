@@ -10,10 +10,10 @@ export default async function handler(
 	res: NextApiResponse,
 ) {
 	let session: Session | null = await getServerSession(req, res, authOptions);
+
 	if (!session || !session.user) {
 		return res.status(401).json({ message: "로그인이 필요합니다." });
 	}
-	req.body = JSON.parse(req.body);
 
 	let save = {
 		comment: req.body.comment,

@@ -14,11 +14,10 @@ export default async function editHandler(
 			return res.status(401).json({ message: "로그인이 필요합니다." });
 		}
 		const db = (await connectDB).db("arsenal");
-
+		console.log(req.body._id);
 		let pp: any = await db
 			.collection("comment")
 			.findOne({ _id: new ObjectId(req.body._id) });
-
 		if (pp.author == session.user.name) {
 			let result = await db
 				.collection("comment")

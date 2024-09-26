@@ -23,10 +23,10 @@ export default function CommentModal({ comment }: any) {
 		onOpen: onErrorOpen,
 		onOpenChange: onErrorOpenChange,
 	} = useDisclosure();
-	const [com, setCom] = useState(comment.comment);
+	const [com, setCom] = useState<string>(comment.comment);
 
 	const { mutate } = useMutation({
-		mutationFn: () => editComment(comment.id, comment),
+		mutationFn: () => editComment(comment._id, com),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["comments"] });
 		},
