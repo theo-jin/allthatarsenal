@@ -64,7 +64,7 @@ export default function App() {
 							key={index}
 							src={image.image}
 							alt={image.alt}
-							width={1000}
+							width={1027}
 							height={500}
 						/>
 					</SwiperSlide>
