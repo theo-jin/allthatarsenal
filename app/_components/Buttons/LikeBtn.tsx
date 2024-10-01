@@ -4,8 +4,9 @@ import { HeartIcon } from "../icons";
 import React, { useEffect } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
+import { Player } from "@/app/_types";
 
-export const LikeBtn = ({ player }: any) => {
+export const LikeBtn = ({ player }: { player: Player }) => {
 	const { data } = useQuery({
 		queryKey: ["likeList"],
 		queryFn: async () => {

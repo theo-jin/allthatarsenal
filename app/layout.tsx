@@ -6,7 +6,7 @@ import { Providers1 } from "./providers";
 import { Navbar } from "@/app/_components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import { getServerSession } from "next-auth";
+import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import type { Viewport } from "next";
 
@@ -27,7 +27,7 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	let session = await getServerSession(authOptions);
+	let session: Session | null = await getServerSession(authOptions);
 
 	return (
 		<html lang="en" suppressHydrationWarning>

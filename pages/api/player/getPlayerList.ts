@@ -1,6 +1,6 @@
 import { connectDB } from "@/utils/database";
 
-export default async function getPlayerList() {
+export default async function handler() {
 	const client = await connectDB;
 	const db = client.db("arsenal");
 	let playerList = await db.collection("playerList").find().toArray();

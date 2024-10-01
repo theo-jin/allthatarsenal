@@ -31,6 +31,7 @@ export default function CommentModal({ comment }: any) {
 			queryClient.invalidateQueries({ queryKey: ["comments"] });
 		},
 		onError: () => {
+			setCom(comment.comment);
 			onErrorOpen();
 		},
 	});

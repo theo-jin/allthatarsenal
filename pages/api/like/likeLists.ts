@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function likeList(
+export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {

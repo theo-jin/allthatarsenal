@@ -1,10 +1,8 @@
-"use client";
 import { title, subtitle } from "@/app/_components/primitives";
 import { Button } from "@nextui-org/button";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Page() {
-	const router = useRouter();
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 			<div className="inline-block max-w-lg text-center justify-center">
@@ -15,11 +13,7 @@ export default function Page() {
 			</div>
 
 			<div className="flex gap-3">
-				<Button
-					variant="light"
-					className={subtitle()}
-					onClick={() => router.push("/signin")}
-				>
+				<Button variant="light" className={subtitle()} as={Link} href="/signin">
 					로그인하기
 				</Button>
 			</div>

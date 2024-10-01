@@ -18,8 +18,9 @@ import { LogOutBtn } from "./Buttons/LogOutBtn";
 import { SignInBtn } from "./Buttons/SignInBtn";
 import { SignUpBtn } from "./Buttons/SignUpBtn";
 import { Logo } from "./Logo";
+import { Session } from "next-auth";
 
-export const Navbar = ({ session }: any) => {
+export const Navbar = ({ session }: { session: Session | null }) => {
 	return (
 		<NextUINavbar maxWidth="xl" position="sticky">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">

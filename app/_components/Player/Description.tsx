@@ -1,6 +1,7 @@
+import { Player } from "@/app/_types";
 import React from "react";
 
-export default function Description({ player }: any) {
+export default function Description({ player }: { player: Player }) {
 	return (
 		<div className="flex justify-center mb-3">
 			<div className="w-[400px] rounded-xl border-1 border-zinc-300">

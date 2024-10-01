@@ -1,5 +1,6 @@
 "use client";
 
+import { Player } from "@/app/_types";
 import React from "react";
 import {
 	Radar,
@@ -10,16 +11,7 @@ import {
 	Tooltip,
 } from "recharts";
 
-interface Player {
-	pace: number;
-	dribble: number;
-	shot: number;
-	pass: number;
-	physical: number;
-	defence: number;
-}
-
-const App = ({ player }: any) => {
+const App = ({ player }: { player: Player }) => {
 	const data = [
 		{
 			subject: "PACE",

@@ -20,8 +20,9 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { queryClient } from "@/app/providers";
 import { addNewComment, fetchComments } from "@/app/utils/commentUtils";
+import { Player } from "@/app/_types";
 
-export default function Comment({ player }: any) {
+export default function Comment({ player }: { player: Player }) {
 	const [comment, setComment] = useState("");
 	const {
 		isOpen: isErrorOpen,

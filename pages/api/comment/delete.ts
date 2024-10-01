@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { IncomingMessage } from "http";
 import { redirect } from "next/dist/server/api-utils";
 
-export default async function deleteHandler(
+export default async function handler(
 	req:
 		| any
 		| NextApiRequest

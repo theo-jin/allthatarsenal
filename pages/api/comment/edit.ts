@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 
-export default async function editHandler(
+export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {
@@ -14,7 +14,7 @@ export default async function editHandler(
 			return res.status(401).json({ message: "로그인이 필요합니다." });
 		}
 		const db = (await connectDB).db("arsenal");
-		console.log(req.body._id);
+
 		let pp: any = await db
 			.collection("comment")
 			.findOne({ _id: new ObjectId(req.body._id) });
@@ -26,6 +26,8 @@ export default async function editHandler(
 					{ $set: { comment: req.body.comment } },
 				);
 			res.status(200).json("성공");
+		} else {
+			res.status(500).json("작성자와 맞지 않았습니다.");
 		}
 	} else {
 		res.status(500).json("작성자와 맞지 않았습니다.");

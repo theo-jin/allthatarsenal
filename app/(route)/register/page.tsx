@@ -20,7 +20,7 @@ export default function Page() {
 
 	const handleSubmit = async (e: { preventDefault: () => void }) => {
 		e.preventDefault();
-		console.log({ name, email, password, passwordConfirm });
+
 		if (!emailRegEx.test(email)) {
 			setShowErr("이메일은 @와.을 포함해야합니다.");
 			return;
