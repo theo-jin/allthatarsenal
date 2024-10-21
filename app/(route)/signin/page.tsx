@@ -6,7 +6,7 @@ import { title } from "@/app/_components/primitives";
 export default function Page() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	
+
 	const handleSubmit = async () => {
 		const result = await signIn("credentials", {
 			email: email,
