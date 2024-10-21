@@ -17,6 +17,10 @@ export const siteConfig = {
 			label: "Match Day",
 			href: "/matchday",
 		},
+		{
+			label: "Quiz",
+			href: "/quiz",
+		},
 	],
 	navMenuItems: [
 		{
@@ -31,6 +35,10 @@ export const siteConfig = {
 		{
 			label: "Match Day",
 			href: "/matchday",
+		},
+		{
+			label: "Quiz",
+			href: "/quiz",
 		},
 	],
 
