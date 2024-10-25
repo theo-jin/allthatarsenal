@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { result } from "@/app/_types";
 import { fetchResult } from "@/app/utils/quizUtils";
+import { LoadingSpiner } from "../LoadingSpiner";
 
-export async function QuizResult({ context }: { context: result }) {
+async function QuizResultContent({ context }: { context: result }) {
 	const quizRes = await fetchResult({ context });
 
 	return (
@@ -18,6 +20,22 @@ export async function QuizResult({ context }: { context: result }) {
 					</div>
 				))}
 			</div>
+		</div>
+	);
+}
+
+export function QuizResult({ context }: { context: result }) {
+	return (
+		<div>
+			<Suspense
+				fallback={
+					<div className="flex items-center justify-center min-h-screen">
+						<LoadingSpiner />
+					</div>
+				}
+			>
+				<QuizResultContent context={context} />
+			</Suspense>
 		</div>
 	);
 }

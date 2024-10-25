@@ -7,7 +7,7 @@ export default async function handler(
 	res: NextApiResponse,
 ) {
 	if (req.method !== "POST") {
-		return res.status(405).json({ message: "Failed" });
+		return res.status(405).json({ message: "Failed (Code:405)" });
 	}
 
 	try {
@@ -40,7 +40,7 @@ export default async function handler(
 		console.error("Error on quiz results:", error);
 		return res.status(500).json({
 			success: false,
-			message: "Failed to process quiz results",
+			message: "Error on quiz results (Code:500)",
 		});
 	}
 }
