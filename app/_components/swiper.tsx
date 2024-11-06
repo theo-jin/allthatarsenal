@@ -60,7 +60,7 @@ export default function App() {
 						className="flex items-center justify-center text-center text-lg"
 					>
 						<Image
-							className="block object-cover "
+							className="block object-cover rounded-lg"
 							key={index}
 							src={image.image}
 							alt={image.alt}
