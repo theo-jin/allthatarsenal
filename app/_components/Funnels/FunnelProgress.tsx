@@ -1,26 +1,30 @@
 import { Progress } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
-export default function FunnelProgress({ step }: { step: string }) {
+const STEP_PROGRESS: { [key in StepType]: number } = {
+	step1: 0,
+	step2: 20,
+	step3: 40,
+	step4: 60,
+	step5: 80,
+	result: 100,
+};
+
+type StepType = "step1" | "step2" | "step3" | "step4" | "step5" | "result";
+
+interface FunnelProgressProps {
+	step: StepType;
+}
+
+export default function FunnelProgress({ step }: FunnelProgressProps) {
 	const [progressValue, setProgressValue] = useState(0);
+
 	useEffect(() => {
-		if (step === "step1") {
-			setProgressValue(0);
-		} else if (step === "step2") {
-			setProgressValue(20);
-		} else if (step === "step3") {
-			setProgressValue(40);
-		} else if (step === "step4") {
-			setProgressValue(60);
-		} else if (step === "step5") {
-			setProgressValue(80);
-		} else if (step === "result") {
-			setProgressValue(100);
-		}
+		setProgressValue(STEP_PROGRESS[step]);
 	}, [step]);
+
 	return (
 		<div className="flex justify-center">
-			{" "}
 			<Progress
 				size="md"
 				value={progressValue}

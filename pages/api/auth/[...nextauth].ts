@@ -72,6 +72,7 @@ export const authOptions: any = {
 	// 페이지
 	pages: {
 		signIn: "/signin",
+		error: "/signin?error=true",
 	},
 
 	secret: process.env.NEXTAUTH_SECRET,

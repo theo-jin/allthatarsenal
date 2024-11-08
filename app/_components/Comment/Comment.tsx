@@ -29,6 +29,7 @@ export default function Comment({ player }: { player: Player }) {
 		onOpen: onErrorOpen,
 		onOpenChange: onErrorOpenChange,
 	} = useDisclosure();
+	
 	const inputRef: any = useRef(null);
 
 	const { data, isLoading, isError } = useQuery({

@@ -4,6 +4,18 @@ import React, { useState } from "react";
 import { title, subtitle } from "@/app/_components/primitives";
 import { useRouter } from "next/navigation";
 import { checkDuplicateAccount, signUp } from "@/app/utils/authUtils";
+import { z, ZodError } from "zod";
+
+const emailSchema = z
+	.string()
+	.email({ message: "이메일은 @와.을 포함해야합니다." });
+const passwordSchema = z
+	.string()
+	.min(8, { message: "비밀번호는 8자 이상이어야 합니다." })
+	.max(20, { message: "비밀번호는 20자 이하여야 합니다." });
+const nameSchema = z.string().min(1, { message: "이름을 입력해주세요." });
+
+type ValidationError = ZodError | Error | any;
 
 export default function Page() {
 	const router = useRouter();
@@ -14,51 +26,51 @@ export default function Page() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const emailRegEx =
-		/^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 
 	const handleSubmit = async (e: { preventDefault: () => void }) => {
 		e.preventDefault();
 
-		if (!emailRegEx.test(email)) {
-			setShowErr("이메일은 @와.을 포함해야합니다.");
-			return;
-		}
-		if (password !== passwordConfirm) {
-			setShowErr("비밀번호와 비밀번호 확인이 일치하지 않습니다");
-			return;
-		}
-		if (!passwordRegEx.test(password) || !passwordRegEx.test(passwordConfirm)) {
-			setShowErr("비밀번호와 비밀번호 확인은 8자 이상 20자 이하여야합니다.");
-			return;
-		}
-
+		// zod를 이용해서 유저검증
 		try {
+			emailSchema.parse(email);
+			passwordSchema.parse(password);
+			nameSchema.parse(name);
+
+			if (password !== passwordConfirm) {
+				throw new Error("비밀번호와 비밀번호 확인이 일치하지 않습니다");
+			}
+
+			// 조드가 검증됐을때 진행
 			const response = await signUp(name, email, password);
 			if (response) {
 				router.push("/registdone");
 			}
-		} catch (error: any) {
-			setShowErr(error.message || "이메일과 비밀번호를 다시 확인해주세요");
+		} catch (error: ValidationError) {
+			if (error instanceof ZodError) {
+				setShowErr(error.errors.map((err) => err.message).join(", "));
+			} else {
+				setShowErr(error.message || "이메일과 비밀번호를 다시 확인해주세요");
+			}
 		}
 	};
 
 	const handleDuplicateAccount = async (e: { preventDefault: () => void }) => {
 		e.preventDefault();
 
-		if (!emailRegEx.test(email)) {
-			setShowDuplicate("이메일은 @와.을 포함해야합니다.");
-			return;
-		}
-
 		try {
+			emailSchema.parse(email);
+
 			const response = await checkDuplicateAccount(email);
 			setShowDuplicate(response.message);
-		} catch (error: any) {
-			setShowDuplicate(
-				error.message || "중복 검사 중 오류가 발생했습니다. 다시 시도해주세요.",
-			);
+		} catch (error: ValidationError) {
+			if (error instanceof ZodError) {
+				setShowDuplicate(error.errors[0].message);
+			} else {
+				setShowDuplicate(
+					error.message ||
+						"중복 검사 중 오류가 발생했습니다. 다시 시도해주세요.",
+				);
+			}
 		}
 	};
 
@@ -72,7 +84,7 @@ export default function Page() {
 			</section>
 
 			<form onSubmit={handleSubmit}>
-				<main className="flex flex-col  items-center p-3">
+				<main className="flex flex-col items-center p-3">
 					<div className="sm:w-1/3">
 						<div>
 							<label
@@ -81,7 +93,6 @@ export default function Page() {
 							>
 								Email
 							</label>
-
 							<div className="mt-1">
 								<input
 									onChange={(e) => {
@@ -171,7 +182,7 @@ export default function Page() {
 						<div className="mt-6">
 							<button
 								type="submit"
-								className="w-full transform rounded-md bg-gray-700  px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-rose-600 focus:bg-gray-600 focus:outline-none"
+								className="w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-rose-600 focus:bg-gray-600 focus:outline-none"
 							>
 								Sign Up
 							</button>

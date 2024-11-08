@@ -1,11 +1,30 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { title } from "@/app/_components/primitives";
+import { useDisclosure } from "@nextui-org/react";
+import ErrorModal from "@/app/_components/ErrorModal";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Page() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const router = useRouter();
+	const searchParams = useSearchParams();
+
+	const q = searchParams?.get("error");
+
+	const {
+		isOpen: isErrorOpen,
+		onOpen: onErrorOpen,
+		onOpenChange: onErrorOpenChange,
+	} = useDisclosure();
+
+	useEffect(() => {
+		if (q) {
+			onErrorOpen();
+		}
+	}, [q]);
 
 	const handleSubmit = async () => {
 		const result = await signIn("credentials", {
@@ -76,6 +95,13 @@ export default function Page() {
 							Log In
 						</button>
 					</div>
+					<ErrorModal
+						isErrorOpen={isErrorOpen}
+						onErrorOpenChange={onErrorOpenChange}
+						errorMessage={
+							"로그인에 실패했습니다. 이메일과 비밀번호를 확인하세요."
+						}
+					/>
 				</div>
 			</main>
 		</>
