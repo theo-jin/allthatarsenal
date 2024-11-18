@@ -1,24 +1,31 @@
 import { title } from "@/app/_components/primitives";
-import Fotmob from "fotmob";
-import Calendar from "../../_components/calender";
 import { Metadata } from "next";
+import Calender from "@/app/_components/calender";
+import { fetchMatches } from "@/app/_actions/fetchMatchData";
 
 export const metadata: Metadata = {
-	//Metadata는 모든 페이지의 head태그와 같은 역할을 한다고 생각하자.
 	title: "Match Day",
-	description: "Match Day",
+	description: "Arsenal's matches",
 };
 
-export default async function Page() {
-	const fotmob = new Fotmob();
-	let teamData: any = (
-		await fotmob.getTeam(9825, "overview", "team", "America/New_York")
-	).overview?.overviewFixtures;
-
-	return (
-		<div>
-			<h1 className={title()}>Match Day</h1>
-			<Calendar teamData={teamData} />
-		</div>
-	);
+export default async function MatchDay() {
+	try {
+		const matches = await fetchMatches();
+		return (
+			<div className="container mx-auto px-4">
+				<h1 className={`${title()} text-center my-8`}>Match Day</h1>
+				<Calender matches={matches} />
+			</div>
+		);
+	} catch (error) {
+		console.error("Error fetching matches:", error);
+		return (
+			<div className="container mx-auto px-4 text-center">
+				<h1 className={`${title()} my-8`}>Match Day</h1>
+				<p className="text-red-500">
+					Failed to load match data. Please try again later.
+				</p>
+			</div>
+		);
+	}
 }

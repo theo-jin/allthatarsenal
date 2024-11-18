@@ -23,7 +23,7 @@ export default async function handler(
 			const hash = await bcrypt.hash(validatedData.password, 10);
 			validatedData.password = hash;
 
-			const db = (await connectDB).db("arsenal");
+			const db = (await connectDB).db("arsenal");	
 			let user = await db
 				.collection("userCred")
 				.findOne({ email: validatedData.email });

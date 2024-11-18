@@ -20,6 +20,11 @@ const nextConfig = {
 				hostname: "flagsapi.com",
 				pathname: "**",
 			},
+			{
+				protocol: "https",
+				hostname: "crests.football-data.org",
+				pathname: "**",
+			},
 		],
 	},
 };

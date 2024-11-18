@@ -69,3 +69,31 @@ export interface contextProps {
 	onNext: (step: string) => void;
 	onPrev: () => void;
 }
+
+export interface Match {
+	utcDate: string;
+	status: string;
+	homeTeam: { shortName: string; crest: string };
+	awayTeam: { shortName: string; crest: string };
+	score: { fullTime: { home: number | null; away: number | null } };
+	referees: { name: string }[];
+}
+
+export interface CalendarEvent {
+	title: string;
+	start: string;
+	color: string;
+	detail: string | { homeScore: number | string; awayScore: number | string };
+	referees: string;
+	homeTeamPic: string;
+	awayTeamPic: string;
+}
+
+export interface MatchData {
+	matchResult: string;
+	result: string | { homeScore: number | string; awayScore: number | string };
+	date: Date;
+	referees: string;
+	homeTeamPic: string;
+	awayTeamPic: string;
+}

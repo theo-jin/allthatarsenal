@@ -6,75 +6,83 @@ import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import MatchdayModal from "./Modals/MatchdayModal";
 import { useDisclosure } from "@nextui-org/react";
-
 import { useLayoutEffect, useRef, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
+import type { Match, CalendarEvent, MatchData } from "../_types";
+import { EventClickArg } from "@fullcalendar/core";
 
-function Calendar({ teamData }: any) {
+function Calender({ matches }: { matches: Match[] }) {
 	const {
 		isOpen: isModalOpen,
 		onOpen: onModalOpen,
 		onOpenChange: onModalOpenChange,
 	} = useDisclosure();
 
-	let matchResult, result, date;
-	const [matchData, setMatchData] = useState([matchResult, result, date]);
-	const data = teamData?.map(function (a: any, i: string | number) {
-		const originalDate = new Date(teamData[i].status?.utcTime);
-		const formattedDate = originalDate.toISOString().split("T")[0];
-		let scoredTitle;
-		if (teamData[i].status?.finished == true) {
-			scoredTitle = `${teamData[i].home.name} ${teamData[i].home.score} vs ${teamData[i].away.name} ${teamData[i].away.score}`;
-		} else {
-			scoredTitle = `${teamData[i].home.name}  vs ${teamData[i].away.name} `;
-		}
+	const [matchData, setMatchData] = useState<MatchData | null>(null);
+	const data: CalendarEvent[] = matches.map((match) => {
+		const formattedDate = new Date(match.utcDate).toISOString().split("T")[0];
+		const homeScore = match.score?.fullTime?.home ?? "N/A";
+		const awayScore = match.score?.fullTime?.away ?? "N/A";
+		const scoredTitle =
+			match.status === "FINISHED" ?
+				`${match.homeTeam.shortName} ${homeScore} vs ${match.awayTeam.shortName} ${awayScore}`
+			:	`${match.homeTeam.shortName} vs ${match.awayTeam.shortName}`;
+		const scoreResult =
+			homeScore === "N/A" ? "경기전" : { homeScore, awayScore };
 
 		return {
 			title: scoredTitle,
 			start: formattedDate,
-			color: teamData[i].home.name == "Arsenal" ? "#ff0000" : "#6E6E6E",
-			detail: teamData[i].status?.scoreStr,
+			color: match.homeTeam.shortName === "Arsenal" ? "#ff0000" : "#6E6E6E",
+			detail: scoreResult,
+			referees: match.referees[0]?.name ?? "",
+			homeTeamPic: match.homeTeam.crest,
+			awayTeamPic: match.awayTeam.crest,
 		};
 	});
-	function handleEventClick(e: any) {
-		if (e.event._def.extendedProps.detail == undefined) {
-			result = "경기전";
-		} else result = e.event._def.extendedProps.detail;
-		date = new Date(e.event._instance.range.start);
-		matchResult = e.event.title;
-		setMatchData([matchResult, result, date]);
+
+	function handleEventClick(e: EventClickArg) {
+		const { event } = e;
+		setMatchData({
+			matchResult: event.title,
+			result: event.extendedProps.detail,
+			date: event.start!,
+			referees: event.extendedProps.referees,
+			homeTeamPic: event.extendedProps.homeTeamPic,
+			awayTeamPic: event.extendedProps.awayTeamPic,
+		});
 		onModalOpen();
 	}
 
-	const matches = useMediaQuery("(min-width: 768px)");
+	const isDesktop = useMediaQuery("(min-width: 768px)");
 	const calendarRef = useRef<FullCalendar>(null);
 
 	useLayoutEffect(() => {
 		const calendarApi = calendarRef!.current!.getApi();
-		calendarApi.changeView(matches ? "dayGridMonth" : "listMonth");
-	}, [matches]);
+		calendarApi.changeView(isDesktop ? "dayGridMonth" : "listMonth");
+	}, [isDesktop]);
 
 	return (
 		<div>
-			<div>
-				<FullCalendar
-					plugins={[listPlugin, dayGridPlugin, interactionPlugin]}
-					ref={calendarRef}
-					initialView={matches ? "dayGridMonth" : "listMonth"}
-					dayMaxEvents={true}
-					events={data}
-					height={"600px"}
-					eventClick={handleEventClick}
-					eventDisplay={"auto"}
-				/>
+			<FullCalendar
+				plugins={[listPlugin, dayGridPlugin, interactionPlugin]}
+				ref={calendarRef}
+				initialView={isDesktop ? "dayGridMonth" : "listMonth"}
+				dayMaxEvents={true}
+				events={data}
+				height={"600px"}
+				eventClick={handleEventClick}
+				eventDisplay={"auto"}
+			/>
+			{matchData && (
 				<MatchdayModal
 					isModalOpen={isModalOpen}
 					onModalOpenChange={onModalOpenChange}
 					matchData={matchData}
 				/>
-			</div>
+			)}
 		</div>
 	);
 }
 
-export default Calendar;
+export default Calender;
