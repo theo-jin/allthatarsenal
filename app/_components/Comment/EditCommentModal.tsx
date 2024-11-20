@@ -14,7 +14,7 @@ import { EditIcon } from "@/app/_components/icons";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import ErrorModal from "../ErrorModal";
-import { editComment } from "@/app/utils/commentUtils";
+import { editComment } from "@/app/_actions/fetchComment";
 
 export default function CommentModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();

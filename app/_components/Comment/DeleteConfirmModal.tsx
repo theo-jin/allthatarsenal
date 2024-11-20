@@ -13,7 +13,7 @@ import { DeleteIcon } from "@/app/_components/icons";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import ErrorModal from "../ErrorModal";
-import { deleteComment } from "@/app/utils/commentUtils";
+import { deleteComment } from "@/app/_actions/fetchComment";
 
 export default function DeleteConfirmModal({ comment }: any) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();

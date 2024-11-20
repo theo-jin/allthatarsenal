@@ -7,7 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import MatchdayModal from "./Modals/MatchdayModal";
 import { useDisclosure } from "@nextui-org/react";
 import { useLayoutEffect, useRef, useState } from "react";
-import { useMediaQuery } from "../hooks/useMediaQuery";
+import { useMediaQuery } from "../utils/useMediaQuery";
 import type { Match, CalendarEvent, MatchData } from "../_types";
 import { EventClickArg } from "@fullcalendar/core";
 

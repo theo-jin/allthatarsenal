@@ -19,7 +19,7 @@ import ErrorModal from "../ErrorModal";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { queryClient } from "@/app/providers";
-import { addNewComment, fetchComments } from "@/app/utils/commentUtils";
+import { addNewComment, fetchComments } from "@/app/_actions/fetchComment";
 import { Player } from "@/app/_types";
 
 export default function Comment({ player }: { player: Player }) {
@@ -29,7 +29,7 @@ export default function Comment({ player }: { player: Player }) {
 		onOpen: onErrorOpen,
 		onOpenChange: onErrorOpenChange,
 	} = useDisclosure();
-	
+
 	const inputRef: any = useRef(null);
 
 	const { data, isLoading, isError } = useQuery({

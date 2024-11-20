@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { title, subtitle } from "@/app/_components/primitives";
 import { useRouter } from "next/navigation";
-import { checkDuplicateAccount, signUp } from "@/app/utils/authUtils";
+import { checkDuplicateAccount, signUp } from "@/app/_actions/fetchAuth";
 import { z, ZodError } from "zod";
 
 const emailSchema = z

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { result } from "@/app/_types";
-import { fetchResult } from "@/app/utils/quizUtils";
+import { fetchResult } from "@/app/_actions/fetchQuiz";
 import { LoadingSpiner } from "../LoadingSpiner";
 
 async function QuizResultContent({ context }: { context: result }) {
