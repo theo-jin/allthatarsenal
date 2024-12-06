@@ -14,3 +14,4 @@ export default async function handler(
 		.toArray();
 	res.status(200).json(result);
 }
+	
