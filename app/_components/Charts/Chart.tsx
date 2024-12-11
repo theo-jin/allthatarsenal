@@ -9,6 +9,7 @@ import {
 	PolarAngleAxis,
 	PolarRadiusAxis,
 	Tooltip,
+	ResponsiveContainer,
 } from "recharts";
 
 const App = ({ player }: { player: Player }) => {
@@ -46,25 +47,16 @@ const App = ({ player }: { player: Player }) => {
 	];
 
 	return (
-		<div className="flex justify-center">
-			<RadarChart
-				cx={200}
-				cy={150}
-				outerRadius={100}
-				width={400}
-				height={300}
-				data={data}
-			>
+		<ResponsiveContainer width="100%" height="100%">
+			<RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
 				<PolarGrid />
 				<PolarAngleAxis dataKey="subject" />
-
-				<PolarRadiusAxis />
-
-				<Radar dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+				<PolarRadiusAxis angle={30} />
+				<Radar dataKey="A" stroke="#EF4444" fill="#EF4444" fillOpacity={0.6} />
 
 				<Tooltip />
 			</RadarChart>
-		</div>
+		</ResponsiveContainer>
 	);
 };
 

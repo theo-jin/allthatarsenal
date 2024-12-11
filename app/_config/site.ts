@@ -6,7 +6,7 @@ export const siteConfig = {
 	navItems: [
 		{
 			label: "List",
-			href: "/list",
+			href: "/players",
 		},
 		{
 			label: "Player Vs Player",
@@ -25,7 +25,7 @@ export const siteConfig = {
 	navMenuItems: [
 		{
 			label: "List",
-			href: "/list",
+			href: "/players",
 		},
 		{
 			label: "Player Vs Player",

@@ -20,7 +20,10 @@ function Calender({ matches }: { matches: Match[] }) {
 
 	const [matchData, setMatchData] = useState<MatchData | null>(null);
 	const data: CalendarEvent[] = matches.map((match) => {
-		const formattedDate = new Date(match.utcDate).toISOString().split("T")[0];
+		const koreanDate = new Date(
+			new Date(match.utcDate).getTime() + 9 * 60 * 60 * 1000,
+		);
+		const formattedDate = koreanDate.toISOString().split("T")[0];
 		const homeScore = match.score?.fullTime?.home ?? "N/A";
 		const awayScore = match.score?.fullTime?.away ?? "N/A";
 		const scoredTitle =
