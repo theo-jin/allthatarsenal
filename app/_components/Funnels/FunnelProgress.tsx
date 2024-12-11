@@ -1,4 +1,4 @@
-import { Progress } from "@nextui-org/react";
+import { Progress } from "@/components/ui/progress";
 import { useEffect, useState } from "react";
 
 const STEP_PROGRESS: { [key in StepType]: number } = {
@@ -25,12 +25,7 @@ export default function FunnelProgress({ step }: FunnelProgressProps) {
 
 	return (
 		<div className="flex justify-center">
-			<Progress
-				size="md"
-				value={progressValue}
-				color="success"
-				className="max-w-md"
-			/>
+			<Progress value={progressValue} color="success" className="max-w-md" />
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import { connectDB } from "@/utils/database";
 import { ObjectId } from "mongodb";
 
 export default async function handler(params: { id: string  }) {
-	console.log(params.id);
+
 	let id = params.id;
 	const client = await connectDB;
 	const db = client.db("arsenal");

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Versus from "../../_components/Charts/Versus";
 import getPlayerList from "@/pages/api/player/getPlayerList";
+import PlayerComparisonPage from "@/app/_components/Charts/Compare";
 export const metadata: Metadata = {
 	//Metadata는 모든 페이지의 head태그와 같은 역할을 한다고 생각하자.
 	title: "선수 비교",
@@ -10,7 +10,7 @@ export default async function Page() {
 	const playerList = await getPlayerList();
 	return (
 		<div>
-			<Versus playerList={playerList} />
+			<PlayerComparisonPage playerList={playerList} />
 		</div>
 	);
 }

@@ -1,10 +1,11 @@
 "use client";
-import { Button } from "@nextui-org/button";
-import { HeartIcon } from "../icons";
+
 import React, { useEffect } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import { Player } from "@/app/_types";
+import { StarIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const LikeBtn = ({ player }: { player: Player }) => {
 	const { data } = useQuery({
@@ -53,26 +54,20 @@ export const LikeBtn = ({ player }: { player: Player }) => {
 			return updatedLiked;
 		});
 	};
-	let heart;
+	let star;
 	if (list) {
-		heart = (
-			<HeartIcon
-				className={liked ? "[&>path]:stroke-transparent" : ""}
+		star = (
+			<StarIcon
+				className={liked ? "fill-current text-yellow-400" : ""}
 				fill={liked ? "currentColor" : "none"}
 			/>
 		);
 	} else {
-		heart = <HeartIcon fill={"none"} />;
+		star = <StarIcon fill={"none"} />;
 	}
 	return (
-		<Button
-			isIconOnly
-			className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
-			radius="full"
-			variant="light"
-			onPress={handlePress}
-		>
-			{heart}
+		<Button variant="ghost" size="icon" onClick={handlePress}>
+			{star}
 		</Button>
 	);
 };
