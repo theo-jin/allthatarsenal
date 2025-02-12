@@ -1,6 +1,6 @@
 import { title } from "@/app/_components/primitives";
 import { Metadata } from "next";
-import Calender from "@/app/_components/calender";
+import Calender from "@/app/_components/Calender";
 import { fetchMatches } from "@/app/_actions/fetchMatchData";
 
 export const metadata: Metadata = {

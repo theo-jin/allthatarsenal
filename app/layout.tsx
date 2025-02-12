@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { siteConfig } from "@/app/_config/site";
 import { fontSans } from "@/app/_config/fonts";
 import { Providers1 } from "./providers";
-import { Navbar } from "@/app/_components/navbar";
+import { Navbar } from "@/app/_components/Navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession, Session } from "next-auth";

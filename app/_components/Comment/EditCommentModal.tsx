@@ -10,7 +10,7 @@ import {
 	useDisclosure,
 	Input,
 } from "@nextui-org/react";
-import { EditIcon } from "@/app/_components/icons";
+import { EditIcon } from "@/app/_components/Icons";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import ErrorModal from "../ErrorModal";
