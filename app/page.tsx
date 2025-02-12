@@ -3,8 +3,8 @@ import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/app/_config/site";
 import { title, subtitle } from "@/app/_components/primitives";
-import { KakaoIcon } from "@/app/_components/Icons";
-import Swiper from "@/app/_components/Swiper";
+import { KakaoIcon } from "@/app/_components/icons";
+import Swiper from "@/app/_components/swiper";
 export default function Home() {
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -15,7 +15,7 @@ export default function Home() {
 				<br />
 				<h1 className={title()}>Go!&nbsp;</h1>
 				<h1 className={title({ color: "pink" })}>Gunners!&nbsp;</h1>
-
+		
 				<h2 className={subtitle({ class: "mt-4" })}>
 					Beautiful Football Club ARSENAL FC
 				</h2>

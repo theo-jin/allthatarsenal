@@ -9,7 +9,7 @@ import {
 	Button,
 	useDisclosure,
 } from "@nextui-org/react";
-import { DeleteIcon } from "@/app/_components/Icons";
+import { DeleteIcon } from "@/app/_components/icons";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/providers";
 import ErrorModal from "../ErrorModal";
