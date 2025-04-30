@@ -1,5 +1,5 @@
 import React from "react";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Metadata } from "next";
 import { getServerSession, Session } from "next-auth";
 import Link from "next/link";

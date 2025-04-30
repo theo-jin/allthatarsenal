@@ -3,11 +3,11 @@ import { Metadata } from "next";
 import { siteConfig } from "@/app/_config/site";
 import { fontSans } from "@/app/_config/fonts";
 import { Providers1 } from "./providers";
-import { Navbar } from "@/app/_components/navbar";
+import { Navbar } from "./_components/Navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { getServerSession, Session } from "next-auth";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 import type { Viewport } from "next";
 
 export const viewport: Viewport = {

@@ -1,6 +1,5 @@
-import getPlayer from "@/pages/api/player/getPlayer";
 import { getServerSession, Session } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Player } from "@/app/_types";
 import PlayerInfoCard from "@/app/_components/Card/playerInfoCard";
 import Comment from "@/app/_components/Comment/Comment";
@@ -52,8 +51,8 @@ export default async function PlayerPage({
 }: {
 	params: { id: string };
 }) {
-	const playerData = await getPlayer(params);
-	// playerData가 존재하지 않으면 null로 처리
+	const playerData = await fetch(`/api/players/${params.id}`).then(res => res.json());
+	// playerData가 존재하지 않으면 null로 처리 
 	if (!playerData) {
 		return <div>Player not found</div>;
 	}

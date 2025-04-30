@@ -36,84 +36,60 @@ interface Player {
 	nation: string;
 }
 
+interface ComparisonData {
+	stat: string;
+	[playerName: string]: number | string;
+}
+
+interface PlayerComparisonPageProps {
+	playerList: Player[];
+}
+
+const DEFAULT_PLAYER: Player = {
+	_id: "",
+	name: "",
+	number: 0,
+	pace: 0,
+	dribble: 0,
+	shot: 0,
+	pass: 0,
+	physical: 0,
+	defence: 0,
+	role: "",
+	pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
+	nation: "KR",
+};
+
 export default function PlayerComparisonPage({
 	playerList,
-}: {
-	playerList: any;
-}) {
-	let [playerA, setPlayerA] = useState<Player>({
-		_id: "",
-		name: "",
-		number: 0,
-		pace: 0,
-		dribble: 0,
-		shot: 0,
-		pass: 0,
-		physical: 0,
-		defence: 0,
-		role: "",
-		pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
-		nation: "KR",
-	});
-	let [playerB, setPlayerB] = useState<Player>({
-		_id: "",
-		name: "",
-		number: 0,
-		pace: 0,
-		dribble: 0,
-		shot: 0,
-		pass: 0,
-		physical: 0,
-		defence: 0,
-		role: "",
-		pic: "https://i.pinimg.com/originals/21/5b/24/215b24eee713a7a2796467ff2adae1a5.png",
-		nation: "KR",
-	});
+}: PlayerComparisonPageProps) {
+	let [playerA, setPlayerA] = useState<Player>(DEFAULT_PLAYER);
+	let [playerB, setPlayerB] = useState<Player>(DEFAULT_PLAYER);
 
 	const handlePlayerChange = (
 		playerId: string,
 		setPlayer: (player: Player) => void,
 	) => {
-		const selectedPlayer = playerList.find(
-			(p: { _id: string }) => p._id === playerId,
-		);
+		const selectedPlayer = playerList.find((p: Player) => p._id === playerId);
 		if (selectedPlayer) {
 			setPlayer(selectedPlayer);
 		}
 	};
 
-	const comparisonData = [
-		{
-			stat: "Pace",
-			[playerA.name]: playerA.pace,
-			[playerB.name]: playerB.pace,
-		},
-		{
-			stat: "Dribble",
-			[playerA.name]: playerA.dribble,
-			[playerB.name]: playerB.dribble,
-		},
-		{
-			stat: "Shot",
-			[playerA.name]: playerA.shot,
-			[playerB.name]: playerB.shot,
-		},
-		{
-			stat: "Pass",
-			[playerA.name]: playerA.pass,
-			[playerB.name]: playerB.pass,
-		},
-		{
-			stat: "Physical",
-			[playerA.name]: playerA.physical,
-			[playerB.name]: playerB.physical,
-		},
-		{
-			stat: "Defence",
-			[playerA.name]: playerA.defence,
-			[playerB.name]: playerB.defence,
-		},
-	];
+	const STATS = [
+		{ key: "pace", label: "Pace" },
+		{ key: "dribble", label: "Dribble" },
+		{ key: "shot", label: "Shot" },
+		{ key: "pass", label: "Pass" },
+		{ key: "physical", label: "Physical" },
+		{ key: "defence", label: "Defence" },
+	] as const;
+
+	const comparisonData: ComparisonData[] = STATS.map(({ key, label }) => ({
+		stat: label,
+		[playerA.name]: playerA[key],
+		[playerB.name]: playerB[key],
+	}));
 
 	return (
 		<div className="container mx-auto px-4 py-8">

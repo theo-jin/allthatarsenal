@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import getPlayerList from "@/pages/api/player/getPlayerList";
+import { GET } from "@/app/api/player/getPlayerList";
 import { PlayerCard } from "@/app/_components/Card/playerGeneralCard";
 
 export const metadata: Metadata = {
@@ -10,15 +10,16 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	const playerList = await getPlayerList();
-
+	const playerList = await GET();
+	console.log(playerList);
 	return (
 		<div className="container mx-auto px-4 py-8">
 			<h1 className="text-3xl font-bold mb-6">Arsenal Players</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-				{playerList.map((player) => (
-					<PlayerCard key={player.name} player={player} />
-				))}
+				{Array.isArray(playerList) &&
+					playerList.map((player: any) => (
+						<PlayerCard key={player.name} player={player} />
+					))}
 			</div>
 		</div>
 	);
