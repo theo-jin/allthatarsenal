@@ -8,13 +8,13 @@ export function PlayerCard({ player }: { player: any }) {
 	return (
 		<Link href={`/players/${player._id}`}>
 			<Card className="hover:shadow-lg rounded-t-lg">
-				<div className="flex justify-center items-center bg-gray-100 rounded-t-lg w-[400px] h-[225px] overflow-hidden">
+				<div className="flex justify-center items-center bg-gray-100 rounded-t-lg w-full h-[225px]  overflow-hidden">
 					<Image
 						src={player.pic}
 						alt={player.name}
 						width={400}
 						height={225}
-						className="object-cover rounded-t-lg w-full h-full"
+						className="object-cover rounded-t-lg"
 					/>
 				</div>
 
