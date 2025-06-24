@@ -206,8 +206,8 @@ export default function PlayerComparisonPage({
 					<div className="mt-6 grid grid-cols-2 gap-4">
 						{comparisonData.map((item) => (
 							<div key={item.stat} className="flex justify-between">
-								<span className="font-medium">{item.stat}</span>
-								<span className="text-blue-600">{item[playerA.name]}</span>
+								<span className="font-medium w-24">{item.stat}</span>
+								<span className="text-blue-600 ">{item[playerA.name]}</span>
 								<span className="text-green-600">{item[playerB.name]}</span>
 							</div>
 						))}
