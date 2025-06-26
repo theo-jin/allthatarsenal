@@ -7,10 +7,14 @@ import { Player } from "@/app/_types";
 import { StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+interface LikeList {
+	[playerId: string]: string;
+}
+
 export const LikeBtn = ({ player }: { player: Player }) => {
 	const { data } = useQuery({
 		queryKey: ["likeList"],
-		queryFn: async () => {
+		queryFn: async (): Promise<LikeList> => {
 			const res = await fetch(`/api/like/likeLists`);
 			if (!res.ok) throw new Error("Network response was not ok");
 			return res.json();
@@ -18,55 +22,87 @@ export const LikeBtn = ({ player }: { player: Player }) => {
 		staleTime: 5000,
 		gcTime: 40000,
 	});
-	const list = data || {};
-	let checkFavoritesValue = list ? list.hasOwnProperty(player._id) : false;
 
-	let target = player;
+	const list = data || {};
+	const checkFavoritesValue = list ? list.hasOwnProperty(player._id) : false;
 
 	const [liked, setLiked] = React.useState(checkFavoritesValue);
+
 	useEffect(() => {
 		setLiked(checkFavoritesValue);
 	}, [checkFavoritesValue]);
 
 	const mutation = useMutation({
-		mutationFn: async (newList) => {
-			const res = await (
-				await fetch("/api/like/likePlayer", {
-					method: "POST",
-					body: JSON.stringify({ favorites: newList }),
-				})
-			).json();
+		mutationFn: async (newList: LikeList) => {
+			const res = await fetch("/api/like/likePlayer", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ favorites: newList }),
+			});
+
+			if (!res.ok) {
+				throw new Error("Failed to update like status");
+			}
+
+			return res.json();
 		},
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["favorites", target._id] });
+			queryClient.invalidateQueries({ queryKey: ["likeList"] });
+			queryClient.invalidateQueries({ queryKey: ["favorites", player._id] });
+		},
+		onError: (error) => {
+			//  롤백로직직
+			console.error("Like update failed:", error);
+			setLiked(checkFavoritesValue); // 서버의 실제 값으로 롤백
 		},
 	});
+
 	const handlePress = () => {
-		setLiked((prev: any) => {
+		// 현재 상태 저장 (롤백용)
+		const previousLiked = liked;
+
+		setLiked((prev: boolean) => {
 			const updatedLiked = !prev;
 			const newList = { ...list };
+
 			if (updatedLiked) {
-				newList[target._id] = target.name;
+				newList[player._id] = player.name;
 			} else {
-				delete newList[target._id];
+				delete newList[player._id];
 			}
+
+			// 낙관적 업데이트와 함께 서버 요청
 			mutation.mutate(newList);
+
 			return updatedLiked;
 		});
 	};
-	let star;
-	if (list) {
-		star = (
+
+
+	const isLoading = mutation.isPending;
+
+	const star =
+		list ?
 			<StarIcon
-				className={liked ? "fill-current text-yellow-400" : ""}
+				className={`transition-colors duration-200 ${
+					liked ? "fill-current text-yellow-400" : "text-gray-400"
+				} ${isLoading ? "opacity-50" : ""}`}
 				fill={liked ? "currentColor" : "none"}
 			/>
-		);
-	} else {
-		star = <StarIcon fill={"none"} />;
-	}
+		:	<StarIcon fill="none" className="text-gray-400" />;
+
 	return (
-		<Button variant="ghost" size="icon" onClick={handlePress}>
+		<Button
+			variant="ghost"
+			size="icon"
+			onClick={handlePress}
+			disabled={isLoading}
+			className={`transition-all duration-200 ${
+				isLoading ? "cursor-not-allowed" : "hover:bg-gray-100"
+			}`}
+		>
 			{star}
 		</Button>
 	);
