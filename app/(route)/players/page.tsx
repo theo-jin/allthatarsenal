@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 	description: "Player List",
 };
 
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
 export default async function Page() {
 	const playerList = await getPlayerList();
 

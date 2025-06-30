@@ -2,6 +2,8 @@ import { title, subtitle } from "@/app/_components/primitives";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 export default function Page() {
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
